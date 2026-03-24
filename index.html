@@ -48,7 +48,7 @@
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
         /* --- ANIMATIONS AURA PRO (OPTIMISÉES GPU) --- */
-        .nav-link i, .social-icon i, .skill-icon, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
+        .nav-link i, .skill-icon, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
             will-change: transform, filter;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -147,17 +147,38 @@
         /* Boutons d'actions Accueil (CV) */
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
-        .social-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 50px; }
+        /* --- RESEAUX SOCIAUX (ANIMATIONS PRO) --- */
+        .social-links { display: flex; gap: 25px; justify-content: center; margin-bottom: 50px; }
         .social-icon {
-            width: 60px; height: 60px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border-glass);
-            display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--text-main);
-            transition: all 0.4s var(--bounce); position: relative; overflow: hidden; backdrop-filter: blur(10px);
+            width: 65px; height: 65px; border-radius: 50%; 
+            background: rgba(20, 20, 30, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 1.8rem; color: var(--text-sec);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden; backdrop-filter: blur(10px);
+            animation: aura-float 6s ease-in-out infinite;
         }
-        .social-icon::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--grad-primary); opacity: 0; transition: 0.4s; z-index: -1; }
-        .social-icon:hover { transform: translateY(-8px) scale(1.1); border-color: transparent; }
-        .social-icon:hover::before { opacity: 1; }
-        .social-icon i { animation: aura-sway 5s ease-in-out infinite; transition: transform 0.3s; }
-        .social-icon:hover i { animation: none; transform: scale(1.2); }
+        .social-icon i { transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        
+        /* Github Glow */
+        .social-icon.github:hover {
+            color: #ffffff; background: #24292e; border-color: #ffffff;
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px); animation: none;
+        }
+        /* LinkedIn Glow */
+        .social-icon.linkedin:hover {
+            color: #ffffff; background: #0a66c2; border-color: #00cfef;
+            box-shadow: 0 15px 35px rgba(10, 102, 194, 0.4), inset 0 0 20px rgba(0, 207, 239, 0.3);
+            transform: translateY(-10px); animation: none;
+        }
+        /* Email Glow */
+        .social-icon.email:hover {
+            color: #ffffff; background: #ea4335; border-color: #ff8a65;
+            box-shadow: 0 15px 35px rgba(234, 67, 53, 0.4), inset 0 0 20px rgba(255, 138, 101, 0.3);
+            transform: translateY(-10px); animation: none;
+        }
+        .social-icon:hover i { transform: scale(1.4); }
 
         /* --- COMPÉTENCES --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
@@ -344,9 +365,9 @@
             </div>
 
             <div class="social-links delay-3">
-                <a href="https://github.com/DevSioAlan" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/alan-mirat-2053683a8/" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="mailto:alan.mirat@gmail.com" class="social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/DevSioAlan" target="_blank" class="social-icon github" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/alan-mirat-2053683a8/" target="_blank" class="social-icon linkedin" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:alan.mirat@gmail.com" class="social-icon email" title="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </section>
 
@@ -445,7 +466,7 @@
                             <span class="tech-tag">API</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <a href="https://github.com/DevSioAlan/Aura-Local-AI-Assistant" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('dassault1')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -470,7 +491,7 @@
                             <span class="tech-tag">Data</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <a href="https://github.com/DevSioAlan/Data-Automation-Engine" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('dassault2')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -481,7 +502,7 @@
                         <img src="Cashverse.jpg" alt="Cashverse" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Simulator Cashverse</h3>
+                        <h3 class="project-title">Jeu Simulator 🌌 Cashverse</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
                             <ul class="feature-list">
@@ -506,7 +527,7 @@
                         <img src="mainscreen.jpg" alt="Toon Tactics" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">⭐ Toon Tactics</h3>
+                        <h3 class="project-title">Jeu ⭐ Toon Tactics</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
                             <ul class="feature-list">
