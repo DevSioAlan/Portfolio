@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alan MIRAT - Développeur Full-Stack</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES VIBRANTES --- */
+        :root {
+            --bg-dark: #05050A; 
+            --bg-card: rgba(20, 20, 30, 0.4); 
+            --text-main: #ffffff;
+            --text-sec: #9ca3af;
+            
+            --grad-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --grad-purple: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+            --grad-sunset: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+            --grad-emerald: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            --grad-gold: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --font-head: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* --- BASE & FOND ANIMÉ --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before, body::after {
+            content: ''; position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.4;
+        }
+        body::before { top: -10%; left: -10%; width: 500px; height: 500px; background: #4facfe; animation: float 10s infinite alternate; }
+        body::after { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #8b5cf6; animation: float 15s infinite alternate-reverse; }
+        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
+
+        /* --- ANIMATIONS AURA PRO (OPTIMISÉES GPU) --- */
+        /* Ces propriétés forcent la carte graphique à faire le calcul, éliminant les lags */
+        .nav-link i, .social-icon i, .skill-icon, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
+            will-change: transform, filter;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        @keyframes aura-float { 
+            0%, 100% { transform: translateY(0px) translateZ(0); filter: drop-shadow(0 0 0 rgba(79, 172, 254, 0)); } 
+            50% { transform: translateY(-5px) translateZ(0); filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.6)); } 
+        }
+        @keyframes aura-pulse-emerald { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(52, 211, 153, 0.2)); } 
+            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.7)); } 
+        }
+        @keyframes aura-pulse-purple { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.2)); } 
+            50% { transform: scale(1.06) translateZ(0); filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.7)); } 
+        }
+        @keyframes aura-pulse-gold { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.2)); } 
+            50% { transform: scale(1.1) translateZ(0); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.6)); } 
+        }
+        @keyframes aura-sway { 
+            0%, 100% { transform: rotate(0deg) translateY(0) translateZ(0); filter: drop-shadow(0 0 0 rgba(255, 8, 68, 0)); } 
+            25% { transform: rotate(4deg) translateY(-3px) translateZ(0); filter: drop-shadow(0 5px 15px rgba(255, 8, 68, 0.5)); } 
+            75% { transform: rotate(-4deg) translateY(-3px) translateZ(0); filter: drop-shadow(0 5px 15px rgba(255, 8, 68, 0.5)); } 
+        }
+
+        html { scroll-behavior: smooth; }
+        a { text-decoration: none; color: inherit; }
+
+        .reveal { opacity: 0; transform: translateY(50px) scale(0.95); transition: all 0.8s var(--bounce); }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        /* --- NAVIGATION FLOTTANTE --- */
+        .navbar {
+            position: fixed; top: 25px; left: 50%; transform: translateX(-50%);
+            background: rgba(10, 10, 15, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            padding: 8px 12px; border-radius: 50px; border: 1px solid var(--border-glass);
+            display: flex; gap: 10px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .nav-link {
+            color: var(--text-sec); font-family: var(--font-head); font-weight: 500; font-size: 0.95rem;
+            padding: 10px 20px; border-radius: 30px; transition: all 0.4s var(--bounce);
+            display: flex; align-items: center; gap: 8px; position: relative; overflow: hidden;
+        }
+        .nav-link i { font-size: 1.1rem; transition: transform 0.3s var(--bounce); animation: aura-float 4s ease-in-out infinite; }
+        .nav-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .nav-link:hover i { animation: none; transform: translateY(-3px) scale(1.1); color: #4facfe; }
+        .nav-link.active { color: #fff; background: var(--border-glass); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1); }
+        .nav-link.active i { color: #d946ef; }
+
+        /* --- BOUTON TRADUCTION --- */
+        .lang-toggle-container {
+            position: fixed; top: 25px; right: 30px; z-index: 1001;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass);
+            border-radius: 30px; width: 86px; height: 38px; display: flex; align-items: center;
+            cursor: pointer; backdrop-filter: blur(10px); padding: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .lang-slider {
+            position: absolute; width: 40px; height: 30px; background: #e2e8f0;
+            border-radius: 20px; transition: 0.4s var(--bounce); left: 3px; z-index: 0;
+        }
+        .lang-toggle-container.en .lang-slider { transform: translateX(39px); }
+        .lang-option { flex: 1; text-align: center; font-size: 0.85rem; font-weight: 700; z-index: 1; color: #94a3b8; transition: color 0.3s; }
+        .lang-option.active { color: #0f172a; }
+        .lang-toggle-container.en .lang-fr { color: #94a3b8; }
+        .lang-toggle-container.en .lang-en { color: #0f172a; }
+
+        /* --- CONTENEUR --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 150px 20px 80px 20px; }
+        section { margin-bottom: 120px; scroll-margin-top: 120px; }
+        
+        .section-title { font-family: var(--font-head); font-size: 2.8rem; font-weight: 800; margin-bottom: 50px; position: relative; display: inline-block; }
+        .title-blue { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .title-purple { background: var(--grad-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .title-emerald { background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .title-sunset { background: var(--grad-sunset); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* --- HERO --- */
+        .hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 20px; }
+        .avatar-container { position: relative; width: 200px; height: 200px; margin-bottom: 30px; }
+        .avatar-ring {
+            position: absolute; top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border-radius: 50%; background: linear-gradient(45deg, #00f2fe, #d946ef, #ff0844, #4facfe);
+            background-size: 400% 400%; animation: gradientSpin 10s ease infinite; z-index: 0; filter: blur(8px); opacity: 0.8;
+        }
+        @keyframes gradientSpin { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-dark); position: relative; z-index: 1; }
+        
+        .hero h1 { font-family: var(--font-head); font-size: 4rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -1px; }
+        .name-highlight { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h2 { font-size: 1.6rem; color: var(--text-sec); font-weight: 400; margin-bottom: 25px; }
+        .hero p { max-width: 650px; font-size: 1.15rem; color: var(--text-sec); margin-bottom: 40px; }
+        
+        .social-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 50px; }
+        .social-icon {
+            width: 60px; height: 60px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border-glass);
+            display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--text-main);
+            transition: all 0.4s var(--bounce); position: relative; overflow: hidden; backdrop-filter: blur(10px);
+        }
+        .social-icon::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--grad-primary); opacity: 0; transition: 0.4s; z-index: -1; }
+        .social-icon:hover { transform: translateY(-8px) scale(1.1); border-color: transparent; }
+        .social-icon:hover::before { opacity: 1; }
+        .social-icon i { animation: aura-sway 5s ease-in-out infinite; transition: transform 0.3s; }
+        .social-icon:hover i { animation: none; transform: scale(1.2); }
+
+        /* --- COMPÉTENCES --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+        .skill-card { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border-glass); padding: 25px 15px; border-radius: 20px; text-align: center; transition: all 0.4s var(--bounce); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .skill-card::after { content: ''; position: absolute; bottom: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); opacity: 0; transition: 0.5s; pointer-events: none; }
+        .skill-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.3); background: rgba(30, 30, 45, 0.6); }
+        .skill-card:hover::after { opacity: 1; }
+        .skill-icon { font-size: 2.5rem; margin-bottom: 15px; display: inline-block; transition: 0.4s var(--bounce); animation: aura-float 6s ease-in-out infinite; }
+        .icon-blue { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .icon-purple { background: var(--grad-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .icon-emerald { background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .icon-sunset { background: var(--grad-sunset); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .icon-gold { background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .skill-name { font-family: var(--font-head); font-weight: 600; font-size: 1rem; letter-spacing: 0.5px; }
+
+        /* --- TIMELINE --- */
+        .timeline { position: relative; margin-left: 20px; padding-left: 40px; }
+        .timeline::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, #4facfe, #d946ef, #ff0844); border-radius: 3px; }
+        .timeline-item { margin-bottom: 50px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -49px; top: 5px; width: 20px; height: 20px; background: var(--bg-dark); border: 4px solid #d946ef; border-radius: 50%; box-shadow: 0 0 15px rgba(217, 70, 239, 0.6); transition: 0.3s; }
+        .timeline-item:hover::before { background: #d946ef; transform: scale(1.2); }
+        .timeline-card { background: var(--bg-card); border: 1px solid var(--border-glass); padding: 30px; border-radius: 20px; transition: all 0.3s; backdrop-filter: blur(10px); }
+        .timeline-item:hover .timeline-card { border-color: rgba(217, 70, 239, 0.4); transform: translateX(10px); }
+
+        .dassault-card { border-color: rgba(0, 160, 255, 0.5); box-shadow: 0 0 25px rgba(0, 160, 255, 0.15), inset 0 0 15px rgba(0, 160, 255, 0.05); animation: pulseDassault 3s infinite alternate; }
+        @keyframes pulseDassault { 0% { box-shadow: 0 0 20px rgba(0, 86, 134, 0.2), inset 0 0 10px rgba(0, 86, 134, 0.1); } 100% { box-shadow: 0 0 40px rgba(0, 160, 255, 0.4), inset 0 0 20px rgba(0, 160, 255, 0.2); border-color: #00a0ff; } }
+        .ds-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+        .ds-logo { height: 45px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); background: transparent; }
+        
+        .timeline-date { font-family: var(--font-head); font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 10px; display: inline-block; background: var(--grad-purple); padding: 6px 15px; border-radius: 30px; }
+        .timeline-title { font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 5px; color: #fff; }
+        .timeline-company { font-size: 1.05rem; color: #4facfe; font-weight: 500; margin-bottom: 15px; }
+        .timeline-desc { color: var(--text-sec); font-size: 1rem; }
+
+        /* --- PROJETS --- */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
+        .project-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.5s var(--bounce); backdrop-filter: blur(10px); }
+        .project-card:hover { transform: translateY(-12px); border-color: #4facfe; box-shadow: 0 20px 40px rgba(79, 172, 254, 0.2); }
+        .project-img-wrapper { width: 100%; height: 220px; overflow: hidden; position: relative; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .project-card:hover .project-img { transform: scale(1.08); }
+        .project-content { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+        .project-title { font-family: var(--font-head); font-size: 1.6rem; margin-bottom: 12px; color: #fff; transition: 0.3s; }
+        .project-card:hover .project-title { color: #4facfe; }
+        .project-desc { color: var(--text-sec); font-size: 1rem; margin-bottom: 25px; flex: 1;}
+        
+        .feature-box { background: rgba(15, 15, 25, 0.8); border: 1px solid var(--border-glass); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
+        .feature-box h4 { color: #fff; font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; font-family: var(--font-head); font-weight: 600; }
+        .feature-box h4 i { color: #fbbf24; animation: aura-pulse-gold 4s ease-in-out infinite; } 
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .feature-item { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; color: #e2e8f0; text-align: left; }
+        .feature-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #8b5cf6; box-shadow: 0 0 8px #8b5cf6; flex-shrink: 0; }
+        
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; margin-top: auto; }
+        .tech-tag { font-size: 0.85rem; font-weight: 600; padding: 6px 14px; border-radius: 12px; background: rgba(255,255,255,0.05); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .project-card:hover .tech-tag { background: rgba(79, 172, 254, 0.1); border-color: rgba(79, 172, 254, 0.3); color: #4facfe; }
+        
+        .project-links { display: flex; gap: 10px; }
+        .btn-link { display: flex; align-items: center; justify-content: center; gap: 8px; flex: 1; padding: 10px; border-radius: 12px; font-size: 0.95rem; font-weight: 600; color: #fff; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); transition: 0.3s var(--bounce); cursor: pointer; text-decoration: none; }
+        .btn-link:hover { background: var(--grad-primary); border-color: transparent; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4); }
+        
+        /* BOUTON DÉTAILS SPÉCIFIQUE */
+        .btn-details { background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.5); color: #60a5fa; }
+        .btn-details:hover { background: #3b82f6; color: #fff; border-color: transparent; }
+
+        /* --- CERTIFICATIONS --- */
+        .certif-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .certif-card { display: flex; align-items: center; gap: 20px; background: var(--bg-card); padding: 25px; border-radius: 20px; border: 1px solid var(--border-glass); transition: 0.4s var(--bounce); backdrop-filter: blur(10px); cursor: pointer; text-decoration: none; color: inherit; }
+        .certif-card:hover { transform: translateY(-8px); border-color: #34d399; background: rgba(16, 185, 129, 0.1); box-shadow: 0 10px 25px rgba(52, 211, 153, 0.2); }
+        .certif-icon { font-size: 2.5rem; background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: 0.3s; animation: aura-pulse-emerald 4s ease-in-out infinite; }
+        .certif-card:hover .certif-icon { animation: none; transform: scale(1.2) rotate(10deg); }
+        .certif-info h3 { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 5px; color: #fff; line-height: 1.3; }
+        .certif-info p { font-size: 0.9rem; color: var(--text-sec); }
+        .certif-arrow { margin-left: auto; color: var(--text-sec); font-size: 1.2rem; transition: 0.3s; }
+        .certif-card:hover .certif-arrow { color: #34d399; transform: translateX(5px); }
+
+        /* --- VEILLE TECHNOLOGIQUE --- */
+        .veille-card {
+            background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; 
+            padding: 40px; position: relative; overflow: hidden; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; gap: 30px;
+        }
+        .veille-card::before { content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%); pointer-events: none; }
+        .veille-header { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid var(--border-glass); padding-bottom: 20px; }
+        .veille-icon { font-size: 3rem; background: var(--grad-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: aura-pulse-purple 4.5s ease-in-out infinite; }
+        .veille-title { font-family: var(--font-head); font-size: 1.8rem; color: #fff; }
+        .veille-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .v-item { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .v-item h4 { color: #4facfe; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .v-item p { color: var(--text-sec); font-size: 0.95rem; }
+        .btn-download { display: inline-flex; align-items: center; gap: 10px; background: var(--grad-purple); color: #fff; padding: 12px 25px; border-radius: 30px; font-weight: 600; text-decoration: none; align-self: flex-start; transition: 0.3s; }
+        .btn-download:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4); }
+
+        /* --- CONTACT --- */
+        .contact-box { background: linear-gradient(180deg, rgba(20, 20, 30, 0.4) 0%, rgba(217, 70, 239, 0.1) 100%); border: 1px solid rgba(217, 70, 239, 0.3); padding: 60px 40px; border-radius: 30px; text-align: center; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
+        .contact-box h2 { font-family: var(--font-head); font-size: 3rem; margin-bottom: 20px; color: #fff; }
+        .contact-box p { color: var(--text-sec); margin-bottom: 40px; font-size: 1.2rem; }
+        .btn-primary { background: var(--grad-purple); color: white; padding: 15px 40px; border-radius: 40px; font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; display: inline-flex; align-items: center; gap: 12px; transition: 0.4s var(--bounce); border: none; cursor: pointer; text-decoration: none; }
+        .btn-primary i { transition: 0.3s; animation: aura-sway 4s ease-in-out infinite; }
+        .btn-primary:hover i { animation: none; transform: translateX(5px) scale(1.1); }
+        .btn-primary:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 30px rgba(217, 70, 239, 0.5); }
+
+        /* --- MODAL PLEIN ECRAN (STYLE VERCEL) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 10, 0.95); backdrop-filter: blur(20px);
+            z-index: 2000; display: none; opacity: 0; transition: opacity 0.3s ease;
+            overflow-y: auto; padding: 40px 20px;
+        }
+        .modal-overlay.active { display: block; opacity: 1; }
+        .modal-container { max-width: 900px; margin: 0 auto; background: #0f0f17; border: 1px solid var(--border-glass); border-radius: 24px; position: relative; overflow: hidden; transform: translateY(50px); transition: transform 0.4s var(--bounce); }
+        .modal-overlay.active .modal-container { transform: translateY(0); }
+        .btn-close-modal { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 10; transition: 0.3s; }
+        .btn-close-modal:hover { background: #ef4444; transform: rotate(90deg); }
+        
+        .modal-hero { width: 100%; height: 350px; position: relative; }
+        .modal-hero img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #0f0f17, transparent); }
+        
+        .modal-body { padding: 40px; }
+        .modal-title { font-family: var(--font-head); font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
+        .modal-desc { color: var(--text-sec); font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px; }
+        
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .modal-section h4 { color: #fff; font-size: 1.3rem; margin-bottom: 20px; font-family: var(--font-head); display: flex; align-items: center; gap: 10px; }
+        .modal-section h4 i { color: #4facfe; animation: aura-float 4s ease-in-out infinite; }
+
+        /* --- CSS POUR LE LECTEUR PDF (Pleine écran optimisé) --- */
+        #veilleModal .modal-container { 
+            width: 95%; 
+            max-width: 1600px; 
+            height: 95vh; 
+            display: flex; 
+            flex-direction: column; 
+            padding: 0; 
+        }
+        #veilleModal .modal-body { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            padding: 0; 
+        }
+        .pdf-container { 
+            flex: 1; 
+            width: 100%; 
+            height: 100%;
+            border-radius: 0 0 24px 24px; 
+            overflow: hidden; 
+        }
+        .pdf-container iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            display: block;
+        }
+        #veilleModal .btn-close-modal {
+            top: 15px;
+            right: 15px;
+            background: rgba(239, 68, 68, 0.9); 
+            color: white;
+            z-index: 50;
+        }
+        #veilleModal .btn-close-modal:hover {
+            background: #ef4444;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar { width: 95%; padding: 10px; gap: 5px; }
+            .nav-link span { display: none; } 
+            .lang-toggle-container { top: 80px; right: 20px; }
+            .hero h1 { font-size: 2.8rem; }
+            .modal-grid { grid-template-columns: 1fr; }
+            .veille-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-toggle-container" id="langToggle" onclick="switchLang()">
+        <div class="lang-slider"></div>
+        <span class="lang-option lang-fr active t" data-fr="FR" data-en="FR">FR</span>
+        <span class="lang-option lang-en t" data-fr="EN" data-en="EN">EN</span>
+    </div>
+
+    <nav class="navbar">
+        <a href="#accueil" class="nav-link active"><i class="fa-solid fa-house"></i> <span class="t" data-fr="Accueil" data-en="Home">Accueil</span></a>
+        <a href="#competences" class="nav-link"><i class="fa-solid fa-code"></i> <span class="t" data-fr="Compétences" data-en="Skills">Compétences</span></a>
+        <a href="#experiences" class="nav-link"><i class="fa-solid fa-briefcase"></i> <span class="t" data-fr="Parcours" data-en="Experience">Parcours</span></a>
+        <a href="#projets" class="nav-link"><i class="fa-solid fa-rocket"></i> <span class="t" data-fr="Projets" data-en="Projects">Projets</span></a>
+    </nav>
+
+    <div class="container">
+        <section id="accueil" class="hero reveal">
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <img src="ProfilCircle.png" alt="Alan MIRAT" class="avatar">
+            </div>
+            <h1 class="delay-1"><span class="t" data-fr="Hey, je suis" data-en="Hey, I am">Hey, je suis</span> <span class="name-highlight">Alan</span></h1>
+            <h2 class="delay-1 t" data-fr="Développeur Full-Stack" data-en="Full-Stack Developer">Développeur Full-Stack</h2>
+            <p class="delay-2 t" data-fr="Passionné par la création d'expériences numériques immersives et de solutions logicielles intelligentes. Du déploiement d'IA locales à l'automatisation, je transforme des problèmes complexes en interfaces fluides et modernes." data-en="Passionate about creating immersive digital experiences and intelligent software solutions. From deploying local AIs to automation, I transform complex problems into fluid and modern interfaces.">Passionné par la création d'expériences numériques immersives et de solutions logicielles intelligentes. Du déploiement d'IA locales à l'automatisation, je transforme des problèmes complexes en interfaces fluides et modernes.</p>
+            
+            <div class="social-links delay-3">
+                <a href="https://github.com/DevSioAlan" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/alan-mirat-2053683a8/" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:ton-email@gmail.com" class="social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </section>
+
+        <section id="competences">
+            <h2 class="section-title title-blue reveal t" data-fr="Mes Compétences" data-en="My Skills">Mes Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-card reveal delay-1"><i class="fa-brands fa-python skill-icon icon-blue"></i><div class="skill-name">Python</div></div>
+                <div class="skill-card reveal delay-1"><i class="fa-solid fa-database skill-icon icon-emerald"></i><div class="skill-name">SQL & BDD</div></div>
+                <div class="skill-card reveal delay-1"><i class="fa-solid fa-code skill-icon icon-purple"></i><div class="skill-name">C#</div></div>
+                <div class="skill-card reveal delay-1"><i class="fa-solid fa-moon skill-icon icon-sunset"></i><div class="skill-name">Luau</div></div>
+                
+                <div class="skill-card reveal delay-2"><i class="fa-solid fa-robot skill-icon icon-purple"></i><div class="skill-name t" data-fr="IA Locales & LLMs" data-en="Local AI & LLMs">IA Locales & LLMs</div></div>
+                <div class="skill-card reveal delay-2"><i class="fa-solid fa-gears skill-icon icon-gold"></i><div class="skill-name t" data-fr="Automatisation & Pandas" data-en="Automation & Pandas">Automatisation & Pandas</div></div>
+                
+                <div class="skill-card reveal delay-2"><i class="fa-brands fa-git-alt skill-icon icon-sunset"></i><div class="skill-name">Git & GitHub</div></div>
+                <div class="skill-card reveal delay-2"><i class="fa-solid fa-shield-halved skill-icon icon-emerald"></i><div class="skill-name t" data-fr="Cybersécurité" data-en="Cybersecurity">Cybersécurité</div></div>
+
+                <div class="skill-card reveal delay-3"><i class="fa-brands fa-php skill-icon icon-blue"></i><div class="skill-name t" data-fr="Développement Web" data-en="Web Development">Développement Web</div></div>
+                <div class="skill-card reveal delay-3"><i class="fa-solid fa-server skill-icon icon-emerald"></i><div class="skill-name t" data-fr="Infra (SN Option C)" data-en="Infra (SN Option C)">Infra (SN Option C)</div></div>
+            </div>
+        </section>
+
+        <section id="experiences">
+            <h2 class="section-title title-purple reveal t" data-fr="Mon Parcours & Stages" data-en="My Experience & Internships">Mon Parcours & Stages</h2>
+            <div class="timeline">
+                <div class="timeline-item reveal delay-1">
+                    <div class="timeline-card dassault-card">
+                        <div class="ds-header">
+                            <span class="timeline-date t" data-fr="2026 (8 semaines)" data-en="2026 (8 weeks)">2026 (8 semaines)</span>
+                            <img src="logo.png" alt="Dassault Systèmes" class="ds-logo">
+                        </div>
+                        <h3 class="timeline-title t" data-fr="Stage : Développeur Full-Stack & IA" data-en="Internship: Full-Stack & AI Developer">Stage : Développeur Full-Stack & IA</h3>
+                        <div class="timeline-company" style="color: #00a0ff; font-weight: 700;">Dassault Systèmes</div>
+                        <p class="timeline-desc t" data-fr="Création d'une plateforme intégrant une IA locale propulsée par un moteur LLM. Développement full-stack (frontend et backend) d'un outil d'automatisation exploitant la librairie Pandas en Python pour traiter, extraire et compiler des données massives depuis plusieurs fichiers XLSX et CSV." data-en="Creation of a platform integrating a local AI powered by an LLM engine. Full-stack development of an automation tool using Pandas in Python to process massive XLSX/CSV data.">Création d'une plateforme intégrant une IA locale propulsée par un moteur LLM. Développement full-stack (frontend et backend) d'un outil d'automatisation exploitant la librairie Pandas en Python pour traiter, extraire et compiler des données massives depuis plusieurs fichiers XLSX et CSV.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal delay-1">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2025 - 2026</span>
+                        <h3 class="timeline-title t" data-fr="Étudiant BTS SIO - Option SLAM" data-en="Student in IT HND - SLAM Option">Étudiant BTS SIO - Option SLAM</h3>
+                        <div class="timeline-company t" data-fr="Lycée / École (à compléter)" data-en="School (to be completed)">Lycée / École (à compléter)</div>
+                        <p class="timeline-desc t" data-fr="Spécialisation dans la conception et le développement d'applications logicielles métiers, gestion de bases de données et maîtrise des concepts algorithmiques avancés." data-en="Specialization in the design and development of business software applications, database management, and advanced algorithmic concepts.">Spécialisation dans la conception et le développement d'applications logicielles métiers, gestion de bases de données et maîtrise des concepts algorithmiques avancés.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal delay-2">
+                    <div class="timeline-card">
+                        <span class="timeline-date t" data-fr="2025 (4 semaines)" data-en="2025 (4 weeks)">2025 (4 semaines)</span>
+                        <h3 class="timeline-title t" data-fr="Stage : Technicien de Maintenance Avancée" data-en="Internship: Advanced Maintenance Tech">Stage : Technicien de Maintenance Avancée</h3>
+                        <div class="timeline-company">Les réparateurs Mac et PC</div>
+                        <p class="timeline-desc t" data-fr="Perfectionnement technique sur la réparation matérielle complexe (micro-soudure, changement de cartes mères). Diagnostic poussé et sauvetage de données sur environnements Windows et macOS." data-en="Technical improvement on complex hardware repair (micro-soldering, motherboard replacement). Advanced diagnostics and data recovery on Windows and macOS.">Perfectionnement technique sur la réparation matérielle complexe (micro-soudure, changement de cartes mères). Diagnostic poussé et sauvetage de données sur environnements Windows et macOS.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal delay-2">
+                    <div class="timeline-card">
+                        <span class="timeline-date t" data-fr="2024 (8 semaines)" data-en="2024 (8 weeks)">2024 (8 semaines)</span>
+                        <h3 class="timeline-title t" data-fr="Stage : Technicien Informatique" data-en="Internship: IT Technician">Stage : Technicien Informatique</h3>
+                        <div class="timeline-company">Les réparateurs Mac et PC</div>
+                        <p class="timeline-desc t" data-fr="Maintenance informatique préventive et curative. Réparation hardware experte sur ordinateurs portables et de bureau, réinstallation de systèmes d'exploitation et nettoyage viral." data-en="Preventive and curative IT maintenance. Expert hardware repair on laptops and desktops, OS reinstallation, and virus removal.">Maintenance informatique préventive et curative. Réparation hardware experte sur ordinateurs portables et de bureau, réinstallation de systèmes d'exploitation et nettoyage viral.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal delay-3">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2021 - 2024</span>
+                        <h3 class="timeline-title t" data-fr="Bac Pro SN - Option C (Réseaux informatiques)" data-en="Vocational Baccalaureate SN - Networks">Bac Pro SN - Option C (Réseaux informatiques)</h3>
+                        <div class="timeline-company t" data-fr="Lycée (à compléter)" data-en="High School (to be completed)">Lycée (à compléter)</div>
+                        <p class="timeline-desc t" data-fr="Formation sur la conception, l'installation, la mise en service et la maintenance de réseaux informatiques et de systèmes communicants." data-en="Training on the design, installation, commissioning, and maintenance of computer networks and communicating systems.">Formation sur la conception, l'installation, la mise en service et la maintenance de réseaux informatiques et de systèmes communicants.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal delay-3">
+                    <div class="timeline-card">
+                        <span class="timeline-date t" data-fr="2023 (6 semaines)" data-en="2023 (6 weeks)">2023 (6 semaines)</span>
+                        <h3 class="timeline-title t" data-fr="Stage : Maintenance Informatique" data-en="Internship: IT Maintenance">Stage : Maintenance Informatique</h3>
+                        <div class="timeline-company">Le Manoir (77)</div>
+                        <p class="timeline-desc t" data-fr="Support technique aux utilisateurs, assemblage et réparation de postes de travail. Déploiement matériel et configuration d'accès réseaux pour le personnel." data-en="Technical support to users, assembly, and repair of workstations. Hardware deployment and network access configuration for staff.">Support technique aux utilisateurs, assemblage et réparation de postes de travail. Déploiement matériel et configuration d'accès réseaux pour le personnel.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal delay-3">
+                    <div class="timeline-card">
+                        <span class="timeline-date t" data-fr="2022 (4 semaines)" data-en="2022 (4 weeks)">2022 (4 semaines)</span>
+                        <h3 class="timeline-title t" data-fr="Stage : Maintenance Électronique" data-en="Internship: Electronic Maintenance">Stage : Maintenance Électronique</h3>
+                        <div class="timeline-company">BENTIN (Siège social)</div>
+                        <p class="timeline-desc t" data-fr="Découverte du monde de l'entreprise. Interventions de base en maintenance électronique, test de composants et assistance au déploiement technique." data-en="Discovery of the corporate world. Basic interventions in electronic maintenance, component testing, and technical deployment assistance.">Découverte du monde de l'entreprise. Interventions de base en maintenance électronique, test de composants et assistance au déploiement technique.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets">
+            <h2 class="section-title title-emerald reveal t" data-fr="Projets Récents" data-en="Recent Projects">Projets Récents</h2>
+            <div class="project-grid">
+                
+                <div class="project-card reveal delay-1">
+                    <div class="project-img-wrapper">
+                        <img src="DassaultSystemes.jpg" alt="Projet IA LLM" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title t" data-fr="Projet IA Local LLM" data-en="Local LLM AI Project">Projet IA Local LLM</h3>
+                        <div class="feature-box">
+                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item t" data-fr="Moteur LLM hébergé en local" data-en="Locally hosted LLM engine">Moteur LLM hébergé en local</li>
+                                <li class="feature-item t" data-fr="Confidentialité totale des données" data-en="Total data privacy">Confidentialité totale des données</li>
+                                <li class="feature-item t" data-fr="Interface de chat fluide et réactive" data-en="Fluid and responsive chat interface">Interface de chat fluide et réactive</li>
+                            </ul>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">LLM Local</span>
+                            <span class="tech-tag">API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-1">
+                    <div class="project-img-wrapper">
+                        <img src="DassaultSystemes.jpg" alt="Automatisation" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title t" data-fr="Automatisation XLSX CSV" data-en="XLSX CSV Automation">Automatisation XLSX CSV</h3>
+                        <div class="feature-box">
+                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item t" data-fr="Traitement de données massives (Pandas)" data-en="Massive data processing (Pandas)">Traitement de données massives (Pandas)</li>
+                                <li class="feature-item t" data-fr="Fusion et nettoyage de fichiers XLSX/CSV" data-en="Merging and cleaning of XLSX/CSV files">Fusion et nettoyage de fichiers XLSX/CSV</li>
+                                <li class="feature-item t" data-fr="Génération de rapports automatiques" data-en="Automatic report generation">Génération de rapports automatiques</li>
+                            </ul>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Data</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-2">
+                    <div class="project-img-wrapper">
+                        <img src="Cashverse.jpg" alt="Cashverse" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Jeu Simulator 🌌 Cashverse</h3>
+                        <p class="project-desc t" data-fr="Un simulateur Roblox complexe avec économie, RNG pondéré et sécurité serveur." data-en="A complex Roblox simulator with economy, weighted RNG, and server security.">Un simulateur Roblox complexe avec économie, RNG pondéré et sécurité serveur.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">Luau</span>
+                            <span class="tech-tag">Roblox Studio</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/DevSioAlan/Cashverse-Simulator-Backend" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <button onclick="openModal('cashverse')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-2">
+                    <div class="project-img-wrapper">
+                        <img src="mainscreen.jpg" alt="Toon Tactics" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Jeu ⭐ Toon Tactics</h3>
+                        <p class="project-desc t" data-fr="Tower defense avec ciblage intelligent, système de vagues et gacha interactif." data-en="Tower defense with smart targeting, wave system, and interactive gacha.">Tower defense avec ciblage intelligent, système de vagues et gacha interactif.</p>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">GDScript</span>
+                            <span class="tech-tag">Godot 4</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/DevSioAlan/Toon-Tactics-Tower-Defense" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <button onclick="openModal('toon')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-3">
+                    <div class="project-img-wrapper">
+                        <img src="image_f611a2.jpg" alt="Bot Discord" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title t" data-fr="Bot Discord Multifonctions" data-en="Multi-purpose Discord Bot">Bot Discord Multifonctions</h3>
+                        <p class="project-desc t" data-fr="Bot modération, économie SQLite et salons vocaux temporaires via UI Discord." data-en="Moderation bot, SQLite economy and temporary voice channels via Discord UI.">Bot modération, économie SQLite et salons vocaux temporaires via UI Discord.</p>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SQLite3</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/DevSioAlan/Bot-Discord-Multifonctions" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <button onclick="openModal('bot1')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-3">
+                    <div class="project-img-wrapper">
+                        <img src="image_f611a2.jpg" alt="Bot IA" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title t" data-fr="Bot Discord Premium IA 👑" data-en="Premium AI Discord Bot 👑">Bot Discord Premium IA 👑</h3>
+                        <p class="project-desc t" data-fr="Architecture asynchrone modulaire (Cogs), base de données aiosqlite et serveur Flask 24/7." data-en="Modular async architecture (Cogs), aiosqlite database, and 24/7 Flask server.">Architecture asynchrone modulaire (Cogs), base de données aiosqlite et serveur Flask 24/7.</p>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python (Async)</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/DevSioAlan/Bot-Discord-Premium-IA" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <button onclick="openModal('bot2')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="certifications">
+            <h2 class="section-title title-blue reveal">Certifications</h2>
+            <div class="certif-grid">
+                
+                <a href="certification-pix-20260220.pdf" target="_blank" class="certif-card reveal delay-1">
+                    <i class="fa-solid fa-award certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>Certification PIX (2026)</h3>
+                        <p class="t" data-fr="Score de 448 PIX - Niveau 6" data-en="Score of 448 PIX - Level 6">Score de 448 PIX - Niveau 6</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
+
+                <a href="certification-pix-20240415.pdf" target="_blank" class="certif-card reveal delay-1">
+                    <i class="fa-solid fa-medal certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>Certification PIX (2024)</h3>
+                        <p class="t" data-fr="Score de 122 PIX - Niveau 5" data-en="Score of 122 PIX - Level 5">Score de 122 PIX - Niveau 5</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
+
+                <a href="Attestation Sens Cyber_Mirat_Alan.pdf" target="_blank" class="certif-card reveal delay-2">
+                    <i class="fa-solid fa-shield-halved certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>SensCyber</h3>
+                        <p class="t" data-fr="Agir pour contribuer à ma sécurité numérique" data-en="Act to contribute to digital security">Agir pour contribuer à ma sécurité numérique</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
+                <a href="Mirat_Alan_signer_éléctroniquement.pdf" target="_blank" class="certif-card reveal delay-3">
+                    <i class="fa-solid fa-file-shield certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>Atelier RGPD (CNIL)</h3>
+                        <p class="t" data-fr="Le RGPD et ses notions clés" data-en="GDPR and key concepts">Le RGPD et ses notions clés</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
+                <a href="Alan_Mirat mooc_AFP_module1.pdf" target="_blank" class="certif-card reveal delay-3">
+                    <i class="fa-brands fa-google certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>Certificat AFP</h3>
+                        <p class="t" data-fr="Avec le soutien de Google News Initiative" data-en="Supported by Google News Initiative">Avec le soutien de Google News Initiative</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="veille">
+            <h2 class="section-title title-purple reveal t" data-fr="Veille Technologique" data-en="Technology Watch">Veille Technologique</h2>
+            <div class="veille-card reveal delay-1">
+                <div class="veille-header">
+                    <i class="fa-solid fa-microchip veille-icon"></i>
+                    <div>
+                        <h3 class="veille-title t" data-fr="Cybersécurité & IA : Défendre l’avenir numérique" data-en="Cybersecurity & AI: Defending the Digital Future">Cybersécurité & IA : Défendre l’avenir numérique</h3>
+                        <p style="color: var(--accent); font-weight: 600; margin-top: 5px;">Thème 2025 - Diaporama d'analyse</p>
+                    </div>
+                </div>
+                
+                <p class="t" data-fr="Mon étude approfondie sur la façon dont l'Intelligence Artificielle bouleverse l'équilibre entre attaquants et défenseurs, et pourquoi le modèle Zero-Trust est devenu indispensable." data-en="My in-depth study on how Artificial Intelligence disrupts the balance between attackers and defenders, and why the Zero-Trust model has become essential.">Mon étude approfondie sur la façon dont l'Intelligence Artificielle bouleverse l'équilibre entre attaquants et défenseurs, et pourquoi le modèle Zero-Trust est devenu indispensable.</p>
+                
+                <div class="veille-grid">
+                    <div class="v-item">
+                        <h4><i class="fa-solid fa-robot"></i> <span class="t" data-fr="Arme à double tranchant" data-en="Double-edged sword">Arme à double tranchant</span></h4>
+                        <p class="t" data-fr="L'IA automatise la défense prédictive mais permet aussi aux cybercriminels de créer des deepfakes ultra-réalistes et d'automatiser les intrusions." data-en="AI automates predictive defense but also allows cybercriminals to create ultra-realistic deepfakes and automate intrusions.">L'IA automatise la défense prédictive mais permet aussi aux cybercriminels de créer des deepfakes ultra-réalistes et d'automatiser les intrusions.</p>
+                    </div>
+                    <div class="v-item">
+                        <h4><i class="fa-solid fa-fingerprint"></i> <span class="t" data-fr="Modèle Zero-Trust" data-en="Zero-Trust Model">Modèle Zero-Trust</span></h4>
+                        <p class="t" data-fr="Abandon de la confiance implicite. Chaque accès est vérifié en permanence (micro-segmentation, moindre privilège) pour bloquer les mouvements latéraux." data-en="Abandonment of implicit trust. Every access is continuously verified (micro-segmentation, least privilege) to block lateral movements.">Abandon de la confiance implicite. Chaque accès est vérifié en permanence (micro-segmentation, moindre privilège) pour bloquer les mouvements latéraux.</p>
+                    </div>
+                    <div class="v-item">
+                        <h4><i class="fa-solid fa-network-wired"></i> <span class="t" data-fr="Défis 5G & IoT" data-en="5G & IoT Challenges">Défis 5G & IoT</span></h4>
+                        <p class="t" data-fr="La prolifération des objets connectés sans sécurité intégrée exige une surveillance massive en temps réel que seule l'IA peut fournir." data-en="The proliferation of connected objects without built-in security requires massive real-time monitoring that only AI can provide.">La prolifération des objets connectés sans sécurité intégrée exige une surveillance massive en temps réel que seule l'IA peut fournir.</p>
+                    </div>
+                </div>
+
+                <button onclick="openVeilleModal()" class="btn-download" style="border: none; cursor: pointer; font-family: inherit;">
+                    <i class="fa-solid fa-desktop"></i> <span class="t" data-fr="Visionner la présentation complète" data-en="View the full presentation">Visionner la présentation complète</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal">
+            <div class="contact-box">
+                <h2 class="t" data-fr="Envie de collaborer ?" data-en="Want to collaborate?">Envie de collaborer ?</h2>
+                <p class="t" data-fr="Je suis constamment à la recherche de nouveaux défis techniques. Si mon profil de développeur Full-Stack vous intéresse, n'hésitez pas à me contacter !" data-en="I am constantly looking for new technical challenges. If you are interested in my Full-Stack Developer profile, don't hesitate to contact me!">Je suis constamment à la recherche de nouveaux défis techniques. Si mon profil de développeur Full-Stack vous intéresse, n'hésitez pas à me contacter !</p>
+                <a href="mailto:ton-email@gmail.com" class="btn-primary">
+                    <i class="fa-regular fa-paper-plane"></i> <span class="t" data-fr="M'envoyer un message" data-en="Send me a message">M'envoyer un message</span>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-container">
+            <button class="btn-close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-hero">
+                <img id="m-img" src="" alt="Project Image">
+            </div>
+            <div class="modal-body">
+                <h2 id="m-title" class="modal-title">Titre</h2>
+                <p id="m-desc" class="modal-desc">Description longue...</p>
+                
+                <div class="modal-grid">
+                    <div class="modal-section">
+                        <h4><i class="fa-solid fa-star"></i> Key Features</h4>
+                        <ul class="feature-list" id="m-features">
+                            </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h4><i class="fa-solid fa-microchip"></i> Technologies</h4>
+                        <div class="tech-tags" id="m-tech" style="margin-top:0;">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="veilleModal">
+        <div class="modal-container">
+            <button class="btn-close-modal" onclick="closeVeilleModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="pdf-container">
+                    <iframe src="Veille_Cyber_IA.pdf#toolbar=0&view=FitH" title="Présentation Veille"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- SCRIPT TRADUCTION ---
+        let isEnglish = false;
+        function switchLang() {
+            isEnglish = !isEnglish;
+            const toggle = document.getElementById('langToggle');
+            if (isEnglish) { toggle.classList.add('en'); toggle.classList.remove('fr'); } 
+            else { toggle.classList.add('fr'); toggle.classList.remove('en'); }
+            
+            document.querySelectorAll('.t').forEach(el => {
+                const frText = el.getAttribute('data-fr');
+                const enText = el.getAttribute('data-en');
+                if (isEnglish && enText) el.innerHTML = enText;
+                else if (!isEnglish && frText) el.innerHTML = frText;
+            });
+        }
+
+        // --- SCROLL REVEAL ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 120) reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal); reveal();
+
+        // --- MENU ACTIF ---
+        const sections = document.querySelectorAll("section"), navLinks = document.querySelectorAll(".nav-link");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => { if (pageYOffset >= section.offsetTop - 200) current = section.getAttribute("id"); });
+            navLinks.forEach(link => { link.classList.remove("active"); if (link.getAttribute("href").includes(current)) link.classList.add("active"); });
+        });
+
+        // --- GESTION DU MODAL (Vercel Style) ---
+        const projectData = {
+            "cashverse": {
+                img: "Cashverse.jpg",
+                title: "🌌 Cashverse Simulator",
+                desc: "Plongez dans les mécaniques backend d'un jeu Simulator complet sur Roblox. Ce projet n'est pas qu'une simple interface : il démontre la capacité à gérer des bases de données de joueurs persistantes, à créer un système économique complet avec des achats in-game, et surtout, à mettre en place un algorithme de probabilité pondérée (RNG) dynamique pour l'éclosion d'œufs. Le tout sécurisé par un Anti-Cheat maison côté serveur (Watchdog).",
+                features: [
+                    "Système d'économie et d'inventaire persistant",
+                    "Sauvegarde asynchrone (DataStoreService)",
+                    "Anti-Cheat serveur sur la physique (WalkSpeed)",
+                    "Algorithme Gacha RNG pondéré dynamiquement",
+                    "Boucles temporelles avec os.time()"
+                ],
+                tech: ["Luau", "Roblox Studio", "DataStore", "Math.random"]
+            },
+            "toon": {
+                img: "mainscreen.jpg",
+                title: "⭐ Toon Tactics",
+                desc: "Un véritable jeu de Tower Defense en 2D développé sur Godot Engine 4. Ce projet met en avant des algorithmes de jeu vidéo classiques : validation mathématique de placement d'objets sur une grille, pathfinding, et un système de 'Smart Targeting' où les tours calculent en temps réel quel ennemi est le plus menaçant pour la base. Il inclut également un système de lootbox fluide avec des animations UI complexes (Tweens).",
+                features: [
+                    "Smart Targeting (Ciblage de la plus grande menace)",
+                    "Validation géométrique du placement de tours",
+                    "Gestionnaire de vagues avec timers asynchrones",
+                    "Animations UI complexes (Lootbox/Gacha)",
+                    "Système de codes promo intégré"
+                ],
+                tech: ["GDScript", "Godot Engine 4", "Path2D", "Animations Tween"]
+            },
+            "bot1": {
+                img: "image_f611a2.jpg",
+                title: "🛠️ Bot Discord Multifonctions",
+                desc: "Le couteau suisse ultime pour un serveur Discord. Plutôt que de simples commandes texte, ce bot génère des interfaces interactives. Son point fort est le créateur de salons vocaux temporaires avec un panneau de contrôle privé (boutons et formulaires Modals). Il intègre également une base de données locale gérant un mini-jeu d'armée, un système d'économie et le stockage des avertissements de modération.",
+                features: [
+                    "Créateur de vocaux avec panneau de contrôle UI",
+                    "Modération avancée (Auto-mod & Nuke de salon)",
+                    "Mini-jeu 'World at Arms' (Logique RPG)",
+                    "Système bancaire et d'inventaire complet"
+                ],
+                tech: ["Python 3", "discord.py", "SQLite3", "Discord UI Components"]
+            },
+            "bot2": {
+                img: "image_f611a2.jpg",
+                title: "👑 Bot Discord Premium IA",
+                desc: "Une démonstration d'architecture logicielle propre et asynchrone. Ce bot est découpé en plusieurs modules (Cogs) pour une maintenabilité parfaite. En utilisant 'aiosqlite', il garantit des performances sans latence même lors d'écritures massives en base de données. Il intègre un assistant IA contextuel, un système de leveling, et embarque son propre serveur Flask pour rester en ligne 24/7 sur un hébergeur Cloud.",
+                features: [
+                    "Architecture modulaire et scalable (Cogs)",
+                    "Base de données SQLite 100% Asynchrone",
+                    "Assistant Concierge Intelligence Artificielle",
+                    "Hébergement autonome via thread Flask (Keep-Alive)"
+                ],
+                tech: ["Python Asyncio", "Flask", "aiosqlite", "LLM API"]
+            }
+        };
+
+        const modal = document.getElementById("projectModal");
+        
+        function openModal(id) {
+            const data = projectData[id];
+            if(!data) return;
+
+            document.getElementById("m-img").src = data.img;
+            document.getElementById("m-title").innerText = data.title;
+            document.getElementById("m-desc").innerText = data.desc;
+            
+            // Features
+            const fList = document.getElementById("m-features");
+            fList.innerHTML = "";
+            data.features.forEach(f => {
+                fList.innerHTML += `<li class="feature-item"><span class="t">${f}</span></li>`;
+            });
+
+            // Techs
+            const tList = document.getElementById("m-tech");
+            tList.innerHTML = "";
+            data.tech.forEach(t => {
+                tList.innerHTML += `<span class="tech-tag">${t}</span>`;
+            });
+
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden"; // Empêche de scroller derrière le modal
+        }
+
+        function closeModal() {
+            modal.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+
+        // Fermer en cliquant à côté du cadre
+        modal.addEventListener("click", function(e) {
+            if(e.target === modal) closeModal();
+        });
+
+        // --- GESTION DU MODAL VEILLE (Liseur PDF) ---
+        const veilleModal = document.getElementById("veilleModal");
+        function openVeilleModal() { 
+            veilleModal.classList.add("active"); 
+            document.body.style.overflow = "hidden"; 
+        }
+        function closeVeilleModal() { 
+            veilleModal.classList.remove("active"); 
+            document.body.style.overflow = "auto"; 
+        }
+        veilleModal.addEventListener("click", function(e) { if(e.target === veilleModal) closeVeilleModal(); });
+    </script>
+</body>
+</html>
