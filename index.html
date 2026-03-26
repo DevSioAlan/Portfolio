@@ -17,12 +17,13 @@
             --text-main: #ffffff;
             --text-sec: #9ca3af;
             
-            /* Nouveaux dégradés animés plus "Pro/Tech" */
+            /* Nouveaux dégradés animés Pro/Tech */
             --grad-primary: linear-gradient(to right, #00f2fe, #4facfe, #00f2fe);
             --grad-purple: linear-gradient(to right, #c084fc, #d946ef, #c084fc);
-            --grad-cyan: linear-gradient(to right, #2dd4bf, #0284c7, #2dd4bf); /* Remplace le vert gazon */
+            --grad-cyan: linear-gradient(to right, #2dd4bf, #0284c7, #2dd4bf);
             --grad-sunset: linear-gradient(to right, #ff0844, #ffb199, #ff0844);
             --grad-gold: linear-gradient(to right, #f59e0b, #fbbf24, #f59e0b);
+            --grad-emerald: linear-gradient(135deg, #10b981 0%, #34d399 100%);
             
             --border-glass: rgba(255, 255, 255, 0.08);
             --font-head: 'Outfit', sans-serif;
@@ -59,9 +60,9 @@
             0%, 100% { transform: translateY(0px) translateZ(0); filter: drop-shadow(0 0 0 rgba(79, 172, 254, 0)); } 
             50% { transform: translateY(-5px) translateZ(0); filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.6)); } 
         }
-        @keyframes aura-pulse-cyan { 
-            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(45, 212, 191, 0.2)); } 
-            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(45, 212, 191, 0.7)); } 
+        @keyframes aura-pulse-emerald { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(52, 211, 153, 0.2)); } 
+            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.7)); } 
         }
         @keyframes aura-pulse-purple { 
             0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.2)); } 
@@ -165,7 +166,7 @@
         
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
-        /* --- RESEAUX SOCIAUX --- */
+        /* --- RESEAUX SOCIAUX (COULEURS DE MARQUE & FLUIDITÉ) --- */
         .social-links { display: flex; gap: 25px; justify-content: center; margin-bottom: 50px; }
         .social-icon {
             width: 65px; height: 65px; border-radius: 50%; 
@@ -174,21 +175,24 @@
             font-size: 1.8rem; color: var(--text-sec);
             transition: all 0.4s var(--bounce);
             position: relative; backdrop-filter: blur(10px);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
             animation: aura-float 5s ease-in-out infinite; 
         }
         .social-icon i { transition: transform 0.4s var(--bounce); }
         
+        /* Github */
         .social-icon.github:hover {
             color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4);
             transform: translateY(-8px); animation: none; 
         }
+        /* LinkedIn */
         .social-icon.linkedin:hover {
             color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6);
             box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6);
             transform: translateY(-8px); animation: none;
         }
+        /* Email */
         .social-icon.email:hover {
             color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6);
             box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6);
@@ -274,7 +278,7 @@
         .timeline::before {
             content: '';
             position: absolute;
-            top: 0; left: 18px; /* Centré sur le dot */
+            top: 0; left: 18px; 
             width: 3px;
             height: 100%;
             background: linear-gradient(to bottom, #d946ef, #4facfe, #2dd4bf);
@@ -374,7 +378,17 @@
         .certif-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .certif-card { display: flex; align-items: center; gap: 20px; background: var(--bg-card); padding: 25px; border-radius: 20px; border: 1px solid var(--border-glass); transition: 0.4s var(--bounce); backdrop-filter: blur(10px); cursor: pointer; text-decoration: none; color: inherit; }
         .certif-card:hover { transform: translateY(-8px); border-color: #34d399; background: rgba(16, 185, 129, 0.1); box-shadow: 0 10px 25px rgba(52, 211, 153, 0.2); }
-        .certif-icon { font-size: 2.5rem; background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: 0.3s; animation: aura-pulse-cyan 4s ease-in-out infinite; }
+        
+        /* L'icône garde son fond gradient et gère correctement l'animation drop-shadow */
+        .certif-icon { 
+            display: inline-block; /* Crucial pour le drop-shadow + text-clip */
+            font-size: 2.5rem; 
+            background: var(--grad-emerald); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            transition: 0.3s; 
+            animation: aura-pulse-emerald 4s ease-in-out infinite; 
+        }
         .certif-card:hover .certif-icon { animation: none; transform: scale(1.2) rotate(10deg); }
         .certif-info h3 { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 5px; color: #fff; line-height: 1.3; }
         .certif-info p { font-size: 0.9rem; color: var(--text-sec); }
@@ -762,7 +776,7 @@
 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="CSharpBanner.png" alt="WinForm GSB" class="project-img">
+                        <img src="CsharpBanner.jpg" alt="WinForm GSB" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
@@ -1086,7 +1100,7 @@
                 gallery: []
             },
             "gsb-winform": {
-                img: "CSharpBanner.png",
+                img: "CsharpBanner.jpg",
                 title: "Projet GSB - WinForm (C#)",
                 desc: "Développement d'une application client lourd de bureau (Desktop) pour la gestion GSB. Créée avec C# et le framework .NET WinForm, l'application est directement connectée à la base de données de l'entreprise.",
                 features: ["Interface client lourd (Desktop)", "Connexion base de données distantes", "Gestionnaire d'événements C#", "Déploiement exécutable"],
