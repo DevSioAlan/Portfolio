@@ -48,7 +48,7 @@
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
         /* --- ANIMATIONS AURA PRO (OPTIMISÉES GPU) --- */
-        .nav-link i, .skill-icon, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
+        .nav-link i, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
             will-change: transform, filter;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -144,7 +144,6 @@
         .hero h2 { font-size: 1.6rem; color: var(--text-sec); font-weight: 400; margin-bottom: 25px; }
         .hero p { max-width: 650px; font-size: 1.15rem; color: var(--text-sec); margin-bottom: 30px; }
         
-        /* Boutons d'actions Accueil (CV) */
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
         /* --- RESEAUX SOCIAUX (COULEURS DE MARQUE & FLUIDITÉ) --- */
@@ -156,24 +155,24 @@
             font-size: 1.8rem; color: var(--text-sec);
             transition: all 0.4s var(--bounce);
             position: relative; backdrop-filter: blur(10px);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); /* Petite aura par défaut */
-            animation: aura-float 5s ease-in-out infinite; /* Flottement fluide */
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+            animation: aura-float 5s ease-in-out infinite;
         }
         .social-icon i { transition: transform 0.4s var(--bounce); }
         
-        /* Github (Gris foncé/Blanc) */
+        /* Github */
         .social-icon.github:hover {
             color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4);
-            transform: translateY(-8px); animation: none; /* Arrête le flottement au survol */
+            transform: translateY(-8px); animation: none;
         }
-        /* LinkedIn (Bleu) */
+        /* LinkedIn */
         .social-icon.linkedin:hover {
             color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6);
             box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6);
             transform: translateY(-8px); animation: none;
         }
-        /* Email (Rouge Google) */
+        /* Email */
         .social-icon.email:hover {
             color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6);
             box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6);
@@ -181,19 +180,78 @@
         }
         .social-icon:hover i { transform: scale(1.2); }
 
-        /* --- COMPÉTENCES --- */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
-        .skill-card { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border-glass); padding: 25px 15px; border-radius: 20px; text-align: center; transition: all 0.4s var(--bounce); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .skill-card::after { content: ''; position: absolute; bottom: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); opacity: 0; transition: 0.5s; pointer-events: none; }
-        .skill-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.3); background: rgba(30, 30, 45, 0.6); }
-        .skill-card:hover::after { opacity: 1; }
-        .skill-icon { font-size: 2.5rem; margin-bottom: 15px; display: inline-block; transition: 0.4s var(--bounce); animation: aura-float 6s ease-in-out infinite; }
-        .icon-blue { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .icon-purple { background: var(--grad-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .icon-emerald { background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .icon-sunset { background: var(--grad-sunset); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .icon-gold { background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .skill-name { font-family: var(--font-head); font-weight: 600; font-size: 1rem; letter-spacing: 0.5px; }
+        /* --- NOUVELLES COMPÉTENCES (PANNEAUX & TECH CHIPS) --- */
+        .skills-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
+        }
+        .skill-category {
+            background: rgba(20, 20, 30, 0.4);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px; padding: 30px;
+            backdrop-filter: blur(12px);
+            position: relative; overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .skill-category::before {
+            content: ''; position: absolute; top: -50px; right: -50px;
+            width: 150px; height: 150px; border-radius: 50%;
+            background: var(--grad-primary); filter: blur(60px);
+            opacity: 0.15; transition: 0.5s; z-index: 0; pointer-events: none;
+        }
+        .skill-category.purple-glow::before { background: var(--grad-purple); }
+        .skill-category.emerald-glow::before { background: var(--grad-emerald); }
+        
+        .skill-category:hover { 
+            transform: translateY(-8px); 
+            border-color: rgba(255,255,255,0.2); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
+        }
+        .skill-category:hover::before { opacity: 0.4; transform: scale(1.2); }
+        
+        .cat-header { 
+            display: flex; align-items: center; gap: 15px; 
+            margin-bottom: 25px; position: relative; z-index: 1; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px;
+        }
+        .cat-icon { font-size: 2rem; }
+        .cat-icon.blue { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cat-icon.purple { background: var(--grad-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cat-icon.emerald { background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cat-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: #fff; }
+        
+        .tech-chips { display: flex; flex-wrap: wrap; gap: 12px; position: relative; z-index: 1; }
+        .tech-chip { 
+            display: flex; align-items: center; gap: 10px; 
+            padding: 10px 16px; background: rgba(0,0,0,0.4); 
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; 
+            font-size: 0.95rem; font-weight: 500; color: #e2e8f0; 
+            transition: all 0.3s var(--bounce); cursor: default;
+        }
+        .tech-chip i { font-size: 1.2rem; color: #9ca3af; transition: 0.3s; }
+        
+        /* Hover individuel sur les Tech Chips */
+        .tech-chip:hover { 
+            background: rgba(255,255,255,0.1); 
+            border-color: rgba(255,255,255,0.3); 
+            transform: translateY(-4px) scale(1.03); 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Couleurs dynamiques au survol */
+        .tech-chip:hover .fa-python { color: #3b82f6; }
+        .tech-chip:hover .fa-php { color: #8b5cf6; }
+        .tech-chip:hover .fa-database { color: #10b981; }
+        .tech-chip:hover .fa-microsoft { color: #0ea5e9; }
+        .tech-chip:hover .fa-gamepad { color: #f59e0b; }
+        .tech-chip:hover .fa-robot { color: #d946ef; }
+        .tech-chip:hover .fa-network-wired { color: #8b5cf6; }
+        .tech-chip:hover .fa-table { color: #10b981; }
+        .tech-chip:hover .fa-chart-pie { color: #f59e0b; }
+        .tech-chip:hover .fa-git-alt { color: #f97316; }
+        .tech-chip:hover .fa-lock { color: #10b981; }
+        .tech-chip:hover .fa-server { color: #0ea5e9; }
+        
+        .tech-chip:hover i { transform: scale(1.2); }
 
         /* --- TIMELINE --- */
         .timeline { position: relative; margin-left: 20px; padding-left: 40px; }
@@ -374,20 +432,48 @@
 
         <section id="competences">
             <h2 class="section-title title-blue reveal t" data-fr="Mes Compétences" data-en="My Skills">Mes Compétences</h2>
-            <div class="skills-grid">
-                <div class="skill-card reveal delay-1"><i class="fa-brands fa-python skill-icon icon-blue"></i><div class="skill-name">Python</div></div>
-                <div class="skill-card reveal delay-1"><i class="fa-solid fa-database skill-icon icon-emerald"></i><div class="skill-name">SQL & BDD</div></div>
-                <div class="skill-card reveal delay-1"><i class="fa-solid fa-code skill-icon icon-purple"></i><div class="skill-name">C#</div></div>
-                <div class="skill-card reveal delay-1"><i class="fa-solid fa-moon skill-icon icon-sunset"></i><div class="skill-name">Luau</div></div>
+            <div class="skills-container">
                 
-                <div class="skill-card reveal delay-2"><i class="fa-solid fa-robot skill-icon icon-purple"></i><div class="skill-name t" data-fr="IA Locales & LLMs" data-en="Local AI & LLMs">IA Locales & LLMs</div></div>
-                <div class="skill-card reveal delay-2"><i class="fa-solid fa-gears skill-icon icon-gold"></i><div class="skill-name t" data-fr="Automatisation & Pandas" data-en="Automation & Pandas">Automatisation & Pandas</div></div>
-                
-                <div class="skill-card reveal delay-2"><i class="fa-brands fa-git-alt skill-icon icon-sunset"></i><div class="skill-name">Git & GitHub</div></div>
-                <div class="skill-card reveal delay-2"><i class="fa-solid fa-shield-halved skill-icon icon-emerald"></i><div class="skill-name t" data-fr="Cybersécurité" data-en="Cybersecurity">Cybersécurité</div></div>
+                <div class="skill-category reveal delay-1">
+                    <div class="cat-header">
+                        <i class="fa-solid fa-code cat-icon blue"></i>
+                        <h3 class="cat-title t" data-fr="Backend & Logique" data-en="Backend & Logic">Backend & Logique</h3>
+                    </div>
+                    <div class="tech-chips">
+                        <div class="tech-chip"><i class="fa-brands fa-python"></i> Python (Asyncio)</div>
+                        <div class="tech-chip"><i class="fa-brands fa-php"></i> PHP / Laravel</div>
+                        <div class="tech-chip"><i class="fa-solid fa-database"></i> SQL & SQLite</div>
+                        <div class="tech-chip"><i class="fa-brands fa-microsoft"></i> C# / .NET</div>
+                        <div class="tech-chip"><i class="fa-solid fa-gamepad"></i> Luau / GDScript</div>
+                    </div>
+                </div>
 
-                <div class="skill-card reveal delay-3"><i class="fa-brands fa-php skill-icon icon-blue"></i><div class="skill-name t" data-fr="Développement Web" data-en="Web Development">Développement Web</div></div>
-                <div class="skill-card reveal delay-3"><i class="fa-solid fa-server skill-icon icon-emerald"></i><div class="skill-name t" data-fr="Infra (SN Option C)" data-en="Infra (SN Option C)">Infra (SN Option C)</div></div>
+                <div class="skill-category purple-glow reveal delay-2">
+                    <div class="cat-header">
+                        <i class="fa-solid fa-brain cat-icon purple"></i>
+                        <h3 class="cat-title">IA & Data Science</h3>
+                    </div>
+                    <div class="tech-chips">
+                        <div class="tech-chip"><i class="fa-solid fa-robot"></i> IA Locales (Ollama)</div>
+                        <div class="tech-chip"><i class="fa-solid fa-network-wired"></i> Moteurs LLM</div>
+                        <div class="tech-chip"><i class="fa-solid fa-table"></i> Pandas (Data Extract)</div>
+                        <div class="tech-chip"><i class="fa-solid fa-chart-pie"></i> Automatisation</div>
+                    </div>
+                </div>
+
+                <div class="skill-category emerald-glow reveal delay-3">
+                    <div class="cat-header">
+                        <i class="fa-solid fa-shield-halved cat-icon emerald"></i>
+                        <h3 class="cat-title t" data-fr="Infra & Cybersécurité" data-en="Infra & Cybersecurity">Infra & Cybersécurité</h3>
+                    </div>
+                    <div class="tech-chips">
+                        <div class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
+                        <div class="tech-chip"><i class="fa-solid fa-lock"></i> Modèle Zero-Trust</div>
+                        <div class="tech-chip"><i class="fa-solid fa-server"></i> Serveur Flask (API)</div>
+                        <div class="tech-chip"><i class="fa-solid fa-network-wired"></i> Réseaux (Bac Pro)</div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
