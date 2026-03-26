@@ -147,38 +147,37 @@
         /* Boutons d'actions Accueil (CV) */
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
-        /* --- RESEAUX SOCIAUX (ANIMATIONS PRO) --- */
+        /* --- RESEAUX SOCIAUX (ANIMATIONS FLUIDES & NETTES) --- */
         .social-links { display: flex; gap: 25px; justify-content: center; margin-bottom: 50px; }
         .social-icon {
             width: 65px; height: 65px; border-radius: 50%; 
             background: rgba(20, 20, 30, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex; align-items: center; justify-content: center; 
             font-size: 1.8rem; color: var(--text-sec);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease; /* Transition rapide et linéaire, fini l'effet buggé ! */
             position: relative; overflow: hidden; backdrop-filter: blur(10px);
-            animation: aura-float 6s ease-in-out infinite;
         }
-        .social-icon i { transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .social-icon i { transition: transform 0.3s ease; }
         
-        /* Github Glow */
+        /* Github Clean Glow */
         .social-icon.github:hover {
-            color: #ffffff; background: #24292e; border-color: #ffffff;
-            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1);
-            transform: translateY(-10px); animation: none;
+            color: #ffffff; background: #24292e; border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+            transform: translateY(-6px);
         }
-        /* LinkedIn Glow */
+        /* LinkedIn Clean Glow */
         .social-icon.linkedin:hover {
-            color: #ffffff; background: #0a66c2; border-color: #00cfef;
-            box-shadow: 0 15px 35px rgba(10, 102, 194, 0.4), inset 0 0 20px rgba(0, 207, 239, 0.3);
-            transform: translateY(-10px); animation: none;
+            color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.5);
+            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.3);
+            transform: translateY(-6px);
         }
-        /* Email Glow */
+        /* Email Clean Glow */
         .social-icon.email:hover {
-            color: #ffffff; background: #ea4335; border-color: #ff8a65;
-            box-shadow: 0 15px 35px rgba(234, 67, 53, 0.4), inset 0 0 20px rgba(255, 138, 101, 0.3);
-            transform: translateY(-10px); animation: none;
+            color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.5);
+            box-shadow: 0 10px 25px rgba(234, 67, 53, 0.3);
+            transform: translateY(-6px);
         }
-        .social-icon:hover i { transform: scale(1.4); }
+        .social-icon:hover i { transform: scale(1.2); }
 
         /* --- COMPÉTENCES --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
@@ -596,6 +595,78 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="project-card reveal delay-3">
+                    <div class="project-img-wrapper">
+                        <img src="logo.png" alt="PHP GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Projet GSB - PHP Natif</h3>
+                        <div class="feature-box">
+                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item">Détails et informations à venir...</li>
+                            </ul>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <button onclick="openProjectModal('gsb-php')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-3">
+                    <div class="project-img-wrapper">
+                        <img src="logo.png" alt="Laravel GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Projet GSB - Laravel</h3>
+                        <div class="feature-box">
+                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item">Détails et informations à venir...</li>
+                            </ul>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MVC</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <button onclick="openProjectModal('gsb-laravel')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-3">
+                    <div class="project-img-wrapper">
+                        <img src="logo.png" alt="WinForm GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
+                        <div class="feature-box">
+                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item">Détails et informations à venir...</li>
+                            </ul>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">WinForm</span>
+                            <span class="tech-tag">.NET</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <button onclick="openProjectModal('gsb-winform')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </section>
@@ -807,7 +878,6 @@
                 desc: "Création d'une plateforme innovante intégrant une IA locale propulsée par un moteur LLM. L'objectif principal de ce projet est de garantir une confidentialité totale des données traitées tout en offrant une interface de chat fluide et réactive aux utilisateurs internes.",
                 features: ["Moteur LLM hébergé en local", "Confidentialité totale des données", "Interface de chat fluide et réactive", "Déploiement Full-Stack sécurisé"],
                 tech: ["Python", "LLM Local", "API", "Frontend Web"],
-                // Ajoute tes futures captures d'écran, Gifs ou vidéos ici ! (ex: "capture1.png", "demo.mp4")
                 gallery: [] 
             },
             "dassault2": {
@@ -848,6 +918,30 @@
                 desc: "Une démonstration d'architecture logicielle propre et asynchrone. Ce bot est découpé en plusieurs modules (Cogs) pour une maintenabilité parfaite. En utilisant 'aiosqlite', il garantit des performances sans latence même lors d'écritures massives en base de données. Il intègre un assistant IA contextuel, un système de leveling, et embarque son propre serveur Flask pour rester en ligne 24/7 sur un hébergeur Cloud.",
                 features: ["Architecture modulaire et scalable (Cogs)", "Base de données SQLite 100% Asynchrone", "Assistant Concierge Intelligence Artificielle", "Hébergement autonome via thread Flask (Keep-Alive)"],
                 tech: ["Python Asyncio", "Flask", "aiosqlite", "LLM API"],
+                gallery: []
+            },
+            "gsb-php": {
+                img: "logo.png",
+                title: "Projet GSB - PHP Natif",
+                desc: "Détails concernant le développement de l'application GSB en PHP natif. Ce projet met en avant l'architecture MVC manuelle, la gestion de base de données MySQL via PDO et la sécurisation des données utilisateurs.",
+                features: ["Architecture MVC from scratch", "Connexion sécurisée BDD (PDO)", "Gestion des formulaires", "UI/UX fluide"],
+                tech: ["PHP", "MySQL", "HTML/CSS"],
+                gallery: []
+            },
+            "gsb-laravel": {
+                img: "logo.png",
+                title: "Projet GSB - Laravel",
+                desc: "Refonte de l'application GSB en utilisant le framework Laravel. Démonstration de l'utilisation de l'ORM Eloquent, du moteur de template Blade, et du système de routage robuste offert par Laravel.",
+                features: ["Système de Routage avancé", "ORM Eloquent", "Moteur de template (Blade)", "Authentification intégrée"],
+                tech: ["Laravel", "PHP", "MVC"],
+                gallery: []
+            },
+            "gsb-winform": {
+                img: "logo.png",
+                title: "Projet GSB - WinForm (C#)",
+                desc: "Développement d'une application client lourd de bureau (Desktop) pour la gestion GSB. Créée avec C# et le framework .NET WinForm, l'application est directement connectée à la base de données de l'entreprise.",
+                features: ["Interface client lourd (Desktop)", "Connexion base de données distantes", "Gestionnaire d'événements C#", "Déploiement exécutable"],
+                tech: ["C#", "WinForm", ".NET"],
                 gallery: []
             }
         };
