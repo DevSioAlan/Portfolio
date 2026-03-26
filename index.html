@@ -17,13 +17,12 @@
             --text-main: #ffffff;
             --text-sec: #9ca3af;
             
-            /* Nouveaux dégradés animés Pro/Tech */
             --grad-primary: linear-gradient(to right, #00f2fe, #4facfe, #00f2fe);
             --grad-purple: linear-gradient(to right, #c084fc, #d946ef, #c084fc);
             --grad-cyan: linear-gradient(to right, #2dd4bf, #0284c7, #2dd4bf);
             --grad-sunset: linear-gradient(to right, #ff0844, #ffb199, #ff0844);
             --grad-gold: linear-gradient(to right, #f59e0b, #fbbf24, #f59e0b);
-            --grad-emerald: linear-gradient(to right, #10b981, #34d399, #10b981);
+            --grad-emerald: linear-gradient(135deg, #10b981 0%, #34d399 100%);
             
             --border-glass: rgba(255, 255, 255, 0.08);
             --font-head: 'Outfit', sans-serif;
@@ -31,7 +30,6 @@
             --bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* --- BASE & FOND ANIMÉ --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: var(--bg-dark);
@@ -49,37 +47,29 @@
         body::after { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #8b5cf6; animation: float 15s infinite alternate-reverse; }
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
-        /* --- ANIMATIONS AURA PRO (OPTIMISÉES GPU) --- */
         .nav-link i, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
-            will-change: transform, filter;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
+            will-change: transform, filter; transform: translateZ(0);
         }
 
         @keyframes aura-float { 
-            0%, 100% { transform: translateY(0px) translateZ(0); filter: drop-shadow(0 0 0 rgba(79, 172, 254, 0)); } 
-            50% { transform: translateY(-5px) translateZ(0); filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.6)); } 
+            0%, 100% { transform: translateY(0px); filter: drop-shadow(0 0 0 rgba(79, 172, 254, 0)); } 
+            50% { transform: translateY(-5px); filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.6)); } 
         }
         @keyframes aura-pulse-emerald { 
-            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(52, 211, 153, 0.2)); } 
-            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.7)); } 
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(52, 211, 153, 0.2)); } 
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.7)); } 
         }
         @keyframes aura-pulse-cyan { 
-            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(45, 212, 191, 0.2)); } 
-            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(45, 212, 191, 0.7)); } 
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(45, 212, 191, 0.2)); } 
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 20px rgba(45, 212, 191, 0.7)); } 
         }
         @keyframes aura-pulse-purple { 
-            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.2)); } 
-            50% { transform: scale(1.06) translateZ(0); filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.7)); } 
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.2)); } 
+            50% { transform: scale(1.06); filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.7)); } 
         }
         @keyframes aura-pulse-gold { 
-            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.2)); } 
-            50% { transform: scale(1.1) translateZ(0); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.6)); } 
-        }
-        @keyframes aura-sway { 
-            0%, 100% { transform: rotate(0deg) translateY(0) translateZ(0); filter: drop-shadow(0 0 0 rgba(255, 8, 68, 0)); } 
-            25% { transform: rotate(4deg) translateY(-3px) translateZ(0); filter: drop-shadow(0 5px 15px rgba(255, 8, 68, 0.5)); } 
-            75% { transform: rotate(-4deg) translateY(-3px) translateZ(0); filter: drop-shadow(0 5px 15px rgba(255, 8, 68, 0.5)); } 
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.2)); } 
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.6)); } 
         }
 
         html { scroll-behavior: smooth; }
@@ -92,7 +82,7 @@
         /* --- NAVIGATION FLOTTANTE --- */
         .navbar {
             position: fixed; top: 25px; left: 50%; transform: translateX(-50%);
-            background: rgba(10, 10, 15, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            background: rgba(10, 10, 15, 0.6); backdrop-filter: blur(16px);
             padding: 8px 12px; border-radius: 50px; border: 1px solid var(--border-glass);
             display: flex; gap: 10px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
@@ -124,30 +114,21 @@
         .lang-toggle-container.en .lang-fr { color: #94a3b8; }
         .lang-toggle-container.en .lang-en { color: #0f172a; }
 
-        /* --- CONTENEUR --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 150px 20px 80px 20px; }
         section { margin-bottom: 120px; scroll-margin-top: 120px; }
         
         /* --- TITRES ANIMÉS --- */
         @keyframes shine { to { background-position: 200% center; } }
-        
         .section-title { 
-            font-family: var(--font-head); 
-            font-size: 2.8rem; 
-            font-weight: 800; 
-            margin-bottom: 60px; 
-            position: relative; 
-            display: inline-block;
-            background-size: 200% auto !important;
-            animation: shine 4s linear infinite;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
+            font-family: var(--font-head); font-size: 2.8rem; font-weight: 800; 
+            margin-bottom: 60px; position: relative; display: inline-block;
+            background-size: 200% auto !important; animation: shine 4s linear infinite;
+            -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important;
         }
         .title-blue { background: var(--grad-primary); }
         .title-purple { background: var(--grad-purple); }
         .title-cyan { background: var(--grad-cyan); }
-        .title-emerald { background: var(--grad-emerald); } /* Nouveau pour les certifications */
-        .title-sunset { background: var(--grad-sunset); }
+        .title-emerald { background: var(--grad-emerald); }
 
         /* --- HERO --- */
         .hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 20px; }
@@ -161,11 +142,7 @@
         .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-dark); position: relative; z-index: 1; }
         
         .hero h1 { font-family: var(--font-head); font-size: 4rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -1px; }
-        .name-highlight { 
-            background: var(--grad-primary); background-size: 200% auto;
-            animation: shine 4s linear infinite;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-        }
+        .name-highlight { background: var(--grad-primary); background-size: 200% auto; animation: shine 4s linear infinite; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero h2 { font-size: 1.6rem; color: var(--text-sec); font-weight: 400; margin-bottom: 25px; }
         .hero p { max-width: 650px; font-size: 1.15rem; color: var(--text-sec); margin-bottom: 30px; }
         
@@ -176,65 +153,32 @@
         .social-icon {
             width: 65px; height: 65px; border-radius: 50%; 
             background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 1.8rem; color: var(--text-sec);
-            transition: all 0.4s var(--bounce);
-            position: relative; backdrop-filter: blur(10px);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); 
-            animation: aura-float 5s ease-in-out infinite; 
+            display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--text-sec);
+            transition: all 0.4s var(--bounce); position: relative; backdrop-filter: blur(10px);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); animation: aura-float 5s ease-in-out infinite; 
         }
         .social-icon i { transition: transform 0.4s var(--bounce); }
-        
-        .social-icon.github:hover {
-            color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4);
-            transform: translateY(-8px); animation: none; 
-        }
-        .social-icon.linkedin:hover {
-            color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6);
-            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6);
-            transform: translateY(-8px); animation: none;
-        }
-        .social-icon.email:hover {
-            color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6);
-            box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6);
-            transform: translateY(-8px); animation: none;
-        }
+        .social-icon.github:hover { color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4); transform: translateY(-8px); animation: none; }
+        .social-icon.linkedin:hover { color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6); box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6); transform: translateY(-8px); animation: none; }
+        .social-icon.email:hover { color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6); box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6); transform: translateY(-8px); animation: none; }
         .social-icon:hover i { transform: scale(1.2); }
 
-        /* --- COMPÉTENCES (GLASSMORPHISM) --- */
-        .skills-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
-        }
+        /* --- COMPÉTENCES --- */
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .skill-category {
-            background: rgba(20, 20, 30, 0.4);
-            border: 1px solid var(--border-glass);
-            border-radius: 24px; padding: 30px;
-            backdrop-filter: blur(12px);
-            position: relative; overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(20, 20, 30, 0.4); border: 1px solid var(--border-glass); border-radius: 24px; padding: 30px;
+            backdrop-filter: blur(12px); position: relative; overflow: hidden; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .skill-category::before {
-            content: ''; position: absolute; top: -50px; right: -50px;
-            width: 150px; height: 150px; border-radius: 50%;
-            background: var(--grad-primary); filter: blur(60px);
-            opacity: 0.15; transition: 0.5s; z-index: 0; pointer-events: none;
+            content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; border-radius: 50%;
+            background: var(--grad-primary); filter: blur(60px); opacity: 0.15; transition: 0.5s; z-index: 0; pointer-events: none;
         }
         .skill-category.purple-glow::before { background: var(--grad-purple); }
         .skill-category.cyan-glow::before { background: var(--grad-cyan); }
-        
-        .skill-category:hover { 
-            transform: translateY(-8px); 
-            border-color: rgba(255,255,255,0.2); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
-        }
+        .skill-category:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
         .skill-category:hover::before { opacity: 0.4; transform: scale(1.2); }
         
-        .cat-header { 
-            display: flex; align-items: center; gap: 15px; 
-            margin-bottom: 25px; position: relative; z-index: 1; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px;
-        }
+        .cat-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; position: relative; z-index: 1; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
         .cat-icon { font-size: 2rem; }
         .cat-icon.blue { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .cat-icon.purple { background: var(--grad-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -242,113 +186,41 @@
         .cat-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: #fff; }
         
         .tech-chips { display: flex; flex-wrap: wrap; gap: 12px; position: relative; z-index: 1; }
-        .tech-chip { 
-            display: flex; align-items: center; gap: 10px; 
-            padding: 10px 16px; background: rgba(0,0,0,0.4); 
-            border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; 
-            font-size: 0.95rem; font-weight: 500; color: #e2e8f0; 
-            transition: all 0.3s var(--bounce); cursor: default;
-        }
+        .tech-chip { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; font-size: 0.95rem; font-weight: 500; color: #e2e8f0; transition: all 0.3s var(--bounce); cursor: default; }
         .tech-chip i { font-size: 1.2rem; color: #9ca3af; transition: 0.3s; }
-        
-        .tech-chip:hover { 
-            background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); 
-            transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-        }
-        
-        .tech-chip:hover .fa-python { color: #3b82f6; }
-        .tech-chip:hover .fa-php { color: #8b5cf6; }
-        .tech-chip:hover .fa-database { color: #10b981; }
-        .tech-chip:hover .fa-microsoft { color: #0ea5e9; }
-        .tech-chip:hover .fa-gamepad { color: #f59e0b; }
-        .tech-chip:hover .fa-robot { color: #d946ef; }
-        .tech-chip:hover .fa-network-wired { color: #8b5cf6; }
-        .tech-chip:hover .fa-table { color: #10b981; }
-        .tech-chip:hover .fa-chart-pie { color: #f59e0b; }
-        .tech-chip:hover .fa-git-alt { color: #f97316; }
-        .tech-chip:hover .fa-lock { color: #10b981; }
-        .tech-chip:hover .fa-server { color: #0ea5e9; }
+        .tech-chip:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
+        .tech-chip:hover .fa-python { color: #3b82f6; } .tech-chip:hover .fa-php { color: #8b5cf6; } .tech-chip:hover .fa-database { color: #10b981; } .tech-chip:hover .fa-microsoft { color: #0ea5e9; } .tech-chip:hover .fa-gamepad { color: #f59e0b; } .tech-chip:hover .fa-robot { color: #d946ef; } .tech-chip:hover .fa-network-wired { color: #8b5cf6; } .tech-chip:hover .fa-table { color: #10b981; } .tech-chip:hover .fa-chart-pie { color: #f59e0b; } .tech-chip:hover .fa-git-alt { color: #f97316; } .tech-chip:hover .fa-lock { color: #10b981; } .tech-chip:hover .fa-server { color: #0ea5e9; }
         .tech-chip:hover i { transform: scale(1.2); }
 
-        /* --- TIMELINE MODERNE --- */
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            padding-left: 40px;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 18px; 
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, #d946ef, #4facfe, #2dd4bf);
-            border-radius: 4px;
-            box-shadow: 0 0 15px rgba(79, 172, 254, 0.4);
-            z-index: 0;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 50px;
-            z-index: 1;
-        }
-        .timeline-dot {
-            position: absolute;
-            left: -32px;
-            top: 20px;
-            width: 20px; height: 20px;
-            background: var(--bg-dark);
-            border: 3px solid #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255,255,255,0.3);
-            transition: all 0.4s var(--bounce);
-        }
-        .timeline-item.highlight .timeline-dot {
-            border-color: #00a0ff;
-            box-shadow: 0 0 15px rgba(0, 160, 255, 0.6);
-        }
-        .timeline-item:hover .timeline-dot {
-            transform: scale(1.4);
-            background: #fff;
-            box-shadow: 0 0 20px rgba(255,255,255,0.8);
-        }
-        .timeline-item.highlight:hover .timeline-dot {
-            background: #00a0ff;
-        }
-        
-        .timeline-card {
-            background: rgba(20, 20, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(12px);
-            transition: all 0.4s var(--bounce);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* AURA LUMINEUSE AU SURVOL DES EXPERIENCES */
-        .timeline-item:hover .timeline-card {
-            transform: translateX(12px);
-            border-color: rgba(217, 70, 239, 0.5);
-            background: rgba(30, 30, 45, 0.7);
-            box-shadow: 0 10px 30px rgba(217, 70, 239, 0.15), inset 0 0 15px rgba(217, 70, 239, 0.1);
-        }
-
+        /* --- TIMELINE --- */
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; padding-left: 40px; }
+        .timeline::before { content: ''; position: absolute; top: 0; left: 18px; width: 3px; height: 100%; background: linear-gradient(to bottom, #d946ef, #4facfe, #2dd4bf); border-radius: 4px; box-shadow: 0 0 15px rgba(79, 172, 254, 0.4); z-index: 0; }
+        .timeline-item { position: relative; margin-bottom: 50px; z-index: 1; }
+        .timeline-dot { position: absolute; left: -32px; top: 20px; width: 20px; height: 20px; background: var(--bg-dark); border: 3px solid #fff; border-radius: 50%; box-shadow: 0 0 10px rgba(255,255,255,0.3); transition: all 0.4s var(--bounce); }
+        .timeline-item.highlight .timeline-dot { border-color: #00a0ff; box-shadow: 0 0 15px rgba(0, 160, 255, 0.6); }
+        .timeline-item:hover .timeline-dot { transform: scale(1.4); background: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.8); }
+        .timeline-item.highlight:hover .timeline-dot { background: #00a0ff; }
+        .timeline-card { background: rgba(20, 20, 30, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 30px; backdrop-filter: blur(12px); transition: all 0.4s var(--bounce); position: relative; overflow: hidden; }
+        .timeline-item:hover .timeline-card { transform: translateX(12px); border-color: rgba(217, 70, 239, 0.5); background: rgba(30, 30, 45, 0.7); box-shadow: 0 10px 30px rgba(217, 70, 239, 0.15), inset 0 0 15px rgba(217, 70, 239, 0.1); }
         .dassault-card { border-color: rgba(0, 160, 255, 0.3); }
-        .timeline-item:hover .dassault-card { 
-            border-color: #00a0ff !important; 
-            box-shadow: 0 10px 30px rgba(0, 160, 255, 0.2), inset 0 0 15px rgba(0, 160, 255, 0.1) !important;
-        }
-        
+        .timeline-item:hover .dassault-card { border-color: #00a0ff !important; box-shadow: 0 10px 30px rgba(0, 160, 255, 0.2), inset 0 0 15px rgba(0, 160, 255, 0.1) !important; }
         .ds-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
         .ds-logo { height: 45px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); background: transparent; }
-        
         .timeline-date { font-family: var(--font-head); font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 10px; display: inline-block; background: var(--grad-purple); padding: 6px 15px; border-radius: 30px; }
         .timeline-title { font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 5px; color: #fff; }
         .timeline-company { font-size: 1.05rem; color: #4facfe; font-weight: 500; margin-bottom: 15px; }
         .timeline-desc { color: var(--text-sec); font-size: 1rem; }
+
+        /* --- FILTRES PROJETS --- */
+        .project-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+        .filter-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);
+            color: var(--text-sec); padding: 10px 20px; border-radius: 30px;
+            font-family: var(--font-head); font-weight: 500; font-size: 1rem;
+            cursor: pointer; transition: all 0.3s var(--bounce); backdrop-filter: blur(10px);
+        }
+        .filter-btn:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateY(-2px); }
+        .filter-btn.active { background: var(--grad-cyan); color: #fff; border-color: transparent; box-shadow: 0 5px 15px rgba(45, 212, 191, 0.3); }
 
         /* --- PROJETS --- */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
@@ -376,8 +248,6 @@
         .project-links { display: flex; gap: 10px; }
         .btn-link { display: flex; align-items: center; justify-content: center; gap: 8px; flex: 1; padding: 10px; border-radius: 12px; font-size: 0.95rem; font-weight: 600; color: #fff; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); transition: 0.3s var(--bounce); cursor: pointer; text-decoration: none; text-align: center; }
         .btn-link:hover { background: var(--grad-cyan); border-color: transparent; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(45, 212, 191, 0.4); }
-        
-        /* BOUTON DÉTAILS SPÉCIFIQUE */
         .btn-details { background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.5); color: #38bdf8; }
         .btn-details:hover { background: #0ea5e9; color: #fff; border-color: transparent; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4); }
 
@@ -385,17 +255,7 @@
         .certif-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .certif-card { display: flex; align-items: center; gap: 20px; background: var(--bg-card); padding: 25px; border-radius: 20px; border: 1px solid var(--border-glass); transition: 0.4s var(--bounce); backdrop-filter: blur(10px); cursor: pointer; text-decoration: none; color: inherit; }
         .certif-card:hover { transform: translateY(-8px); border-color: #34d399; background: rgba(16, 185, 129, 0.1); box-shadow: 0 10px 25px rgba(52, 211, 153, 0.2); }
-        
-        /* L'icône garde son fond gradient et gère correctement l'animation drop-shadow */
-        .certif-icon { 
-            display: inline-block; 
-            font-size: 2.5rem; 
-            background: var(--grad-emerald); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            transition: 0.3s; 
-            animation: aura-pulse-emerald 4s ease-in-out infinite; 
-        }
+        .certif-icon { display: inline-block; font-size: 2.5rem; background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: 0.3s; animation: aura-pulse-emerald 4s ease-in-out infinite; }
         .certif-card:hover .certif-icon { animation: none; transform: scale(1.2) rotate(10deg); }
         .certif-info h3 { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 5px; color: #fff; line-height: 1.3; }
         .certif-info p { font-size: 0.9rem; color: var(--text-sec); }
@@ -405,8 +265,7 @@
         /* --- VEILLE TECHNOLOGIQUE --- */
         .veille-card {
             background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; 
-            padding: 40px; position: relative; overflow: hidden; backdrop-filter: blur(10px);
-            display: flex; flex-direction: column; gap: 30px;
+            padding: 40px; position: relative; overflow: hidden; backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 30px;
         }
         .veille-card::before { content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%); pointer-events: none; }
         .veille-header { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid var(--border-glass); padding-bottom: 20px; }
@@ -419,16 +278,52 @@
         .btn-download { display: inline-flex; align-items: center; gap: 10px; background: var(--grad-purple); color: #fff; padding: 12px 25px; border-radius: 30px; font-weight: 600; text-decoration: none; align-self: flex-start; transition: 0.3s; }
         .btn-download:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4); }
 
-        /* --- CONTACT --- */
-        .contact-box { background: linear-gradient(180deg, rgba(20, 20, 30, 0.4) 0%, rgba(217, 70, 239, 0.1) 100%); border: 1px solid rgba(217, 70, 239, 0.3); padding: 60px 40px; border-radius: 30px; text-align: center; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
-        .contact-box h2 { font-family: var(--font-head); font-size: 3rem; margin-bottom: 20px; color: #fff; }
-        .contact-box p { color: var(--text-sec); margin-bottom: 40px; font-size: 1.2rem; }
-        .btn-primary { background: var(--grad-purple); color: white; padding: 15px 40px; border-radius: 40px; font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; display: inline-flex; align-items: center; gap: 12px; transition: 0.4s var(--bounce); border: none; cursor: pointer; text-decoration: none; }
-        .btn-primary i { transition: 0.3s; animation: aura-sway 4s ease-in-out infinite; }
-        .btn-primary:hover i { animation: none; transform: translateX(5px) scale(1.1); }
-        .btn-primary:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 30px rgba(217, 70, 239, 0.5); }
+        /* --- CONTACT FORM (NOUVEAU) --- */
+        .contact-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch;
+            background: linear-gradient(180deg, rgba(20, 20, 30, 0.4) 0%, rgba(217, 70, 239, 0.05) 100%);
+            border: 1px solid rgba(217, 70, 239, 0.3); padding: 50px; border-radius: 30px;
+            position: relative; overflow: hidden; backdrop-filter: blur(10px);
+        }
+        .contact-info { display: flex; flex-direction: column; justify-content: center; }
+        .contact-info h2 { font-family: var(--font-head); font-size: 3rem; margin-bottom: 20px; color: #fff; }
+        .contact-info p { color: var(--text-sec); margin-bottom: 30px; font-size: 1.1rem; }
+        
+        .contact-form { display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 15px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; color: #fff; font-family: var(--font-body); font-size: 1rem;
+            transition: all 0.3s; outline: none;
+        }
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #d946ef; box-shadow: 0 0 15px rgba(217, 70, 239, 0.2); background: rgba(0,0,0,0.7);
+        }
+        .btn-submit {
+            background: var(--grad-purple); color: white; padding: 15px; border-radius: 12px;
+            font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; border: none;
+            cursor: pointer; transition: 0.4s var(--bounce); display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(217, 70, 239, 0.4); }
 
-        /* --- MODAL PLEIN ECRAN (STYLE VERCEL) --- */
+        /* --- FOOTER --- */
+        footer {
+            text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-glass);
+            margin-top: 60px; color: var(--text-sec); font-size: 0.9rem;
+        }
+
+        /* --- SCROLL TO TOP BTN --- */
+        .scroll-top-btn {
+            position: fixed; bottom: -60px; right: 30px; width: 50px; height: 50px;
+            background: var(--grad-cyan); color: #fff; border: none; border-radius: 50%;
+            font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 5px 15px rgba(45, 212, 191, 0.4); transition: all 0.4s var(--bounce);
+            z-index: 1000; opacity: 0; pointer-events: none;
+        }
+        .scroll-top-btn.show { bottom: 30px; opacity: 1; pointer-events: auto; }
+        .scroll-top-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.6); }
+
+        /* --- MODALS (DETAILS PROJETS) --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(5, 5, 10, 0.95); backdrop-filter: blur(20px);
@@ -448,20 +343,26 @@
         .modal-body { padding: 40px; }
         .modal-title { font-family: var(--font-head); font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
         .modal-desc { color: var(--text-sec); font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px; }
-        
         .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
         .modal-section h4 { color: #fff; font-size: 1.3rem; margin-bottom: 20px; font-family: var(--font-head); display: flex; align-items: center; gap: 10px; }
         .modal-section h4 i { color: #4facfe; animation: aura-float 4s ease-in-out infinite; }
 
-        /* Galerie Dynamique dans les détails */
         .modal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
-        .modal-gallery img, .modal-gallery video { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border-glass); transition: 0.3s; }
-        .modal-gallery img:hover, .modal-gallery video:hover { transform: scale(1.02); border-color: #4facfe; }
+        .modal-gallery img, .modal-gallery video { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border-glass); transition: 0.3s; cursor: zoom-in; }
+        .modal-gallery img:hover { transform: scale(1.02); border-color: #4facfe; }
 
-        /* --- CSS POUR LE LECTEUR PDF (Pleine écran optimisé) --- */
+        /* --- LIGHTBOX (PLEIN ECRAN IMAGE) --- */
+        .lightbox-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 3000; display: none; 
+            align-items: center; justify-content: center; opacity: 0; transition: 0.3s;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.active { display: flex; opacity: 1; }
+        .lightbox-img { max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+
         .pdf-modal-container { 
-            width: 95%; max-width: 1600px; height: 95vh; 
-            display: flex; flex-direction: column; padding: 0; 
+            width: 95%; max-width: 1600px; height: 95vh; display: flex; flex-direction: column; padding: 0; 
             margin: 0 auto; background: #0f0f17; border: 1px solid var(--border-glass); 
             border-radius: 24px; position: relative; transform: translateY(50px); transition: transform 0.4s var(--bounce);
         }
@@ -469,7 +370,6 @@
         .pdf-container { flex: 1; width: 100%; height: 100%; border-radius: 0 0 24px 24px; overflow: hidden; }
         .pdf-container iframe { width: 100%; height: 100%; border: none; display: block; }
         .pdf-modal-container .btn-close-modal { top: 15px; right: 15px; background: rgba(239, 68, 68, 0.9); color: white; z-index: 50; }
-        .pdf-modal-container .btn-close-modal:hover { background: #ef4444; }
         
         @media (max-width: 768px) {
             .navbar { width: 95%; padding: 10px; gap: 5px; }
@@ -477,10 +377,8 @@
             .lang-toggle-container { top: 80px; right: 20px; }
             .hero h1 { font-size: 2.8rem; }
             .modal-grid { grid-template-columns: 1fr; }
-            .veille-grid { grid-template-columns: 1fr; }
-            .timeline { padding-left: 20px; }
-            .timeline::before { left: 8px; }
-            .timeline-dot { left: -12px; width: 16px; height: 16px; top: 25px; }
+            .timeline { padding-left: 20px; } .timeline::before { left: 8px; } .timeline-dot { left: -12px; width: 16px; height: 16px; top: 25px; }
+            .contact-container { grid-template-columns: 1fr; padding: 30px; }
         }
     </style>
 </head>
@@ -524,12 +422,8 @@
         <section id="competences">
             <h2 class="section-title title-blue reveal t" data-fr="Mes Compétences" data-en="My Skills">Mes Compétences</h2>
             <div class="skills-container">
-                
                 <div class="skill-category reveal delay-1">
-                    <div class="cat-header">
-                        <i class="fa-solid fa-code cat-icon blue"></i>
-                        <h3 class="cat-title t" data-fr="Backend & Logique" data-en="Backend & Logic">Backend & Logique</h3>
-                    </div>
+                    <div class="cat-header"><i class="fa-solid fa-code cat-icon blue"></i><h3 class="cat-title t" data-fr="Backend & Logique" data-en="Backend & Logic">Backend & Logique</h3></div>
                     <div class="tech-chips">
                         <div class="tech-chip"><i class="fa-brands fa-python"></i> Python (Asyncio)</div>
                         <div class="tech-chip"><i class="fa-brands fa-php"></i> PHP / Laravel</div>
@@ -538,12 +432,8 @@
                         <div class="tech-chip"><i class="fa-solid fa-gamepad"></i> Luau / GDScript</div>
                     </div>
                 </div>
-
                 <div class="skill-category purple-glow reveal delay-2">
-                    <div class="cat-header">
-                        <i class="fa-solid fa-brain cat-icon purple"></i>
-                        <h3 class="cat-title">IA & Data Science</h3>
-                    </div>
+                    <div class="cat-header"><i class="fa-solid fa-brain cat-icon purple"></i><h3 class="cat-title">IA & Data Science</h3></div>
                     <div class="tech-chips">
                         <div class="tech-chip"><i class="fa-solid fa-robot"></i> IA Locales (Ollama)</div>
                         <div class="tech-chip"><i class="fa-solid fa-network-wired"></i> Moteurs LLM</div>
@@ -551,12 +441,8 @@
                         <div class="tech-chip"><i class="fa-solid fa-chart-pie"></i> Automatisation</div>
                     </div>
                 </div>
-
                 <div class="skill-category cyan-glow reveal delay-3">
-                    <div class="cat-header">
-                        <i class="fa-solid fa-shield-halved cat-icon cyan"></i>
-                        <h3 class="cat-title t" data-fr="Infra & Cybersécurité" data-en="Infra & Cybersecurity">Infra & Cybersécurité</h3>
-                    </div>
+                    <div class="cat-header"><i class="fa-solid fa-shield-halved cat-icon cyan"></i><h3 class="cat-title t" data-fr="Infra & Cybersécurité" data-en="Infra & Cybersecurity">Infra & Cybersécurité</h3></div>
                     <div class="tech-chips">
                         <div class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
                         <div class="tech-chip"><i class="fa-solid fa-lock"></i> Modèle Zero-Trust</div>
@@ -564,14 +450,12 @@
                         <div class="tech-chip"><i class="fa-solid fa-network-wired"></i> Réseaux (Bac Pro)</div>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <section id="experiences">
             <h2 class="section-title title-purple reveal t" data-fr="Mon Parcours & Expériences" data-en="My Experience & Internships">Mon Parcours & Expériences</h2>
             <div class="timeline">
-                
                 <div class="timeline-item highlight reveal delay-1">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card dassault-card">
@@ -584,7 +468,6 @@
                         <p class="timeline-desc t" data-fr="Création d'une plateforme intégrant une IA locale propulsée par un moteur LLM. Développement full-stack (frontend et backend) d'un outil d'automatisation exploitant la librairie Pandas en Python pour traiter, extraire et compiler des données massives depuis plusieurs fichiers XLSX et CSV." data-en="Creation of a platform integrating a local AI powered by an LLM engine. Full-stack development of an automation tool using Pandas in Python to process massive XLSX/CSV data.">Création d'une plateforme intégrant une IA locale propulsée par un moteur LLM. Développement full-stack (frontend et backend) d'un outil d'automatisation exploitant la librairie Pandas en Python pour traiter, extraire et compiler des données massives depuis plusieurs fichiers XLSX et CSV.</p>
                     </div>
                 </div>
-
                 <div class="timeline-item reveal delay-2">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
@@ -594,7 +477,6 @@
                         <p class="timeline-desc t" data-fr="Spécialisation dans la conception et le développement d'applications logicielles métiers, gestion de bases de données et maîtrise des concepts algorithmiques avancés." data-en="Specialization in the design and development of business software applications, database management, and advanced algorithmic concepts.">Spécialisation dans la conception et le développement d'applications logicielles métiers, gestion de bases de données et maîtrise des concepts algorithmiques avancés.</p>
                     </div>
                 </div>
-
                 <div class="timeline-item reveal delay-3">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
@@ -604,7 +486,6 @@
                         <p class="timeline-desc t" data-fr="Conception et déploiement d'une solution professionnelle de modération automatisée et de gestion de communauté via l'API Discord. Développement d'une architecture modulaire et gestion d'une BDD SQLite." data-en="Design and deployment of a professional automated moderation and community management solution via the Discord API. Modular architecture and SQLite database management.">Conception et déploiement d'une solution professionnelle de modération automatisée et de gestion de communauté via l'API Discord. Développement d'une architecture modulaire et gestion d'une BDD SQLite.</p>
                     </div>
                 </div>
-
                 <div class="timeline-item reveal delay-1">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
@@ -614,7 +495,6 @@
                         <p class="timeline-desc t" data-fr="Diagnostic expert et résolution de dysfonctionnements complexes sur Windows et macOS. Sécurisation des systèmes, nettoyage viral, réinstallation d'OS et récupération de données." data-en="Expert diagnostics and resolution of complex malfunctions on Windows and macOS. System securing, virus removal, OS reinstallation, and data recovery.">Diagnostic expert et résolution de dysfonctionnements complexes sur Windows et macOS. Sécurisation des systèmes, nettoyage viral, réinstallation d'OS et récupération de données.</p>
                     </div>
                 </div>
-
                 <div class="timeline-item reveal delay-2">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
@@ -629,12 +509,19 @@
 
         <section id="projets">
             <h2 class="section-title title-cyan reveal t" data-fr="Projets Récents" data-en="Recent Projects">Projets Récents</h2>
+            
+            <div class="project-filters reveal delay-1">
+                <button class="filter-btn active" onclick="filterProjects('all')">Tous</button>
+                <button class="filter-btn" onclick="filterProjects('ia')">IA & Python</button>
+                <button class="filter-btn" onclick="filterProjects('web')">Web & PHP</button>
+                <button class="filter-btn" onclick="filterProjects('game')">Jeux (GDScript/Luau)</button>
+                <button class="filter-btn" onclick="filterProjects('logiciel')">Logiciels (C#)</button>
+            </div>
+
             <div class="project-grid">
                 
-                <div class="project-card reveal delay-1">
-                    <div class="project-img-wrapper">
-                        <img src="image/DassaultSystemes.jpg" alt="Projet IA LLM" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-1" data-category="ia">
+                    <div class="project-img-wrapper"><img src="image/DassaultSystemes.jpg" alt="Projet IA LLM" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Projet IA Local LLM" data-en="Local LLM AI Project">Projet IA Local LLM</h3>
                         <div class="feature-box">
@@ -644,11 +531,7 @@
                                 <li class="feature-item t" data-fr="Confidentialité totale des données" data-en="Total data privacy">Confidentialité totale des données</li>
                             </ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">LLM Local</span>
-                            <span class="tech-tag">API</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">Python</span><span class="tech-tag">LLM Local</span><span class="tech-tag">API</span></div>
                         <div class="project-links">
                             <a href="https://github.com/DevSioAlan/Aura-Local-AI-Assistant" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('dassault1')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -656,10 +539,8 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal delay-1">
-                    <div class="project-img-wrapper">
-                        <img src="image/DassaultSystemes.jpg" alt="Automatisation" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-1" data-category="ia">
+                    <div class="project-img-wrapper"><img src="image/DassaultSystemes.jpg" alt="Automatisation" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Automatisation XLSX CSV" data-en="XLSX CSV Automation">Automatisation XLSX CSV</h3>
                         <div class="feature-box">
@@ -669,11 +550,7 @@
                                 <li class="feature-item t" data-fr="Fusion de fichiers XLSX/CSV" data-en="Merging of XLSX/CSV files">Fusion et nettoyage de fichiers XLSX/CSV</li>
                             </ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Data</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Data</span></div>
                         <div class="project-links">
                             <a href="https://github.com/DevSioAlan/Data-Automation-Engine" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('dassault2')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -681,10 +558,8 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal delay-2">
-                    <div class="project-img-wrapper">
-                        <img src="image/Cashverse.jpg" alt="Cashverse" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-2" data-category="game">
+                    <div class="project-img-wrapper"><img src="image/Cashverse.jpg" alt="Cashverse" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title">Jeu Simulator 🌌 Cashverse</h3>
                         <div class="feature-box">
@@ -694,11 +569,7 @@
                                 <li class="feature-item t" data-fr="Algorithme Gacha RNG pondéré" data-en="Weighted RNG Gacha algorithm">Algorithme Gacha RNG pondéré</li>
                             </ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Luau</span>
-                            <span class="tech-tag">Roblox Studio</span>
-                            <span class="tech-tag">DataStore</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">Luau</span><span class="tech-tag">Roblox Studio</span><span class="tech-tag">DataStore</span></div>
                         <div class="project-links">
                             <a href="https://github.com/DevSioAlan/Cashverse-Simulator-Backend" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('cashverse')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -706,10 +577,8 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal delay-3">
-                    <div class="project-img-wrapper">
-                        <img src="image/DiscordBot.jpg" alt="Bot Discord" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-3" data-category="ia">
+                    <div class="project-img-wrapper"><img src="image/DiscordBot.jpg" alt="Bot Discord" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Bot Discord Multifonctions" data-en="Multi-purpose Discord Bot">Bot Discord Multifonctions</h3>
                         <div class="feature-box">
@@ -719,11 +588,7 @@
                                 <li class="feature-item t" data-fr="Système d'économie complet" data-en="Complete economy system">Système d'économie complet</li>
                             </ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Python 3</span>
-                            <span class="tech-tag">SQLite3</span>
-                            <span class="tech-tag">Discord UI</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">Python 3</span><span class="tech-tag">SQLite3</span><span class="tech-tag">Discord UI</span></div>
                         <div class="project-links">
                             <a href="https://github.com/DevSioAlan/Bot-Discord-Multifonctions" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('bot1')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -731,10 +596,8 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal delay-3">
-                    <div class="project-img-wrapper">
-                        <img src="image/DiscordBot.jpg" alt="Bot IA" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-3" data-category="ia">
+                    <div class="project-img-wrapper"><img src="image/DiscordBot.jpg" alt="Bot IA" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Bot Discord Premium IA 👑" data-en="Premium AI Discord Bot 👑">Bot Discord Premium IA 👑</h3>
                         <div class="feature-box">
@@ -744,11 +607,7 @@
                                 <li class="feature-item t" data-fr="Hébergement via thread Flask" data-en="Hosting via Flask thread">Hébergement via thread Flask</li>
                             </ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Python Async</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">aiosqlite</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">Python Async</span><span class="tech-tag">Flask</span><span class="tech-tag">aiosqlite</span></div>
                         <div class="project-links">
                             <a href="https://github.com/DevSioAlan/Bot-Discord-Premium-IA" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('bot2')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -756,10 +615,8 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal delay-2">
-                    <div class="project-img-wrapper">
-                        <img src="image/mainscreen.jpg" alt="Toon Tactics" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-2" data-category="game">
+                    <div class="project-img-wrapper"><img src="image/mainscreen.jpg" alt="Toon Tactics" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title">Jeu ⭐ Toon Tactics</h3>
                         <div class="feature-box">
@@ -769,11 +626,7 @@
                                 <li class="feature-item t" data-fr="Validation géométrique" data-en="Geometric validation">Validation géométrique de placement</li>
                             </ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">GDScript</span>
-                            <span class="tech-tag">Godot 4</span>
-                            <span class="tech-tag">Path2D</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">GDScript</span><span class="tech-tag">Godot 4</span><span class="tech-tag">Path2D</span></div>
                         <div class="project-links">
                             <a href="https://github.com/DevSioAlan/Toon-Tactics-Tower-Defense" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('toon')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -781,23 +634,15 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal delay-3">
-                    <div class="project-img-wrapper">
-                        <img src="image/CsharpBanner.jpg" alt="WinForm GSB" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-3" data-category="logiciel">
+                    <div class="project-img-wrapper"><img src="image/CsharpBanner.jpg" alt="WinForm GSB" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
-                            </ul>
+                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">C#</span>
-                            <span class="tech-tag">WinForm</span>
-                            <span class="tech-tag">.NET</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">C#</span><span class="tech-tag">WinForm</span><span class="tech-tag">.NET</span></div>
                         <div class="project-links">
                             <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
                             <button onclick="openProjectModal('gsb-winform')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -805,23 +650,15 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal delay-3">
-                    <div class="project-img-wrapper">
-                        <img src="image/PhpBanner.jpg" alt="Laravel GSB" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-3" data-category="web">
+                    <div class="project-img-wrapper"><img src="image/PhpBanner.jpg" alt="Laravel GSB" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - Laravel</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
-                            </ul>
+                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MVC</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">PHP</span><span class="tech-tag">MVC</span></div>
                         <div class="project-links">
                             <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
                             <button onclick="openProjectModal('gsb-laravel')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -829,10 +666,8 @@
                     </div>
                 </div>
                 
-                <div class="project-card reveal delay-3">
-                    <div class="project-img-wrapper">
-                        <img src="image/Pokedex-Php.jpg" alt="Pokédex PHP" class="project-img">
-                    </div>
+                <div class="project-card reveal delay-3" data-category="web">
+                    <div class="project-img-wrapper"><img src="image/Pokedex-Php.jpg" alt="Pokédex PHP" class="project-img"></div>
                     <div class="project-content">
                         <h3 class="project-title">Pokédex - PHP Natif</h3>
                         <div class="feature-box">
@@ -842,11 +677,7 @@
                                 <li class="feature-item">Génération dynamique des cartes via PHP</li>
                             </ul>
                         </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">HTML/CSS</span>
-                        </div>
+                        <div class="tech-tags"><span class="tech-tag">PHP</span><span class="tech-tag">MySQL</span><span class="tech-tag">HTML/CSS</span></div>
                         <div class="project-links">
                             <a href="https://github.com/DevSioAlan/Pokedex" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('pokedex-php')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
@@ -860,48 +691,35 @@
         <section id="certifications">
             <h2 class="section-title title-emerald reveal">Certifications</h2>
             <div class="certif-grid">
-                
                 <a href="pdf/certification-pix-20260220.pdf" target="_blank" class="certif-card reveal delay-1">
                     <i class="fa-solid fa-award certif-icon"></i>
                     <div class="certif-info">
-                        <h3>Certification PIX (2026)</h3>
-                        <p class="t" data-fr="Score de 448 PIX - Niveau 6" data-en="Score of 448 PIX - Level 6">Score de 448 PIX - Niveau 6</p>
-                    </div>
-                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                        <h3>Certification PIX (2026)</h3><p class="t" data-fr="Score de 448 PIX - Niveau 6" data-en="Score of 448 PIX - Level 6">Score de 448 PIX - Niveau 6</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
-
                 <a href="pdf/certification-pix-20240415.pdf" target="_blank" class="certif-card reveal delay-1">
                     <i class="fa-solid fa-medal certif-icon"></i>
                     <div class="certif-info">
-                        <h3>Certification PIX (2024)</h3>
-                        <p class="t" data-fr="Score de 122 PIX - Niveau 5" data-en="Score of 122 PIX - Level 5">Score de 122 PIX - Niveau 5</p>
-                    </div>
-                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                        <h3>Certification PIX (2024)</h3><p class="t" data-fr="Score de 122 PIX - Niveau 5" data-en="Score of 122 PIX - Level 5">Score de 122 PIX - Niveau 5</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
-
                 <a href="pdf/Attestation Sens Cyber_Mirat_Alan.pdf" target="_blank" class="certif-card reveal delay-2">
                     <i class="fa-solid fa-shield-halved certif-icon"></i>
                     <div class="certif-info">
-                        <h3>SensCyber</h3>
-                        <p class="t" data-fr="Agir pour contribuer à ma sécurité numérique" data-en="Act to contribute to digital security">Agir pour contribuer à ma sécurité numérique</p>
-                    </div>
-                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                        <h3>SensCyber</h3><p class="t" data-fr="Agir pour contribuer à ma sécurité numérique" data-en="Act to contribute to digital security">Agir pour contribuer à ma sécurité numérique</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
                 <a href="pdf/Mirat_Alan_signer_éléctroniquement.pdf" target="_blank" class="certif-card reveal delay-3">
                     <i class="fa-solid fa-file-shield certif-icon"></i>
                     <div class="certif-info">
-                        <h3>Atelier RGPD (CNIL)</h3>
-                        <p class="t" data-fr="Le RGPD et ses notions clés" data-en="GDPR and key concepts">Le RGPD et ses notions clés</p>
-                    </div>
-                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                        <h3>Atelier RGPD (CNIL)</h3><p class="t" data-fr="Le RGPD et ses notions clés" data-en="GDPR and key concepts">Le RGPD et ses notions clés</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
                 <a href="pdf/Alan_Mirat mooc_AFP_module1.pdf" target="_blank" class="certif-card reveal delay-3">
                     <i class="fa-brands fa-google certif-icon"></i>
                     <div class="certif-info">
-                        <h3>Certificat AFP</h3>
-                        <p class="t" data-fr="Avec le soutien de Google News Initiative" data-en="Supported by Google News Initiative">Avec le soutien de Google News Initiative</p>
-                    </div>
-                    <i class="fa-solid fa-arrow-right certif-arrow"></i>
+                        <h3>Certificat AFP</h3><p class="t" data-fr="Avec le soutien de Google News Initiative" data-en="Supported by Google News Initiative">Avec le soutien de Google News Initiative</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
             </div>
         </section>
@@ -916,9 +734,7 @@
                         <p style="color: var(--accent); font-weight: 600; margin-top: 5px;">Thème 2025 - Diaporama d'analyse</p>
                     </div>
                 </div>
-                
                 <p class="t" data-fr="Mon étude approfondie sur la façon dont l'Intelligence Artificielle bouleverse l'équilibre entre attaquants et défenseurs, et pourquoi le modèle Zero-Trust est devenu indispensable." data-en="My in-depth study on how Artificial Intelligence disrupts the balance between attackers and defenders, and why the Zero-Trust model has become essential.">Mon étude approfondie sur la façon dont l'Intelligence Artificielle bouleverse l'équilibre entre attaquants et défenseurs, et pourquoi le modèle Zero-Trust est devenu indispensable.</p>
-                
                 <div class="veille-grid">
                     <div class="v-item">
                         <h4><i class="fa-solid fa-robot"></i> <span class="t" data-fr="Arme à double tranchant" data-en="Double-edged sword">Arme à double tranchant</span></h4>
@@ -933,7 +749,6 @@
                         <p class="t" data-fr="La prolifération des objets connectés sans sécurité intégrée exige une surveillance massive en temps réel que seule l'IA peut fournir." data-en="The proliferation of connected objects without built-in security requires massive real-time monitoring that only AI can provide.">La prolifération des objets connectés sans sécurité intégrée exige une surveillance massive en temps réel que seule l'IA peut fournir.</p>
                     </div>
                 </div>
-
                 <button onclick="openModalById('veilleModal')" class="btn-download" style="border: none; cursor: pointer; font-family: inherit;">
                     <i class="fa-solid fa-desktop"></i> <span class="t" data-fr="Visionner la présentation complète" data-en="View the full presentation">Visionner la présentation complète</span>
                 </button>
@@ -941,27 +756,40 @@
         </section>
 
         <section id="contact" class="reveal">
-            <div class="contact-box">
-                <h2 class="t" data-fr="Envie de collaborer ?" data-en="Want to collaborate?">Envie de collaborer ?</h2>
-                <p class="t" data-fr="Je suis constamment à la recherche de nouveaux défis techniques. Si mon profil de développeur Full-Stack vous intéresse, n'hésitez pas à me contacter !" data-en="I am constantly looking for new technical challenges. If you are interested in my Full-Stack Developer profile, don't hesitate to contact me!">Je suis constamment à la recherche de nouveaux défis techniques. Si mon profil de développeur Full-Stack vous intéresse, n'hésitez pas à me contacter !</p>
-                <a href="mailto:alan.mirat@gmail.com" class="btn-primary">
-                    <i class="fa-regular fa-paper-plane"></i> <span class="t" data-fr="M'envoyer un message" data-en="Send me a message">M'envoyer un message</span>
-                </a>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="t" data-fr="Envie de collaborer ?" data-en="Want to collaborate?">Envie de collaborer ?</h2>
+                    <p class="t" data-fr="Je suis constamment à la recherche de nouveaux défis techniques. Si mon profil de développeur Full-Stack vous intéresse, n'hésitez pas à me contacter !" data-en="I am constantly looking for new technical challenges. If you are interested in my Full-Stack Developer profile, don't hesitate to contact me!">Je suis constamment à la recherche de nouveaux défis techniques. Si mon profil de développeur Full-Stack vous intéresse, n'hésitez pas à me contacter !</p>
+                </div>
+                
+                <form action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="Votre nom" required>
+                    <input type="email" name="email" placeholder="Votre email" required>
+                    <textarea name="message" placeholder="Votre message" required></textarea>
+                    <button type="submit" class="btn-submit">
+                        <i class="fa-regular fa-paper-plane"></i> <span class="t" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</span>
+                    </button>
+                </form>
             </div>
         </section>
 
     </div>
 
+    <footer>
+        <p>&copy; 2026 Alan Mirat. Développé avec passion.</p>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" onclick="scrollToTop()" title="Retour en haut">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <div class="modal-overlay" id="projectModal">
         <div class="modal-container" style="max-width: 1000px;">
             <button class="btn-close-modal" onclick="closeModalById('projectModal')"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-hero">
-                <img id="m-img" src="" alt="Project Image">
-            </div>
+            <div class="modal-hero"><img id="m-img" src="" alt="Project Image"></div>
             <div class="modal-body">
                 <h2 id="m-title" class="modal-title">Titre</h2>
                 <p id="m-desc" class="modal-desc">Description longue...</p>
-                
                 <div class="modal-grid">
                     <div class="modal-section">
                         <h4><i class="fa-solid fa-star"></i> Key Features</h4>
@@ -972,15 +800,16 @@
                         <div class="tech-tags" id="m-tech" style="margin-top:0;"></div>
                     </div>
                 </div>
-
                 <div id="m-gallery-section" style="display: none; border-top: 1px solid var(--border-glass); padding-top: 30px;">
                     <h4 style="color: #fff; font-size: 1.3rem; margin-bottom: 20px; font-family: var(--font-head); display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-images" style="color: #d946ef;"></i> Conception & Galerie</h4>
-                    <div class="modal-gallery" id="m-gallery">
-                        </div>
+                    <div class="modal-gallery" id="m-gallery"></div>
                 </div>
-
             </div>
         </div>
+    </div>
+
+    <div class="lightbox-overlay" id="lightboxModal" onclick="closeLightbox()">
+        <img src="" id="lightboxImg" class="lightbox-img" alt="Zoom">
     </div>
 
     <div class="modal-overlay" id="veilleModal">
@@ -1018,7 +847,7 @@
             });
         }
 
-        // --- SCROLL REVEAL ---
+        // --- SCROLL REVEAL & BOUTON RETOUR EN HAUT ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -1027,17 +856,45 @@
                 if (elementTop < windowHeight - 120) reveals[i].classList.add("active");
             }
         }
-        window.addEventListener("scroll", reveal); reveal();
-
-        // --- MENU ACTIF ---
-        const sections = document.querySelectorAll("section"), navLinks = document.querySelectorAll(".nav-link");
+        
         window.addEventListener("scroll", () => {
+            reveal();
+            // Gestion bouton retour en haut
+            const btnTop = document.getElementById('scrollTopBtn');
+            if(window.scrollY > 500) btnTop.classList.add('show');
+            else btnTop.classList.remove('show');
+            
+            // Gestion menu actif
             let current = "";
-            sections.forEach(section => { if (pageYOffset >= section.offsetTop - 200) current = section.getAttribute("id"); });
-            navLinks.forEach(link => { link.classList.remove("active"); if (link.getAttribute("href").includes(current)) link.classList.add("active"); });
+            document.querySelectorAll("section").forEach(section => { if (pageYOffset >= section.offsetTop - 200) current = section.getAttribute("id"); });
+            document.querySelectorAll(".nav-link").forEach(link => { link.classList.remove("active"); if (link.getAttribute("href").includes(current)) link.classList.add("active"); });
         });
+        reveal(); // Appel initial
 
-        // --- GESTION DES MODALS (Projets, Veille, CV) ---
+        function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+        // --- FILTRES DE PROJETS ---
+        function filterProjects(category) {
+            // Boutons actifs
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtrage des cartes
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => card.style.opacity = '1', 50);
+                    setTimeout(() => card.style.transform = 'translateY(0) scale(1)', 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.9)';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+
+        // --- GESTION DES MODALS ---
         function openModalById(modalId) {
             const modal = document.getElementById(modalId);
             modal.classList.add("active");
@@ -1048,92 +905,75 @@
             modal.classList.remove("active");
             document.body.style.overflow = "auto";
         }
-        
-        // Fermer en cliquant à côté du cadre pour tous les overlays
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener("click", function(e) {
-                if(e.target === overlay) closeModalById(overlay.id);
-            });
+            overlay.addEventListener("click", function(e) { if(e.target === overlay) closeModalById(overlay.id); });
         });
 
-        // --- DONNEES DES PROJETS (AVEC GALERIE MULTIMEDIA) ---
+        // --- LIGHTBOX IMAGE ---
+        function openLightbox(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        // --- DONNEES DES PROJETS ---
         const projectData = {
             "dassault1": {
-                img: "image/DassaultSystemes.jpg",
-                title: "Projet IA Local LLM",
+                img: "image/DassaultSystemes.jpg", title: "Projet IA Local LLM",
                 desc: "Création d'une plateforme innovante intégrant une IA locale propulsée par un moteur LLM. L'objectif principal de ce projet est de garantir une confidentialité totale des données traitées tout en offrant une interface de chat fluide et réactive aux utilisateurs internes.",
                 features: ["Moteur LLM hébergé en local", "Confidentialité totale des données", "Interface de chat fluide et réactive", "Déploiement Full-Stack sécurisé"],
-                tech: ["Python", "LLM Local", "API", "Frontend Web"],
-                gallery: [] 
+                tech: ["Python", "LLM Local", "API", "Frontend Web"], gallery: [] 
             },
             "dassault2": {
-                img: "image/DassaultSystemes.jpg",
-                title: "Automatisation XLSX CSV",
+                img: "image/DassaultSystemes.jpg", title: "Automatisation XLSX CSV",
                 desc: "Développement d'un outil d'automatisation exploitant la puissance de la librairie Pandas en Python. Ce projet permet de traiter, extraire et compiler des données massives depuis plusieurs fichiers XLSX et CSV, générant ainsi des rapports précis en quelques secondes.",
                 features: ["Traitement de données massives (Pandas)", "Fusion et nettoyage de fichiers XLSX/CSV", "Génération de rapports automatiques", "Optimisation des temps de calcul"],
-                tech: ["Python", "Pandas", "Data Extraction", "Automatisation"],
-                gallery: []
+                tech: ["Python", "Pandas", "Data Extraction", "Automatisation"], gallery: []
             },
             "cashverse": {
-                img: "image/Cashverse.jpg",
-                title: "🌌 Cashverse Simulator",
-                desc: "Plongez dans les mécaniques backend d'un jeu Simulator complet sur Roblox. Ce projet n'est pas qu'une simple interface : il démontre la capacité à gérer des bases de données de joueurs persistantes, à créer un système économique complet avec des achats in-game, et surtout, à mettre en place un algorithme de probabilité pondérée (RNG) dynamique pour l'éclosion d'œufs. Le tout sécurisé par un Anti-Cheat maison côté serveur (Watchdog).",
-                features: ["Système d'économie et d'inventaire persistant", "Sauvegarde asynchrone (DataStoreService)", "Anti-Cheat serveur sur la physique (WalkSpeed)", "Algorithme Gacha RNG pondéré dynamiquement", "Boucles temporelles avec os.time()"],
-                tech: ["Luau", "Roblox Studio", "DataStore", "Math.random"],
-                gallery: []
+                img: "image/Cashverse.jpg", title: "🌌 Cashverse Simulator",
+                desc: "Plongez dans les mécaniques backend d'un jeu Simulator complet sur Roblox. Ce projet n'est pas qu'une simple interface : il démontre la capacité à gérer des bases de données de joueurs persistantes, à créer un système économique complet avec des achats in-game, et surtout, à mettre en place un algorithme de probabilité pondérée (RNG) dynamique pour l'éclosion d'œufs.",
+                features: ["Système d'économie et d'inventaire persistant", "Sauvegarde asynchrone (DataStoreService)", "Anti-Cheat serveur sur la physique", "Algorithme Gacha RNG pondéré dynamiquement", "Boucles temporelles"],
+                tech: ["Luau", "Roblox Studio", "DataStore", "Math.random"], gallery: []
             },
             "bot1": {
-                img: "image/DiscordBot.jpg",
-                title: "🛠️ Bot Discord Multifonctions",
+                img: "image/DiscordBot.jpg", title: "🛠️ Bot Discord Multifonctions",
                 desc: "Le couteau suisse ultime pour un serveur Discord. Plutôt que de simples commandes texte, ce bot génère des interfaces interactives. Son point fort est le créateur de salons vocaux temporaires avec un panneau de contrôle privé (boutons et formulaires Modals). Il intègre également une base de données locale gérant un mini-jeu d'armée, un système d'économie et le stockage des avertissements de modération.",
                 features: ["Créateur de vocaux avec panneau de contrôle UI", "Modération avancée (Auto-mod & Nuke de salon)", "Mini-jeu 'World at Arms' (Logique RPG)", "Système bancaire et d'inventaire complet"],
                 tech: ["Python 3", "discord.py", "SQLite3", "Discord UI Components"],
-                gallery: [
-                    "video/demo-bot-vocal.mp4",
-                    "capture/bot-panel-vocal.png",
-                    "capture/bot-menu-admin.png",
-                    "capture/bot-menu-old.png"
-                ]
+                gallery: ["video/demo-bot-vocal.mp4", "capture/bot-panel-vocal.png", "capture/bot-menu-admin.png", "capture/bot-menu-old.png"]
             },
             "bot2": {
-                img: "image/DiscordBot.jpg",
-                title: "👑 Bot Discord Premium IA",
-                desc: "Une démonstration d'architecture logicielle propre et asynchrone. Ce bot est découpé en plusieurs modules (Cogs) pour une maintenabilité parfaite. En utilisant 'aiosqlite', il garantit des performances sans latence même lors d'écritures massives en base de données. Il intègre un assistant IA contextuel, un système de leveling, et embarque son propre serveur Flask pour rester en ligne 24/7 sur un hébergeur Cloud.",
-                features: ["Architecture modulaire et scalable (Cogs)", "Base de données SQLite 100% Asynchrone", "Assistant Concierge Intelligence Artificielle", "Hébergement autonome via thread Flask (Keep-Alive)"],
-                tech: ["Python Asyncio", "Flask", "aiosqlite", "LLM API"],
-                gallery: []
+                img: "image/DiscordBot.jpg", title: "👑 Bot Discord Premium IA",
+                desc: "Une démonstration d'architecture logicielle propre et asynchrone. Ce bot est découpé en plusieurs modules (Cogs) pour une maintenabilité parfaite. En utilisant 'aiosqlite', il garantit des performances sans latence même lors d'écritures massives en base de données. Il intègre un assistant IA contextuel, un système de leveling, et embarque son propre serveur Flask pour rester en ligne 24/7.",
+                features: ["Architecture modulaire et scalable (Cogs)", "Base de données SQLite 100% Asynchrone", "Assistant Concierge Intelligence Artificielle", "Hébergement autonome via thread Flask"],
+                tech: ["Python Asyncio", "Flask", "aiosqlite", "LLM API"], gallery: []
             },
             "toon": {
-                img: "image/mainscreen.jpg",
-                title: "⭐ Toon Tactics",
-                desc: "Un véritable jeu de Tower Defense en 2D développé sur Godot Engine 4. Ce projet met en avant des algorithmes de jeu vidéo classiques : validation mathématique de placement d'objets sur une grille, pathfinding, et un système de 'Smart Targeting' où les tours calculent en temps réel quel ennemi est le plus menaçant pour la base. Il inclut également un système de lootbox fluide avec des animations UI complexes (Tweens).",
+                img: "image/mainscreen.jpg", title: "⭐ Toon Tactics",
+                desc: "Un véritable jeu de Tower Defense en 2D développé sur Godot Engine 4. Ce projet met en avant des algorithmes de jeu vidéo classiques : validation mathématique de placement d'objets sur une grille, pathfinding, et un système de 'Smart Targeting'.",
                 features: ["Smart Targeting (Ciblage de la plus grande menace)", "Validation géométrique du placement de tours", "Gestionnaire de vagues avec timers asynchrones", "Animations UI complexes (Lootbox/Gacha)", "Système de codes promo intégré"],
-                tech: ["GDScript", "Godot Engine 4", "Path2D", "Animations Tween"],
-                gallery: []
+                tech: ["GDScript", "Godot Engine 4", "Path2D", "Animations Tween"], gallery: []
             },
             "gsb-winform": {
-                img: "image/CsharpBanner.jpg",
-                title: "Projet GSB - WinForm (C#)",
+                img: "image/CsharpBanner.jpg", title: "Projet GSB - WinForm (C#)",
                 desc: "Développement d'une application client lourd de bureau (Desktop) pour la gestion GSB. Créée avec C# et le framework .NET WinForm, l'application est directement connectée à la base de données de l'entreprise.",
                 features: ["Interface client lourd (Desktop)", "Connexion base de données distantes", "Gestionnaire d'événements C#", "Déploiement exécutable"],
-                tech: ["C#", "WinForm", ".NET"],
-                gallery: []
+                tech: ["C#", "WinForm", ".NET"], gallery: []
             },
             "gsb-laravel": {
-                img: "image/PhpBanner.jpg",
-                title: "Projet GSB - Laravel",
+                img: "image/PhpBanner.jpg", title: "Projet GSB - Laravel",
                 desc: "Refonte de l'application GSB en utilisant le framework Laravel. Démonstration de l'utilisation de l'ORM Eloquent, du moteur de template Blade, et du système de routage robuste offert par Laravel.",
                 features: ["Système de Routage avancé", "ORM Eloquent", "Moteur de template (Blade)", "Authentification intégrée"],
-                tech: ["Laravel", "PHP", "MVC"],
-                gallery: []
+                tech: ["Laravel", "PHP", "MVC"], gallery: []
             },
             "pokedex-php": {
-                img: "image/Pokedex-Php.jpg",
-                title: "Pokédex - PHP Natif",
+                img: "image/Pokedex-Php.jpg", title: "Pokédex - PHP Natif",
                 desc: "Développement d'un Pokédex interactif en PHP natif. Ce projet met en avant la manipulation de données, l'intégration d'une base de données MySQL via PDO et une interface utilisateur ludique.",
                 features: ["Architecture PHP from scratch", "Connexion sécurisée BDD (PDO)", "Gestion dynamique des données", "UI/UX thématique"],
-                tech: ["PHP", "MySQL", "HTML/CSS"],
-                gallery: []
+                tech: ["PHP", "MySQL", "HTML/CSS"], gallery: []
             }
         };
 
@@ -1141,38 +981,33 @@
             const data = projectData[id];
             if(!data) return;
 
-            // Remplissage classique
             document.getElementById("m-img").src = data.img;
             document.getElementById("m-title").innerText = data.title;
             document.getElementById("m-desc").innerText = data.desc;
             
             const fList = document.getElementById("m-features");
-            fList.innerHTML = "";
-            data.features.forEach(f => fList.innerHTML += `<li class="feature-item"><span class="t">${f}</span></li>`);
+            fList.innerHTML = ""; data.features.forEach(f => fList.innerHTML += `<li class="feature-item"><span class="t">${f}</span></li>`);
 
             const tList = document.getElementById("m-tech");
-            tList.innerHTML = "";
-            data.tech.forEach(t => tList.innerHTML += `<span class="tech-tag">${t}</span>`);
+            tList.innerHTML = ""; data.tech.forEach(t => tList.innerHTML += `<span class="tech-tag">${t}</span>`);
 
-            // --- GESTION DE LA GALERIE ---
             const gallerySection = document.getElementById("m-gallery-section");
             const galleryContainer = document.getElementById("m-gallery");
-            galleryContainer.innerHTML = ""; // On vide la galerie précédente
+            galleryContainer.innerHTML = ""; 
 
             if (data.gallery && data.gallery.length > 0) {
                 gallerySection.style.display = "block";
                 data.gallery.forEach(file => {
-                    // Vérifie si c'est une vidéo (mp4, webm) ou une image
                     if(file.endsWith(".mp4") || file.endsWith(".webm")) {
                         galleryContainer.innerHTML += `<video src="${file}" autoplay loop muted playsinline controls></video>`;
                     } else {
-                        galleryContainer.innerHTML += `<img src="${file}" alt="Aperçu Projet">`;
+                        // NOUVEAU : Ajout du onclick pour ouvrir la Lightbox
+                        galleryContainer.innerHTML += `<img src="${file}" alt="Aperçu Projet" onclick="openLightbox('${file}')" title="Cliquez pour agrandir">`;
                     }
                 });
             } else {
-                gallerySection.style.display = "none"; // Cache la section si aucune image
+                gallerySection.style.display = "none";
             }
-
             openModalById("projectModal");
         }
     </script>
