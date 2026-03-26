@@ -23,7 +23,7 @@
             --grad-cyan: linear-gradient(to right, #2dd4bf, #0284c7, #2dd4bf);
             --grad-sunset: linear-gradient(to right, #ff0844, #ffb199, #ff0844);
             --grad-gold: linear-gradient(to right, #f59e0b, #fbbf24, #f59e0b);
-            --grad-emerald: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            --grad-emerald: linear-gradient(to right, #10b981, #34d399, #10b981);
             
             --border-glass: rgba(255, 255, 255, 0.08);
             --font-head: 'Outfit', sans-serif;
@@ -63,6 +63,10 @@
         @keyframes aura-pulse-emerald { 
             0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(52, 211, 153, 0.2)); } 
             50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.7)); } 
+        }
+        @keyframes aura-pulse-cyan { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(45, 212, 191, 0.2)); } 
+            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(45, 212, 191, 0.7)); } 
         }
         @keyframes aura-pulse-purple { 
             0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.2)); } 
@@ -142,6 +146,7 @@
         .title-blue { background: var(--grad-primary); }
         .title-purple { background: var(--grad-purple); }
         .title-cyan { background: var(--grad-cyan); }
+        .title-emerald { background: var(--grad-emerald); } /* Nouveau pour les certifications */
         .title-sunset { background: var(--grad-sunset); }
 
         /* --- HERO --- */
@@ -322,15 +327,20 @@
             position: relative;
             overflow: hidden;
         }
+        
+        /* AURA LUMINEUSE AU SURVOL DES EXPERIENCES */
         .timeline-item:hover .timeline-card {
             transform: translateX(12px);
-            border-color: rgba(255,255,255,0.2);
+            border-color: rgba(217, 70, 239, 0.5);
             background: rgba(30, 30, 45, 0.7);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(217, 70, 239, 0.15), inset 0 0 15px rgba(217, 70, 239, 0.1);
         }
 
         .dassault-card { border-color: rgba(0, 160, 255, 0.3); }
-        .dassault-card:hover { border-color: #00a0ff !important; }
+        .timeline-item:hover .dassault-card { 
+            border-color: #00a0ff !important; 
+            box-shadow: 0 10px 30px rgba(0, 160, 255, 0.2), inset 0 0 15px rgba(0, 160, 255, 0.1) !important;
+        }
         
         .ds-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
         .ds-logo { height: 45px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); background: transparent; }
@@ -551,7 +561,7 @@
                         <div class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
                         <div class="tech-chip"><i class="fa-solid fa-lock"></i> Modèle Zero-Trust</div>
                         <div class="tech-chip"><i class="fa-solid fa-server"></i> Serveur Flask (API)</div>
-                        <div class="tech-chip"><i class="fa-solid fa-network-wired"></i> Réseaux (Communicants)</div>
+                        <div class="tech-chip"><i class="fa-solid fa-network-wired"></i> Réseaux (Bac Pro)</div>
                     </div>
                 </div>
 
@@ -848,7 +858,7 @@
         </section>
 
         <section id="certifications">
-            <h2 class="section-title title-blue reveal">Certifications</h2>
+            <h2 class="section-title title-emerald reveal">Certifications</h2>
             <div class="certif-grid">
                 
                 <a href="pdf/certification-pix-20260220.pdf" target="_blank" class="certif-card reveal delay-1">
@@ -964,7 +974,7 @@
                 </div>
 
                 <div id="m-gallery-section" style="display: none; border-top: 1px solid var(--border-glass); padding-top: 30px;">
-                    <h4 style="color: #fff; font-size: 1.3rem; margin-bottom: 20px; font-family: var(--font-head); display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-images" style="color: #d946ef;"></i> Preuves & Galerie</h4>
+                    <h4 style="color: #fff; font-size: 1.3rem; margin-bottom: 20px; font-family: var(--font-head); display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-images" style="color: #d946ef;"></i> Conception & Galerie</h4>
                     <div class="modal-gallery" id="m-gallery">
                         </div>
                 </div>
@@ -1156,7 +1166,7 @@
                     if(file.endsWith(".mp4") || file.endsWith(".webm")) {
                         galleryContainer.innerHTML += `<video src="${file}" autoplay loop muted playsinline controls></video>`;
                     } else {
-                        galleryContainer.innerHTML += `<img src="${file}" alt="Preuve Projet">`;
+                        galleryContainer.innerHTML += `<img src="${file}" alt="Aperçu Projet">`;
                     }
                 });
             } else {
