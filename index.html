@@ -31,7 +31,7 @@
             --bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* --- NOUVEAU : CUSTOM SCROLLBAR --- */
+        /* --- CUSTOM SCROLLBAR --- */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
         ::-webkit-scrollbar-thumb { background: rgba(79, 172, 254, 0.3); border-radius: 10px; }
@@ -154,7 +154,7 @@
         .hero h2 { font-size: 1.6rem; color: var(--text-sec); font-weight: 400; margin-bottom: 25px; }
         .hero p { max-width: 650px; font-size: 1.15rem; color: var(--text-sec); margin-bottom: 30px; }
         
-        /* --- BOUTONS CV ANIMÉS (CORRIGÉS ET SUBLIMÉS) --- */
+        /* --- BOUTONS CV ANIMÉS --- */
         .action-buttons { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
         @keyframes btn-shine-slow { 0% { left: -150%; } 50%, 100% { left: 250%; } }
@@ -163,8 +163,7 @@
 
         .btn-cv-view {
             background: linear-gradient(45deg, #00f2fe, #4facfe, #00f2fe);
-            background-size: 200% auto;
-            animation: shine 4s linear infinite;
+            background-size: 200% auto; animation: shine 4s linear infinite;
             color: white; border: none; padding: 14px 30px; border-radius: 40px;
             font-family: var(--font-head); font-weight: 700; font-size: 1.1rem;
             display: inline-flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none;
@@ -260,12 +259,7 @@
 
         /* --- FILTRES PROJETS --- */
         .project-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
-        .filter-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);
-            color: var(--text-sec); padding: 10px 20px; border-radius: 30px;
-            font-family: var(--font-head); font-weight: 500; font-size: 1rem;
-            cursor: pointer; transition: all 0.3s var(--bounce); backdrop-filter: blur(10px);
-        }
+        .filter-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: var(--text-sec); padding: 10px 20px; border-radius: 30px; font-family: var(--font-head); font-weight: 500; font-size: 1rem; cursor: pointer; transition: all 0.3s var(--bounce); backdrop-filter: blur(10px); }
         .filter-btn:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateY(-2px); }
         .filter-btn.active { background: var(--grad-cyan); color: #fff; border-color: transparent; box-shadow: 0 5px 15px rgba(45, 212, 191, 0.3); }
 
@@ -298,13 +292,13 @@
         .btn-details { background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.5); color: #38bdf8; }
         .btn-details:hover { background: #0ea5e9; color: #fff; border-color: transparent; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4); }
 
-        /* --- CERTIFICATIONS (AURA FORCÉE) --- */
+        /* --- CERTIFICATIONS --- */
         .certif-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .certif-card { 
             display: flex; align-items: center; gap: 20px; background: var(--bg-card); 
             padding: 25px; border-radius: 20px; border: 1px solid var(--border-glass); 
             transition: 0.4s var(--bounce); backdrop-filter: blur(10px); cursor: pointer; text-decoration: none; color: inherit; 
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.05); /* Aura subtile par défaut */
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.05); 
         }
         .certif-card:hover { transform: translateY(-8px); border-color: #34d399; background: rgba(16, 185, 129, 0.1); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
         
@@ -312,7 +306,7 @@
             display: inline-block; font-size: 2.5rem; background: var(--grad-emerald); 
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             transition: all 0.4s var(--bounce); 
-            animation: aura-pulse-emerald 3s ease-in-out infinite !important; /* Animation forcée ! */
+            animation: aura-pulse-emerald 3s ease-in-out infinite !important; 
         }
         .certif-card:hover .certif-icon { transform: scale(1.2) rotate(10deg); }
         
@@ -704,7 +698,9 @@
                         <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
+                            <ul class="feature-list">
+                                <li class="feature-item">Détails et informations à venir...</li>
+                            </ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">C#</span><span class="tech-tag">WinForm</span><span class="tech-tag">.NET</span></div>
                         <div class="project-links">
@@ -720,7 +716,9 @@
                         <h3 class="project-title">Projet GSB - Laravel</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
+                            <ul class="feature-list">
+                                <li class="feature-item">Détails et informations à venir...</li>
+                            </ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">PHP</span><span class="tech-tag">MVC</span></div>
                         <div class="project-links">
@@ -986,13 +984,25 @@
                 img: "image/DassaultSystemes.jpg", title: "Projet IA Local LLM",
                 desc: "Création d'une plateforme innovante intégrant une IA locale propulsée par un moteur LLM. L'objectif principal de ce projet est de garantir une confidentialité totale des données traitées tout en offrant une interface de chat fluide et réactive aux utilisateurs internes.",
                 features: ["Moteur LLM hébergé en local", "Confidentialité totale des données", "Interface de chat fluide et réactive", "Déploiement Full-Stack sécurisé"],
-                tech: ["Python", "LLM Local", "API", "Frontend Web"], gallery: [] 
+                tech: ["Python", "LLM Local", "API", "Frontend Web"],
+                gallery: [
+                    "video/demo-aura-ia.mp4",
+                    "capture/aura-chat-main.png",
+                    "capture/aura-settings.png",
+                    "capture/aura-chat-alt.png"
+                ] 
             },
             "dassault2": {
                 img: "image/DassaultSystemes.jpg", title: "Automatisation XLSX CSV",
                 desc: "Développement d'un outil d'automatisation exploitant la puissance de la librairie Pandas en Python. Ce projet permet de traiter, extraire et compiler des données massives depuis plusieurs fichiers XLSX et CSV, générant ainsi des rapports précis en quelques secondes.",
                 features: ["Traitement de données massives (Pandas)", "Fusion et nettoyage de fichiers XLSX/CSV", "Génération de rapports automatiques", "Optimisation des temps de calcul"],
-                tech: ["Python", "Pandas", "Data Extraction", "Automatisation"], gallery: []
+                tech: ["Python", "Pandas", "Data Extraction", "Automatisation"],
+                gallery: [
+                    "capture/auto-dark.png",
+                    "capture/auto-light.png",
+                    "capture/auto-import.png",
+                    "capture/auto-engine.png"
+                ]
             },
             "cashverse": {
                 img: "image/Cashverse.jpg", title: "🌌 Cashverse Simulator",
