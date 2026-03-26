@@ -147,35 +147,27 @@
         /* Boutons d'actions Accueil (CV) */
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
-        /* --- RESEAUX SOCIAUX (ANIMATIONS FLUIDES & NETTES) --- */
+        /* --- RESEAUX SOCIAUX (AURA BLANCHE & FLUIDITÉ) --- */
         .social-links { display: flex; gap: 25px; justify-content: center; margin-bottom: 50px; }
         .social-icon {
             width: 65px; height: 65px; border-radius: 50%; 
-            background: rgba(20, 20, 30, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex; align-items: center; justify-content: center; 
             font-size: 1.8rem; color: var(--text-sec);
-            transition: all 0.3s ease; /* Transition rapide et linéaire, fini l'effet buggé ! */
-            position: relative; overflow: hidden; backdrop-filter: blur(10px);
+            transition: all 0.4s var(--bounce);
+            position: relative; backdrop-filter: blur(10px);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); /* Petite aura blanche par défaut */
+            animation: aura-float 5s ease-in-out infinite; /* Flottement fluide */
         }
-        .social-icon i { transition: transform 0.3s ease; }
+        .social-icon i { transition: transform 0.4s var(--bounce); }
         
-        /* Github Clean Glow */
-        .social-icon.github:hover {
-            color: #ffffff; background: #24292e; border-color: rgba(255,255,255,0.4);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
-            transform: translateY(-6px);
-        }
-        /* LinkedIn Clean Glow */
-        .social-icon.linkedin:hover {
-            color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.5);
-            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.3);
-            transform: translateY(-6px);
-        }
-        /* Email Clean Glow */
-        .social-icon.email:hover {
-            color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.5);
-            box-shadow: 0 10px 25px rgba(234, 67, 53, 0.3);
-            transform: translateY(-6px);
+        .social-icon:hover {
+            color: #ffffff; 
+            background: rgba(255, 255, 255, 0.1); 
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.3); /* Belle aura blanche au survol */
+            transform: translateY(-8px);
+            animation: none; /* Stoppe le flottement au survol pour éviter les bugs */
         }
         .social-icon:hover i { transform: scale(1.2); }
 
@@ -364,9 +356,9 @@
             </div>
 
             <div class="social-links delay-3">
-                <a href="https://github.com/DevSioAlan" target="_blank" class="social-icon github" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/alan-mirat-2053683a8/" target="_blank" class="social-icon linkedin" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="mailto:alan.mirat@gmail.com" class="social-icon email" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/DevSioAlan" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/alan-mirat-2053683a8/" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:alan.mirat@gmail.com" class="social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </section>
 
