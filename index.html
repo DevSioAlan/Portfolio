@@ -48,7 +48,7 @@
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
         /* --- ANIMATIONS AURA PRO (OPTIMISÉES GPU) --- */
-        .nav-link i, .skill-icon, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
+        .nav-link i, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
             will-change: transform, filter;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -156,24 +156,24 @@
             font-size: 1.8rem; color: var(--text-sec);
             transition: all 0.4s var(--bounce);
             position: relative; backdrop-filter: blur(10px);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-            animation: aura-float 5s ease-in-out infinite;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); /* Petite aura par défaut */
+            animation: aura-float 5s ease-in-out infinite; /* Flottement fluide */
         }
         .social-icon i { transition: transform 0.4s var(--bounce); }
         
-        /* Github */
+        /* Github (Gris foncé/Blanc) */
         .social-icon.github:hover {
             color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4);
-            transform: translateY(-8px); animation: none;
+            transform: translateY(-8px); animation: none; /* Arrête le flottement au survol */
         }
-        /* LinkedIn */
+        /* LinkedIn (Bleu) */
         .social-icon.linkedin:hover {
             color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6);
             box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6);
             transform: translateY(-8px); animation: none;
         }
-        /* Email */
+        /* Email (Rouge Google) */
         .social-icon.email:hover {
             color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6);
             box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6);
@@ -590,7 +590,7 @@
                         <img src="Cashverse.jpg" alt="Cashverse" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Cashverse Simulator 🌌 </h3>
+                        <h3 class="project-title">Jeu Simulator 🌌 Cashverse</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
                             <ul class="feature-list">
@@ -665,7 +665,7 @@
                         <img src="mainscreen.jpg" alt="Toon Tactics" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Toon Tactics ⭐</h3>
+                        <h3 class="project-title">Jeu ⭐ Toon Tactics</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
                             <ul class="feature-list">
@@ -687,7 +687,7 @@
 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="CSharpBanner.png" alt="WinForm GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
+                        <img src="CSharpBanner.png" alt="WinForm GSB" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
@@ -711,7 +711,7 @@
 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="PhpBanner.jpg" alt="Laravel GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
+                        <img src="PhpBanner.jpg" alt="Laravel GSB" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - Laravel</h3>
@@ -986,14 +986,6 @@
                 tech: ["Luau", "Roblox Studio", "DataStore", "Math.random"],
                 gallery: []
             },
-            "toon": {
-                img: "mainscreen.jpg",
-                title: "⭐ Toon Tactics",
-                desc: "Un véritable jeu de Tower Defense en 2D développé sur Godot Engine 4. Ce projet met en avant des algorithmes de jeu vidéo classiques : validation mathématique de placement d'objets sur une grille, pathfinding, et un système de 'Smart Targeting' où les tours calculent en temps réel quel ennemi est le plus menaçant pour la base. Il inclut également un système de lootbox fluide avec des animations UI complexes (Tweens).",
-                features: ["Smart Targeting (Ciblage de la plus grande menace)", "Validation géométrique du placement de tours", "Gestionnaire de vagues avec timers asynchrones", "Animations UI complexes (Lootbox/Gacha)", "Système de codes promo intégré"],
-                tech: ["GDScript", "Godot Engine 4", "Path2D", "Animations Tween"],
-                gallery: []
-            },
             "bot1": {
                 img: "DiscordBot.jpg",
                 title: "🛠️ Bot Discord Multifonctions",
@@ -1010,28 +1002,36 @@
                 tech: ["Python Asyncio", "Flask", "aiosqlite", "LLM API"],
                 gallery: []
             },
-            "pokedex-php": {
-                img: "Pokedex-Php.jpg",
-                title: "Pokédex - PHP Natif",
-                desc: "Développement d'un Pokédex interactif en PHP natif. Ce projet met en avant la manipulation de données, l'intégration d'une base de données MySQL via PDO et une interface utilisateur ludique.",
-                features: ["Architecture PHP from scratch", "Connexion sécurisée BDD (PDO)", "Gestion dynamique des données", "UI/UX thématique"],
-                tech: ["PHP", "MySQL", "HTML/CSS"],
+            "toon": {
+                img: "mainscreen.jpg",
+                title: "⭐ Toon Tactics",
+                desc: "Un véritable jeu de Tower Defense en 2D développé sur Godot Engine 4. Ce projet met en avant des algorithmes de jeu vidéo classiques : validation mathématique de placement d'objets sur une grille, pathfinding, et un système de 'Smart Targeting' où les tours calculent en temps réel quel ennemi est le plus menaçant pour la base. Il inclut également un système de lootbox fluide avec des animations UI complexes (Tweens).",
+                features: ["Smart Targeting (Ciblage de la plus grande menace)", "Validation géométrique du placement de tours", "Gestionnaire de vagues avec timers asynchrones", "Animations UI complexes (Lootbox/Gacha)", "Système de codes promo intégré"],
+                tech: ["GDScript", "Godot Engine 4", "Path2D", "Animations Tween"],
+                gallery: []
+            },
+            "gsb-winform": {
+                img: "CSharpBanner.png",
+                title: "Projet GSB - WinForm (C#)",
+                desc: "Développement d'une application client lourd de bureau (Desktop) pour la gestion GSB. Créée avec C# et le framework .NET WinForm, l'application est directement connectée à la base de données de l'entreprise.",
+                features: ["Interface client lourd (Desktop)", "Connexion base de données distantes", "Gestionnaire d'événements C#", "Déploiement exécutable"],
+                tech: ["C#", "WinForm", ".NET"],
                 gallery: []
             },
             "gsb-laravel": {
-                img: "logo.png",
+                img: "PhpBanner.jpg",
                 title: "Projet GSB - Laravel",
                 desc: "Refonte de l'application GSB en utilisant le framework Laravel. Démonstration de l'utilisation de l'ORM Eloquent, du moteur de template Blade, et du système de routage robuste offert par Laravel.",
                 features: ["Système de Routage avancé", "ORM Eloquent", "Moteur de template (Blade)", "Authentification intégrée"],
                 tech: ["Laravel", "PHP", "MVC"],
                 gallery: []
             },
-            "gsb-winform": {
-                img: "logo.png",
-                title: "Projet GSB - WinForm (C#)",
-                desc: "Développement d'une application client lourd de bureau (Desktop) pour la gestion GSB. Créée avec C# et le framework .NET WinForm, l'application est directement connectée à la base de données de l'entreprise.",
-                features: ["Interface client lourd (Desktop)", "Connexion base de données distantes", "Gestionnaire d'événements C#", "Déploiement exécutable"],
-                tech: ["C#", "WinForm", ".NET"],
+            "pokedex-php": {
+                img: "Pokedex-Php.jpg",
+                title: "Pokédex - PHP Natif",
+                desc: "Développement d'un Pokédex interactif en PHP natif. Ce projet met en avant la manipulation de données, l'intégration d'une base de données MySQL via PDO et une interface utilisateur ludique.",
+                features: ["Architecture PHP from scratch", "Connexion sécurisée BDD (PDO)", "Gestion dynamique des données", "UI/UX thématique"],
+                tech: ["PHP", "MySQL", "HTML/CSS"],
                 gallery: []
             }
         };
