@@ -31,6 +31,12 @@
             --bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        /* --- NOUVEAU : CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: rgba(79, 172, 254, 0.3); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4facfe; }
+
         /* --- BASE & FOND ANIMÉ --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -68,6 +74,10 @@
         @keyframes aura-pulse-purple { 
             0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.2)); } 
             50% { transform: scale(1.06) translateZ(0); filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.7)); } 
+        }
+        @keyframes aura-pulse-emerald { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(16, 185, 129, 0.2)); } 
+            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 25px rgba(16, 185, 129, 0.8)); } 
         }
 
         html { scroll-behavior: smooth; }
@@ -144,27 +154,14 @@
         .hero h2 { font-size: 1.6rem; color: var(--text-sec); font-weight: 400; margin-bottom: 25px; }
         .hero p { max-width: 650px; font-size: 1.15rem; color: var(--text-sec); margin-bottom: 30px; }
         
-        /* --- BOUTONS CV ANIMÉS (AMÉLIORÉS) --- */
+        /* --- BOUTONS CV ANIMÉS (CORRIGÉS ET SUBLIMÉS) --- */
         .action-buttons { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
-        /* Animation du flash blanc */
-        @keyframes btn-shine-slow { 
-            0% { left: -150%; } 
-            50%, 100% { left: 250%; } 
-        }
-        
-        /* Animations des petites icônes */
-        @keyframes icon-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.25); }
-        }
-        @keyframes icon-bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(4px); }
-        }
+        @keyframes btn-shine-slow { 0% { left: -150%; } 50%, 100% { left: 250%; } }
+        @keyframes icon-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+        @keyframes icon-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
         .btn-cv-view {
-            /* Dégradé bleu intense animé en fond */
             background: linear-gradient(45deg, #00f2fe, #4facfe, #00f2fe);
             background-size: 200% auto;
             animation: shine 4s linear infinite;
@@ -174,18 +171,12 @@
             box-shadow: 0 0 20px rgba(79, 172, 254, 0.5); position: relative; overflow: hidden;
             transition: all 0.4s var(--bounce);
         }
-        
-        /* Le flash blanc plus visible et plus lent */
         .btn-cv-view::after {
             content: ''; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
             animation: btn-shine-slow 4s ease-in-out infinite;
         }
-        
-        .btn-cv-view i { 
-            transition: 0.3s; 
-            animation: icon-pulse 2s infinite ease-in-out; /* Pulsation de l'oeil */
-        }
+        .btn-cv-view i { transition: 0.3s; animation: icon-pulse 2s infinite ease-in-out; }
         .btn-cv-view:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 30px rgba(79, 172, 254, 0.8); }
         .btn-cv-view:hover i { animation: none; transform: translateX(3px) scale(1.1); }
 
@@ -195,10 +186,7 @@
             display: inline-flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none;
             backdrop-filter: blur(10px); transition: all 0.4s var(--bounce);
         }
-        .btn-cv-dl i { 
-            transition: 0.3s; color: #4facfe; 
-            animation: icon-bounce 2s infinite ease-in-out; /* Rebond de la flèche */
-        }
+        .btn-cv-dl i { transition: 0.3s; color: #4facfe; animation: icon-bounce 2s infinite ease-in-out; }
         .btn-cv-dl:hover {
             background: rgba(255,255,255,0.1); border-color: #fff;
             transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 25px rgba(255,255,255,0.2);
@@ -258,9 +246,11 @@
         .timeline-item:hover .timeline-dot { transform: scale(1.4); background: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.8); }
         .timeline-item.highlight:hover .timeline-dot { background: #00a0ff; }
         .timeline-card { background: rgba(20, 20, 30, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 30px; backdrop-filter: blur(12px); transition: all 0.4s var(--bounce); position: relative; overflow: hidden; }
+        
         .timeline-item:hover .timeline-card { transform: translateX(12px); border-color: rgba(217, 70, 239, 0.5); background: rgba(30, 30, 45, 0.7); box-shadow: 0 10px 30px rgba(217, 70, 239, 0.15), inset 0 0 15px rgba(217, 70, 239, 0.1); }
         .dassault-card { border-color: rgba(0, 160, 255, 0.3); }
         .timeline-item:hover .dassault-card { border-color: #00a0ff !important; box-shadow: 0 10px 30px rgba(0, 160, 255, 0.2), inset 0 0 15px rgba(0, 160, 255, 0.1) !important; }
+        
         .ds-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
         .ds-logo { height: 45px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); background: transparent; }
         .timeline-date { font-family: var(--font-head); font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 10px; display: inline-block; background: var(--grad-purple); padding: 6px 15px; border-radius: 30px; }
@@ -308,12 +298,24 @@
         .btn-details { background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.5); color: #38bdf8; }
         .btn-details:hover { background: #0ea5e9; color: #fff; border-color: transparent; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4); }
 
-        /* --- CERTIFICATIONS --- */
+        /* --- CERTIFICATIONS (AURA FORCÉE) --- */
         .certif-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .certif-card { display: flex; align-items: center; gap: 20px; background: var(--bg-card); padding: 25px; border-radius: 20px; border: 1px solid var(--border-glass); transition: 0.4s var(--bounce); backdrop-filter: blur(10px); cursor: pointer; text-decoration: none; color: inherit; }
-        .certif-card:hover { transform: translateY(-8px); border-color: #34d399; background: rgba(16, 185, 129, 0.1); box-shadow: 0 10px 25px rgba(52, 211, 153, 0.2); }
-        .certif-icon { display: inline-block; font-size: 2.5rem; background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: 0.3s; animation: aura-pulse-emerald 4s ease-in-out infinite; }
-        .certif-card:hover .certif-icon { animation: none; transform: scale(1.2) rotate(10deg); }
+        .certif-card { 
+            display: flex; align-items: center; gap: 20px; background: var(--bg-card); 
+            padding: 25px; border-radius: 20px; border: 1px solid var(--border-glass); 
+            transition: 0.4s var(--bounce); backdrop-filter: blur(10px); cursor: pointer; text-decoration: none; color: inherit; 
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.05); /* Aura subtile par défaut */
+        }
+        .certif-card:hover { transform: translateY(-8px); border-color: #34d399; background: rgba(16, 185, 129, 0.1); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
+        
+        .certif-icon { 
+            display: inline-block; font-size: 2.5rem; background: var(--grad-emerald); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            transition: all 0.4s var(--bounce); 
+            animation: aura-pulse-emerald 3s ease-in-out infinite !important; /* Animation forcée ! */
+        }
+        .certif-card:hover .certif-icon { transform: scale(1.2) rotate(10deg); }
+        
         .certif-info h3 { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 5px; color: #fff; line-height: 1.3; }
         .certif-info p { font-size: 0.9rem; color: var(--text-sec); }
         .certif-arrow { margin-left: auto; color: var(--text-sec); font-size: 1.2rem; transition: 0.3s; }
@@ -362,8 +364,6 @@
             cursor: pointer; transition: 0.4s var(--bounce); display: flex; align-items: center; justify-content: center; gap: 10px;
         }
         .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(217, 70, 239, 0.4); }
-        
-        /* Restauration de l'animation de l'avion en papier */
         .btn-submit i { transition: 0.3s; animation: aura-sway 4s ease-in-out infinite; }
         .btn-submit:hover i { animation: none; transform: translateX(5px) scale(1.1); }
 
@@ -461,7 +461,7 @@
         <section id="accueil" class="hero reveal">
             <div class="avatar-container">
                 <div class="avatar-ring"></div>
-                <img src="image/ProfilCircle.png" alt="Alan MIRAT" class="avatar">
+                <img src="image/ProfilCircle.png" alt="Alan MIRAT" class="avatar" loading="lazy">
             </div>
             <h1 class="delay-1"><span class="t" data-fr="Hey, je suis" data-en="Hey, I am">Hey, je suis</span> <span class="name-highlight">Alan</span></h1>
             <h2 class="delay-1 t" data-fr="Développeur Full-Stack" data-en="Full-Stack Developer">Développeur Full-Stack</h2>
@@ -525,7 +525,7 @@
                     <div class="timeline-card dassault-card">
                         <div class="ds-header">
                             <span class="timeline-date t" data-fr="2026 (8 semaines)" data-en="2026 (8 weeks)">2026 (8 semaines)</span>
-                            <img src="image/logo.png" alt="Dassault Systèmes" class="ds-logo">
+                            <img src="image/logo.png" alt="Dassault Systèmes" class="ds-logo" loading="lazy">
                         </div>
                         <h3 class="timeline-title t" data-fr="Stage : Développeur Full-Stack & IA" data-en="Internship: Full-Stack & AI Developer">Stage : Développeur Full-Stack & IA</h3>
                         <div class="timeline-company" style="color: #00a0ff; font-weight: 700;">Dassault Systèmes</div>
@@ -585,7 +585,7 @@
             <div class="project-grid">
                 
                 <div class="project-card reveal delay-1" data-category="ia">
-                    <div class="project-img-wrapper"><img src="image/DassaultSystemes.jpg" alt="Projet IA LLM" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/DassaultSystemes.jpg" alt="Projet IA LLM" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Projet IA Local LLM" data-en="Local LLM AI Project">Projet IA Local LLM</h3>
                         <div class="feature-box">
@@ -604,7 +604,7 @@
                 </div>
 
                 <div class="project-card reveal delay-1" data-category="ia">
-                    <div class="project-img-wrapper"><img src="image/DassaultSystemes.jpg" alt="Automatisation" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/DassaultSystemes.jpg" alt="Automatisation" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Automatisation XLSX CSV" data-en="XLSX CSV Automation">Automatisation XLSX CSV</h3>
                         <div class="feature-box">
@@ -623,7 +623,7 @@
                 </div>
 
                 <div class="project-card reveal delay-2" data-category="game">
-                    <div class="project-img-wrapper"><img src="image/Cashverse.jpg" alt="Cashverse" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/Cashverse.jpg" alt="Cashverse" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title">Jeu Simulator 🌌 Cashverse</h3>
                         <div class="feature-box">
@@ -642,7 +642,7 @@
                 </div>
 
                 <div class="project-card reveal delay-3" data-category="ia">
-                    <div class="project-img-wrapper"><img src="image/DiscordBot.jpg" alt="Bot Discord" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/DiscordBot.jpg" alt="Bot Discord" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Bot Discord Multifonctions" data-en="Multi-purpose Discord Bot">Bot Discord Multifonctions</h3>
                         <div class="feature-box">
@@ -661,7 +661,7 @@
                 </div>
 
                 <div class="project-card reveal delay-3" data-category="ia">
-                    <div class="project-img-wrapper"><img src="image/DiscordBot.jpg" alt="Bot IA" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/DiscordBot.jpg" alt="Bot IA" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Bot Discord Premium IA 👑" data-en="Premium AI Discord Bot 👑">Bot Discord Premium IA 👑</h3>
                         <div class="feature-box">
@@ -680,7 +680,7 @@
                 </div>
 
                 <div class="project-card reveal delay-2" data-category="game">
-                    <div class="project-img-wrapper"><img src="image/mainscreen.jpg" alt="Toon Tactics" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/mainscreen.jpg" alt="Toon Tactics" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title">Jeu ⭐ Toon Tactics</h3>
                         <div class="feature-box">
@@ -699,14 +699,12 @@
                 </div>
 
                 <div class="project-card reveal delay-3" data-category="logiciel">
-                    <div class="project-img-wrapper"><img src="image/CsharpBanner.jpg" alt="WinForm GSB" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/CsharpBanner.jpg" alt="WinForm GSB" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
-                            </ul>
+                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">C#</span><span class="tech-tag">WinForm</span><span class="tech-tag">.NET</span></div>
                         <div class="project-links">
@@ -717,14 +715,12 @@
                 </div>
 
                 <div class="project-card reveal delay-3" data-category="web">
-                    <div class="project-img-wrapper"><img src="image/PhpBanner.jpg" alt="Laravel GSB" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/PhpBanner.jpg" alt="Laravel GSB" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - Laravel</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
-                            </ul>
+                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">PHP</span><span class="tech-tag">MVC</span></div>
                         <div class="project-links">
@@ -735,7 +731,7 @@
                 </div>
                 
                 <div class="project-card reveal delay-3" data-category="web">
-                    <div class="project-img-wrapper"><img src="image/Pokedex-Php.jpg" alt="Pokédex PHP" class="project-img"></div>
+                    <div class="project-img-wrapper"><img src="image/Pokedex-Php.jpg" alt="Pokédex PHP" class="project-img" loading="lazy"></div>
                     <div class="project-content">
                         <h3 class="project-title">Pokédex - PHP Natif</h3>
                         <div class="feature-box">
