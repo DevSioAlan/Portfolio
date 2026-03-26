@@ -17,11 +17,12 @@
             --text-main: #ffffff;
             --text-sec: #9ca3af;
             
-            --grad-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-            --grad-purple: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
-            --grad-sunset: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
-            --grad-emerald: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-            --grad-gold: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            /* Nouveaux dégradés animés plus "Pro/Tech" */
+            --grad-primary: linear-gradient(to right, #00f2fe, #4facfe, #00f2fe);
+            --grad-purple: linear-gradient(to right, #c084fc, #d946ef, #c084fc);
+            --grad-cyan: linear-gradient(to right, #2dd4bf, #0284c7, #2dd4bf); /* Remplace le vert gazon */
+            --grad-sunset: linear-gradient(to right, #ff0844, #ffb199, #ff0844);
+            --grad-gold: linear-gradient(to right, #f59e0b, #fbbf24, #f59e0b);
             
             --border-glass: rgba(255, 255, 255, 0.08);
             --font-head: 'Outfit', sans-serif;
@@ -58,9 +59,9 @@
             0%, 100% { transform: translateY(0px) translateZ(0); filter: drop-shadow(0 0 0 rgba(79, 172, 254, 0)); } 
             50% { transform: translateY(-5px) translateZ(0); filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.6)); } 
         }
-        @keyframes aura-pulse-emerald { 
-            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(52, 211, 153, 0.2)); } 
-            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.7)); } 
+        @keyframes aura-pulse-cyan { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(45, 212, 191, 0.2)); } 
+            50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 20px rgba(45, 212, 191, 0.7)); } 
         }
         @keyframes aura-pulse-purple { 
             0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.2)); } 
@@ -122,11 +123,25 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 150px 20px 80px 20px; }
         section { margin-bottom: 120px; scroll-margin-top: 120px; }
         
-        .section-title { font-family: var(--font-head); font-size: 2.8rem; font-weight: 800; margin-bottom: 50px; position: relative; display: inline-block; }
-        .title-blue { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .title-purple { background: var(--grad-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .title-emerald { background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .title-sunset { background: var(--grad-sunset); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* --- TITRES ANIMÉS --- */
+        @keyframes shine { to { background-position: 200% center; } }
+        
+        .section-title { 
+            font-family: var(--font-head); 
+            font-size: 2.8rem; 
+            font-weight: 800; 
+            margin-bottom: 60px; 
+            position: relative; 
+            display: inline-block;
+            background-size: 200% auto !important;
+            animation: shine 4s linear infinite;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+        .title-blue { background: var(--grad-primary); }
+        .title-purple { background: var(--grad-purple); }
+        .title-cyan { background: var(--grad-cyan); }
+        .title-sunset { background: var(--grad-sunset); }
 
         /* --- HERO --- */
         .hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 20px; }
@@ -140,14 +155,17 @@
         .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-dark); position: relative; z-index: 1; }
         
         .hero h1 { font-family: var(--font-head); font-size: 4rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -1px; }
-        .name-highlight { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .name-highlight { 
+            background: var(--grad-primary); background-size: 200% auto;
+            animation: shine 4s linear infinite;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
         .hero h2 { font-size: 1.6rem; color: var(--text-sec); font-weight: 400; margin-bottom: 25px; }
         .hero p { max-width: 650px; font-size: 1.15rem; color: var(--text-sec); margin-bottom: 30px; }
         
-        /* Boutons d'actions Accueil (CV) */
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
-        /* --- RESEAUX SOCIAUX (COULEURS DE MARQUE & FLUIDITÉ) --- */
+        /* --- RESEAUX SOCIAUX --- */
         .social-links { display: flex; gap: 25px; justify-content: center; margin-bottom: 50px; }
         .social-icon {
             width: 65px; height: 65px; border-radius: 50%; 
@@ -156,24 +174,21 @@
             font-size: 1.8rem; color: var(--text-sec);
             transition: all 0.4s var(--bounce);
             position: relative; backdrop-filter: blur(10px);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); /* Petite aura par défaut */
-            animation: aura-float 5s ease-in-out infinite; /* Flottement fluide */
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); 
+            animation: aura-float 5s ease-in-out infinite; 
         }
         .social-icon i { transition: transform 0.4s var(--bounce); }
         
-        /* Github (Gris foncé/Blanc) */
         .social-icon.github:hover {
             color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4);
-            transform: translateY(-8px); animation: none; /* Arrête le flottement au survol */
+            transform: translateY(-8px); animation: none; 
         }
-        /* LinkedIn (Bleu) */
         .social-icon.linkedin:hover {
             color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6);
             box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6);
             transform: translateY(-8px); animation: none;
         }
-        /* Email (Rouge Google) */
         .social-icon.email:hover {
             color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6);
             box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6);
@@ -181,7 +196,7 @@
         }
         .social-icon:hover i { transform: scale(1.2); }
 
-        /* --- NOUVELLES COMPÉTENCES (PANNEAUX & TECH CHIPS) --- */
+        /* --- COMPÉTENCES (GLASSMORPHISM) --- */
         .skills-container {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
         }
@@ -200,7 +215,7 @@
             opacity: 0.15; transition: 0.5s; z-index: 0; pointer-events: none;
         }
         .skill-category.purple-glow::before { background: var(--grad-purple); }
-        .skill-category.emerald-glow::before { background: var(--grad-emerald); }
+        .skill-category.cyan-glow::before { background: var(--grad-cyan); }
         
         .skill-category:hover { 
             transform: translateY(-8px); 
@@ -217,7 +232,7 @@
         .cat-icon { font-size: 2rem; }
         .cat-icon.blue { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .cat-icon.purple { background: var(--grad-purple); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .cat-icon.emerald { background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cat-icon.cyan { background: var(--grad-cyan); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .cat-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: #fff; }
         
         .tech-chips { display: flex; flex-wrap: wrap; gap: 12px; position: relative; z-index: 1; }
@@ -230,15 +245,11 @@
         }
         .tech-chip i { font-size: 1.2rem; color: #9ca3af; transition: 0.3s; }
         
-        /* Hover individuel sur les Tech Chips */
         .tech-chip:hover { 
-            background: rgba(255,255,255,0.1); 
-            border-color: rgba(255,255,255,0.3); 
-            transform: translateY(-4px) scale(1.03); 
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); 
+            transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
         
-        /* Couleurs dynamiques au survol */
         .tech-chip:hover .fa-python { color: #3b82f6; }
         .tech-chip:hover .fa-php { color: #8b5cf6; }
         .tech-chip:hover .fa-database { color: #10b981; }
@@ -251,20 +262,75 @@
         .tech-chip:hover .fa-git-alt { color: #f97316; }
         .tech-chip:hover .fa-lock { color: #10b981; }
         .tech-chip:hover .fa-server { color: #0ea5e9; }
-        
         .tech-chip:hover i { transform: scale(1.2); }
 
-        /* --- TIMELINE --- */
-        .timeline { position: relative; margin-left: 20px; padding-left: 40px; }
-        .timeline::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, #4facfe, #d946ef, #ff0844); border-radius: 3px; }
-        .timeline-item { margin-bottom: 50px; position: relative; }
-        .timeline-item::before { content: ''; position: absolute; left: -49px; top: 5px; width: 20px; height: 20px; background: var(--bg-dark); border: 4px solid #d946ef; border-radius: 50%; box-shadow: 0 0 15px rgba(217, 70, 239, 0.6); transition: 0.3s; }
-        .timeline-item:hover::before { background: #d946ef; transform: scale(1.2); }
-        .timeline-card { background: var(--bg-card); border: 1px solid var(--border-glass); padding: 30px; border-radius: 20px; transition: all 0.3s; backdrop-filter: blur(10px); }
-        .timeline-item:hover .timeline-card { border-color: rgba(217, 70, 239, 0.4); transform: translateX(10px); }
+        /* --- TIMELINE MODERNE --- */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 18px; /* Centré sur le dot */
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #d946ef, #4facfe, #2dd4bf);
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(79, 172, 254, 0.4);
+            z-index: 0;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            z-index: 1;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -32px;
+            top: 20px;
+            width: 20px; height: 20px;
+            background: var(--bg-dark);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+            transition: all 0.4s var(--bounce);
+        }
+        .timeline-item.highlight .timeline-dot {
+            border-color: #00a0ff;
+            box-shadow: 0 0 15px rgba(0, 160, 255, 0.6);
+        }
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.4);
+            background: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.8);
+        }
+        .timeline-item.highlight:hover .timeline-dot {
+            background: #00a0ff;
+        }
+        
+        .timeline-card {
+            background: rgba(20, 20, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s var(--bounce);
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline-item:hover .timeline-card {
+            transform: translateX(12px);
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(30, 30, 45, 0.7);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
 
-        .dassault-card { border-color: rgba(0, 160, 255, 0.5); box-shadow: 0 0 25px rgba(0, 160, 255, 0.15), inset 0 0 15px rgba(0, 160, 255, 0.05); animation: pulseDassault 3s infinite alternate; }
-        @keyframes pulseDassault { 0% { box-shadow: 0 0 20px rgba(0, 86, 134, 0.2), inset 0 0 10px rgba(0, 86, 134, 0.1); } 100% { box-shadow: 0 0 40px rgba(0, 160, 255, 0.4), inset 0 0 20px rgba(0, 160, 255, 0.2); border-color: #00a0ff; } }
+        .dassault-card { border-color: rgba(0, 160, 255, 0.3); }
+        .dassault-card:hover { border-color: #00a0ff !important; }
+        
         .ds-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
         .ds-logo { height: 45px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); background: transparent; }
         
@@ -276,13 +342,13 @@
         /* --- PROJETS --- */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
         .project-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.5s var(--bounce); backdrop-filter: blur(10px); }
-        .project-card:hover { transform: translateY(-12px); border-color: #4facfe; box-shadow: 0 20px 40px rgba(79, 172, 254, 0.2); }
+        .project-card:hover { transform: translateY(-12px); border-color: #0ea5e9; box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2); }
         .project-img-wrapper { width: 100%; height: 220px; overflow: hidden; position: relative; }
         .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
         .project-card:hover .project-img { transform: scale(1.08); }
         .project-content { padding: 30px; flex: 1; display: flex; flex-direction: column; }
         .project-title { font-family: var(--font-head); font-size: 1.6rem; margin-bottom: 12px; color: #fff; transition: 0.3s; }
-        .project-card:hover .project-title { color: #4facfe; }
+        .project-card:hover .project-title { color: #0ea5e9; }
         .project-desc { color: var(--text-sec); font-size: 1rem; margin-bottom: 25px; flex: 1;}
         
         .feature-box { background: rgba(15, 15, 25, 0.8); border: 1px solid var(--border-glass); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
@@ -290,25 +356,25 @@
         .feature-box h4 i { color: #fbbf24; animation: aura-pulse-gold 4s ease-in-out infinite; } 
         .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
         .feature-item { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; color: #e2e8f0; text-align: left; }
-        .feature-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #8b5cf6; box-shadow: 0 0 8px #8b5cf6; flex-shrink: 0; }
+        .feature-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #0ea5e9; box-shadow: 0 0 8px #0ea5e9; flex-shrink: 0; }
         
         .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; margin-top: auto; }
         .tech-tag { font-size: 0.85rem; font-weight: 600; padding: 6px 14px; border-radius: 12px; background: rgba(255,255,255,0.05); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
-        .project-card:hover .tech-tag { background: rgba(79, 172, 254, 0.1); border-color: rgba(79, 172, 254, 0.3); color: #4facfe; }
+        .project-card:hover .tech-tag { background: rgba(14, 165, 233, 0.1); border-color: rgba(14, 165, 233, 0.3); color: #0ea5e9; }
         
         .project-links { display: flex; gap: 10px; }
         .btn-link { display: flex; align-items: center; justify-content: center; gap: 8px; flex: 1; padding: 10px; border-radius: 12px; font-size: 0.95rem; font-weight: 600; color: #fff; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); transition: 0.3s var(--bounce); cursor: pointer; text-decoration: none; text-align: center; }
-        .btn-link:hover { background: var(--grad-primary); border-color: transparent; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4); }
+        .btn-link:hover { background: var(--grad-cyan); border-color: transparent; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(45, 212, 191, 0.4); }
         
         /* BOUTON DÉTAILS SPÉCIFIQUE */
-        .btn-details { background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.5); color: #60a5fa; }
-        .btn-details:hover { background: #3b82f6; color: #fff; border-color: transparent; }
+        .btn-details { background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.5); color: #38bdf8; }
+        .btn-details:hover { background: #0ea5e9; color: #fff; border-color: transparent; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4); }
 
         /* --- CERTIFICATIONS --- */
         .certif-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .certif-card { display: flex; align-items: center; gap: 20px; background: var(--bg-card); padding: 25px; border-radius: 20px; border: 1px solid var(--border-glass); transition: 0.4s var(--bounce); backdrop-filter: blur(10px); cursor: pointer; text-decoration: none; color: inherit; }
         .certif-card:hover { transform: translateY(-8px); border-color: #34d399; background: rgba(16, 185, 129, 0.1); box-shadow: 0 10px 25px rgba(52, 211, 153, 0.2); }
-        .certif-icon { font-size: 2.5rem; background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: 0.3s; animation: aura-pulse-emerald 4s ease-in-out infinite; }
+        .certif-icon { font-size: 2.5rem; background: var(--grad-emerald); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: 0.3s; animation: aura-pulse-cyan 4s ease-in-out infinite; }
         .certif-card:hover .certif-icon { animation: none; transform: scale(1.2) rotate(10deg); }
         .certif-info h3 { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 5px; color: #fff; line-height: 1.3; }
         .certif-info p { font-size: 0.9rem; color: var(--text-sec); }
@@ -391,6 +457,9 @@
             .hero h1 { font-size: 2.8rem; }
             .modal-grid { grid-template-columns: 1fr; }
             .veille-grid { grid-template-columns: 1fr; }
+            .timeline { padding-left: 20px; }
+            .timeline::before { left: 8px; }
+            .timeline-dot { left: -12px; width: 16px; height: 16px; top: 25px; }
         }
     </style>
 </head>
@@ -462,9 +531,9 @@
                     </div>
                 </div>
 
-                <div class="skill-category emerald-glow reveal delay-3">
+                <div class="skill-category cyan-glow reveal delay-3">
                     <div class="cat-header">
-                        <i class="fa-solid fa-shield-halved cat-icon emerald"></i>
+                        <i class="fa-solid fa-shield-halved cat-icon cyan"></i>
                         <h3 class="cat-title t" data-fr="Infra & Cybersécurité" data-en="Infra & Cybersecurity">Infra & Cybersécurité</h3>
                     </div>
                     <div class="tech-chips">
@@ -481,7 +550,9 @@
         <section id="experiences">
             <h2 class="section-title title-purple reveal t" data-fr="Mon Parcours & Stages" data-en="My Experience & Internships">Mon Parcours & Stages</h2>
             <div class="timeline">
-                <div class="timeline-item reveal delay-1">
+                
+                <div class="timeline-item highlight reveal delay-1">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-card dassault-card">
                         <div class="ds-header">
                             <span class="timeline-date t" data-fr="2026 (8 semaines)" data-en="2026 (8 weeks)">2026 (8 semaines)</span>
@@ -493,7 +564,8 @@
                     </div>
                 </div>
 
-                <div class="timeline-item reveal delay-1">
+                <div class="timeline-item reveal delay-2">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <span class="timeline-date">2025 - 2026</span>
                         <h3 class="timeline-title t" data-fr="Étudiant BTS SIO - Option SLAM" data-en="Student in IT HND - SLAM Option">Étudiant BTS SIO - Option SLAM</h3>
@@ -502,7 +574,8 @@
                     </div>
                 </div>
 
-                <div class="timeline-item reveal delay-2">
+                <div class="timeline-item reveal delay-3">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <span class="timeline-date t" data-fr="2025 (4 semaines)" data-en="2025 (4 weeks)">2025 (4 semaines)</span>
                         <h3 class="timeline-title t" data-fr="Stage : Développeur Backend" data-en="Internship: Backend Developer">Stage : Développeur Backend</h3>
@@ -511,7 +584,8 @@
                     </div>
                 </div>
 
-                <div class="timeline-item reveal delay-2">
+                <div class="timeline-item reveal delay-1">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <span class="timeline-date t" data-fr="2024 (8 semaines)" data-en="2024 (8 weeks)">2024 (8 semaines)</span>
                         <h3 class="timeline-title t" data-fr="Stage : Technicien Informatique" data-en="Internship: IT Technician">Stage : Technicien Informatique</h3>
@@ -520,7 +594,8 @@
                     </div>
                 </div>
 
-                <div class="timeline-item reveal delay-3">
+                <div class="timeline-item reveal delay-2">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <span class="timeline-date">2021 - 2024</span>
                         <h3 class="timeline-title t" data-fr="Bac Pro SN - Option C (Réseaux informatiques)" data-en="Vocational Baccalaureate SN - Networks">Bac Pro SN - Option C (Réseaux informatiques)</h3>
@@ -532,7 +607,7 @@
         </section>
 
         <section id="projets">
-            <h2 class="section-title title-emerald reveal t" data-fr="Projets Récents" data-en="Recent Projects">Projets Récents</h2>
+            <h2 class="section-title title-cyan reveal t" data-fr="Projets Récents" data-en="Recent Projects">Projets Récents</h2>
             <div class="project-grid">
                 
                 <div class="project-card reveal delay-1">
@@ -687,7 +762,7 @@
 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="CsharpBanner.jpg" alt="WinForm GSB" class="project-img">
+                        <img src="CSharpBanner.png" alt="WinForm GSB" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
