@@ -48,7 +48,7 @@
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
         /* --- ANIMATIONS AURA PRO (OPTIMISÉES GPU) --- */
-        .nav-link i, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
+        .nav-link i, .skill-icon, .feature-box h4 i, .certif-icon, .veille-icon, .btn-primary i {
             will-change: transform, filter;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -144,6 +144,7 @@
         .hero h2 { font-size: 1.6rem; color: var(--text-sec); font-weight: 400; margin-bottom: 25px; }
         .hero p { max-width: 650px; font-size: 1.15rem; color: var(--text-sec); margin-bottom: 30px; }
         
+        /* Boutons d'actions Accueil (CV) */
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
         /* --- RESEAUX SOCIAUX (COULEURS DE MARQUE & FLUIDITÉ) --- */
@@ -609,31 +610,6 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal delay-2">
-                    <div class="project-img-wrapper">
-                        <img src="mainscreen.jpg" alt="Toon Tactics" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Jeu ⭐ Toon Tactics</h3>
-                        <div class="feature-box">
-                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item t" data-fr="Smart Targeting (Ciblage IA)" data-en="Smart Targeting (AI)">Smart Targeting (Ciblage IA)</li>
-                                <li class="feature-item t" data-fr="Validation géométrique" data-en="Geometric validation">Validation géométrique de placement</li>
-                            </ul>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">GDScript</span>
-                            <span class="tech-tag">Godot 4</span>
-                            <span class="tech-tag">Path2D</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Toon-Tactics-Tower-Defense" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
-                            <button onclick="openProjectModal('toon')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
                         <img src="DiscordBot.jpg" alt="Bot Discord" class="project-img">
@@ -683,6 +659,79 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="project-card reveal delay-2">
+                    <div class="project-img-wrapper">
+                        <img src="mainscreen.jpg" alt="Toon Tactics" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Jeu ⭐ Toon Tactics</h3>
+                        <div class="feature-box">
+                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item t" data-fr="Smart Targeting (Ciblage IA)" data-en="Smart Targeting (AI)">Smart Targeting (Ciblage IA)</li>
+                                <li class="feature-item t" data-fr="Validation géométrique" data-en="Geometric validation">Validation géométrique de placement</li>
+                            </ul>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">GDScript</span>
+                            <span class="tech-tag">Godot 4</span>
+                            <span class="tech-tag">Path2D</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/DevSioAlan/Toon-Tactics-Tower-Defense" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <button onclick="openProjectModal('toon')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-3">
+                    <div class="project-img-wrapper">
+                        <img src="CsharpBanner.png" alt="WinForm GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
+                        <div class="feature-box">
+                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item">Détails et informations à venir...</li>
+                            </ul>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">WinForm</span>
+                            <span class="tech-tag">.NET</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <button onclick="openProjectModal('gsb-winform')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal delay-3">
+                    <div class="project-img-wrapper">
+                        <img src="PhpBanner.png" alt="Laravel GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Projet GSB - Laravel</h3>
+                        <div class="feature-box">
+                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
+                            <ul class="feature-list">
+                                <li class="feature-item">Détails et informations à venir...</li>
+                            </ul>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MVC</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <button onclick="openProjectModal('gsb-laravel')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
@@ -705,54 +754,6 @@
                         <div class="project-links">
                             <a href="https://github.com/DevSioAlan/Pokedex" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
                             <button onclick="openProjectModal('pokedex-php')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card reveal delay-3">
-                    <div class="project-img-wrapper">
-                        <img src="logo.png" alt="Laravel GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Projet GSB - Laravel</h3>
-                        <div class="feature-box">
-                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
-                            </ul>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MVC</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
-                            <button onclick="openProjectModal('gsb-laravel')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card reveal delay-3">
-                    <div class="project-img-wrapper">
-                        <img src="logo.png" alt="WinForm GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
-                        <div class="feature-box">
-                            <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
-                            </ul>
-                        </div>
-                        <div class="tech-tags">
-                            <span class="tech-tag">C#</span>
-                            <span class="tech-tag">WinForm</span>
-                            <span class="tech-tag">.NET</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
-                            <button onclick="openProjectModal('gsb-winform')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
