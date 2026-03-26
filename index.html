@@ -147,7 +147,7 @@
         /* Boutons d'actions Accueil (CV) */
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
-        /* --- RESEAUX SOCIAUX (COULEURS DE MARQUE & FLUIDITÉ) --- */
+        /* --- RESEAUX SOCIAUX (AURA BLANCHE & FLUIDITÉ) --- */
         .social-links { display: flex; gap: 25px; justify-content: center; margin-bottom: 50px; }
         .social-icon {
             width: 65px; height: 65px; border-radius: 50%; 
@@ -156,28 +156,18 @@
             font-size: 1.8rem; color: var(--text-sec);
             transition: all 0.4s var(--bounce);
             position: relative; backdrop-filter: blur(10px);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); /* Petite aura par défaut */
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); /* Petite aura blanche par défaut */
             animation: aura-float 5s ease-in-out infinite; /* Flottement fluide */
         }
         .social-icon i { transition: transform 0.4s var(--bounce); }
         
-        /* Github (Gris foncé/Blanc) */
-        .social-icon.github:hover {
-            color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4);
-            transform: translateY(-8px); animation: none; /* Arrête le flottement au survol */
-        }
-        /* LinkedIn (Bleu) */
-        .social-icon.linkedin:hover {
-            color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6);
-            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6);
-            transform: translateY(-8px); animation: none;
-        }
-        /* Email (Rouge Google) */
-        .social-icon.email:hover {
-            color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6);
-            box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6);
-            transform: translateY(-8px); animation: none;
+        .social-icon:hover {
+            color: #ffffff; 
+            background: rgba(255, 255, 255, 0.1); 
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.3); /* Belle aura blanche au survol */
+            transform: translateY(-8px);
+            animation: none; /* Stoppe le flottement au survol pour éviter les bugs */
         }
         .social-icon:hover i { transform: scale(1.2); }
 
@@ -366,9 +356,9 @@
             </div>
 
             <div class="social-links delay-3">
-                <a href="https://github.com/DevSioAlan" target="_blank" class="social-icon github" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/alan-mirat-2053683a8/" target="_blank" class="social-icon linkedin" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="mailto:alan.mirat@gmail.com" class="social-icon email" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/DevSioAlan" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/alan-mirat-2053683a8/" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:alan.mirat@gmail.com" class="social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </section>
 
@@ -600,14 +590,15 @@
                 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="logo.png" alt="PHP GSB" class="project-img" style="object-fit: contain; padding: 20px; background: rgba(0,0,0,0.2);">
+                        <img src="Pokedex-Php.jpg" alt="Pokédex PHP" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Projet GSB - PHP Natif</h3>
+                        <h3 class="project-title">Pokédex - PHP Natif</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
                             <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
+                                <li class="feature-item">Base de données relationnelle Pokémon</li>
+                                <li class="feature-item">Génération dynamique des cartes via PHP</li>
                             </ul>
                         </div>
                         <div class="tech-tags">
@@ -616,8 +607,8 @@
                             <span class="tech-tag">HTML/CSS</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
-                            <button onclick="openProjectModal('gsb-php')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
+                            <a href="https://github.com/DevSioAlan/Pokedex" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <button onclick="openProjectModal('pokedex-php')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -922,11 +913,11 @@
                 tech: ["Python Asyncio", "Flask", "aiosqlite", "LLM API"],
                 gallery: []
             },
-            "gsb-php": {
-                img: "logo.png",
-                title: "Projet GSB - PHP Natif",
-                desc: "Détails concernant le développement de l'application GSB en PHP natif. Ce projet met en avant l'architecture MVC manuelle, la gestion de base de données MySQL via PDO et la sécurisation des données utilisateurs.",
-                features: ["Architecture MVC from scratch", "Connexion sécurisée BDD (PDO)", "Gestion des formulaires", "UI/UX fluide"],
+            "pokedex-php": {
+                img: "Pokedex-Php.jpg",
+                title: "Pokédex - PHP Natif",
+                desc: "Développement d'un Pokédex interactif en PHP natif. Ce projet met en avant la manipulation de données, l'intégration d'une base de données MySQL via PDO et une interface utilisateur ludique.",
+                features: ["Architecture PHP from scratch", "Connexion sécurisée BDD (PDO)", "Gestion dynamique des données", "UI/UX thématique"],
                 tech: ["PHP", "MySQL", "HTML/CSS"],
                 gallery: []
             },
