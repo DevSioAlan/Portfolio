@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alan MIRAT - Développeur Full-Stack</title>
     
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="image/favicon.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -166,7 +166,7 @@
         
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         
-        /* --- RESEAUX SOCIAUX (COULEURS DE MARQUE & FLUIDITÉ) --- */
+        /* --- RESEAUX SOCIAUX --- */
         .social-links { display: flex; gap: 25px; justify-content: center; margin-bottom: 50px; }
         .social-icon {
             width: 65px; height: 65px; border-radius: 50%; 
@@ -175,24 +175,21 @@
             font-size: 1.8rem; color: var(--text-sec);
             transition: all 0.4s var(--bounce);
             position: relative; backdrop-filter: blur(10px);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); 
             animation: aura-float 5s ease-in-out infinite; 
         }
         .social-icon i { transition: transform 0.4s var(--bounce); }
         
-        /* Github */
         .social-icon.github:hover {
             color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4);
             transform: translateY(-8px); animation: none; 
         }
-        /* LinkedIn */
         .social-icon.linkedin:hover {
             color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6);
             box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6);
             transform: translateY(-8px); animation: none;
         }
-        /* Email */
         .social-icon.email:hover {
             color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6);
             box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6);
@@ -381,7 +378,7 @@
         
         /* L'icône garde son fond gradient et gère correctement l'animation drop-shadow */
         .certif-icon { 
-            display: inline-block; /* Crucial pour le drop-shadow + text-clip */
+            display: inline-block; 
             font-size: 2.5rem; 
             background: var(--grad-emerald); 
             -webkit-background-clip: text; 
@@ -496,7 +493,7 @@
         <section id="accueil" class="hero reveal">
             <div class="avatar-container">
                 <div class="avatar-ring"></div>
-                <img src="ProfilCircle.png" alt="Alan MIRAT" class="avatar">
+                <img src="image/ProfilCircle.png" alt="Alan MIRAT" class="avatar">
             </div>
             <h1 class="delay-1"><span class="t" data-fr="Hey, je suis" data-en="Hey, I am">Hey, je suis</span> <span class="name-highlight">Alan</span></h1>
             <h2 class="delay-1 t" data-fr="Développeur Full-Stack" data-en="Full-Stack Developer">Développeur Full-Stack</h2>
@@ -504,7 +501,7 @@
             
             <div class="action-buttons delay-3">
                 <button onclick="openModalById('cvModal')" class="btn-primary" style="font-size: 1rem; padding: 12px 25px;"><i class="fa-solid fa-eye"></i> <span class="t" data-fr="Voir mon CV" data-en="View my Resume">Voir mon CV</span></button>
-                <a href="Alan_Mirat_CV.pdf" download="Alan_Mirat_CV.pdf" class="btn-primary" style="font-size: 1rem; padding: 12px 25px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;"><i class="fa-solid fa-download"></i> <span class="t" data-fr="Télécharger CV" data-en="Download Resume">Télécharger CV</span></a>
+                <a href="pdf/Alan_Mirat_CV.pdf" download="Alan_Mirat_CV.pdf" class="btn-primary" style="font-size: 1rem; padding: 12px 25px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: #fff;"><i class="fa-solid fa-download"></i> <span class="t" data-fr="Télécharger CV" data-en="Download Resume">Télécharger CV</span></a>
             </div>
 
             <div class="social-links delay-3">
@@ -554,7 +551,7 @@
                         <div class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
                         <div class="tech-chip"><i class="fa-solid fa-lock"></i> Modèle Zero-Trust</div>
                         <div class="tech-chip"><i class="fa-solid fa-server"></i> Serveur Flask (API)</div>
-                        <div class="tech-chip"><i class="fa-solid fa-network-wired"></i> Réseaux (Communicants)</div>
+                        <div class="tech-chip"><i class="fa-solid fa-network-wired"></i> Réseaux (Bac Pro)</div>
                     </div>
                 </div>
 
@@ -570,7 +567,7 @@
                     <div class="timeline-card dassault-card">
                         <div class="ds-header">
                             <span class="timeline-date t" data-fr="2026 (8 semaines)" data-en="2026 (8 weeks)">2026 (8 semaines)</span>
-                            <img src="logo.png" alt="Dassault Systèmes" class="ds-logo">
+                            <img src="image/logo.png" alt="Dassault Systèmes" class="ds-logo">
                         </div>
                         <h3 class="timeline-title t" data-fr="Stage : Développeur Full-Stack & IA" data-en="Internship: Full-Stack & AI Developer">Stage : Développeur Full-Stack & IA</h3>
                         <div class="timeline-company" style="color: #00a0ff; font-weight: 700;">Dassault Systèmes</div>
@@ -612,7 +609,7 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <span class="timeline-date">2021 - 2024</span>
-                        <h3 class="timeline-title t" data-fr="Bac Pro SN - Option C (Réseaux Informatiques et Systèmes Communicants)" data-en="Vocational Baccalaureate SN - Networks">Bac Pro SN - Option C (Réseaux informatiques)</h3>
+                        <h3 class="timeline-title t" data-fr="Bac Pro SN - Option C (Réseaux informatiques)" data-en="Vocational Baccalaureate SN - Networks">Bac Pro SN - Option C (Réseaux informatiques)</h3>
                         <div class="timeline-company">Lycée Voillaume</div>
                         <p class="timeline-desc t" data-fr="Formation sur la conception, l'installation, la mise en service et la maintenance de réseaux informatiques et de systèmes communicants." data-en="Training on the design, installation, commissioning, and maintenance of computer networks and communicating systems.">Formation sur la conception, l'installation, la mise en service et la maintenance de réseaux informatiques et de systèmes communicants.</p>
                     </div>
@@ -626,7 +623,7 @@
                 
                 <div class="project-card reveal delay-1">
                     <div class="project-img-wrapper">
-                        <img src="DassaultSystemes.jpg" alt="Projet IA LLM" class="project-img">
+                        <img src="image/DassaultSystemes.jpg" alt="Projet IA LLM" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Projet IA Local LLM" data-en="Local LLM AI Project">Projet IA Local LLM</h3>
@@ -651,7 +648,7 @@
 
                 <div class="project-card reveal delay-1">
                     <div class="project-img-wrapper">
-                        <img src="DassaultSystemes.jpg" alt="Automatisation" class="project-img">
+                        <img src="image/DassaultSystemes.jpg" alt="Automatisation" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Automatisation XLSX CSV" data-en="XLSX CSV Automation">Automatisation XLSX CSV</h3>
@@ -676,7 +673,7 @@
 
                 <div class="project-card reveal delay-2">
                     <div class="project-img-wrapper">
-                        <img src="Cashverse.jpg" alt="Cashverse" class="project-img">
+                        <img src="image/Cashverse.jpg" alt="Cashverse" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Jeu Simulator 🌌 Cashverse</h3>
@@ -701,7 +698,7 @@
 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="DiscordBot.jpg" alt="Bot Discord" class="project-img">
+                        <img src="image/DiscordBot.jpg" alt="Bot Discord" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Bot Discord Multifonctions" data-en="Multi-purpose Discord Bot">Bot Discord Multifonctions</h3>
@@ -726,7 +723,7 @@
 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="DiscordBot.jpg" alt="Bot IA" class="project-img">
+                        <img src="image/DiscordBot.jpg" alt="Bot IA" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title t" data-fr="Bot Discord Premium IA 👑" data-en="Premium AI Discord Bot 👑">Bot Discord Premium IA 👑</h3>
@@ -751,7 +748,7 @@
 
                 <div class="project-card reveal delay-2">
                     <div class="project-img-wrapper">
-                        <img src="mainscreen.jpg" alt="Toon Tactics" class="project-img">
+                        <img src="image/mainscreen.jpg" alt="Toon Tactics" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Jeu ⭐ Toon Tactics</h3>
@@ -776,7 +773,7 @@
 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="CsharpBanner.jpg" alt="WinForm GSB" class="project-img">
+                        <img src="image/CsharpBanner.jpg" alt="WinForm GSB" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
@@ -800,7 +797,7 @@
 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="PhpBanner.jpg" alt="Laravel GSB" class="project-img">
+                        <img src="image/PhpBanner.jpg" alt="Laravel GSB" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Projet GSB - Laravel</h3>
@@ -824,7 +821,7 @@
                 
                 <div class="project-card reveal delay-3">
                     <div class="project-img-wrapper">
-                        <img src="Pokedex-Php.jpg" alt="Pokédex PHP" class="project-img">
+                        <img src="image/Pokedex-Php.jpg" alt="Pokédex PHP" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Pokédex - PHP Natif</h3>
@@ -854,7 +851,7 @@
             <h2 class="section-title title-blue reveal">Certifications</h2>
             <div class="certif-grid">
                 
-                <a href="certification-pix-20260220.pdf" target="_blank" class="certif-card reveal delay-1">
+                <a href="pdf/certification-pix-20260220.pdf" target="_blank" class="certif-card reveal delay-1">
                     <i class="fa-solid fa-award certif-icon"></i>
                     <div class="certif-info">
                         <h3>Certification PIX (2026)</h3>
@@ -863,7 +860,7 @@
                     <i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
 
-                <a href="certification-pix-20240415.pdf" target="_blank" class="certif-card reveal delay-1">
+                <a href="pdf/certification-pix-20240415.pdf" target="_blank" class="certif-card reveal delay-1">
                     <i class="fa-solid fa-medal certif-icon"></i>
                     <div class="certif-info">
                         <h3>Certification PIX (2024)</h3>
@@ -872,7 +869,7 @@
                     <i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
 
-                <a href="Attestation Sens Cyber_Mirat_Alan.pdf" target="_blank" class="certif-card reveal delay-2">
+                <a href="pdf/Attestation Sens Cyber_Mirat_Alan.pdf" target="_blank" class="certif-card reveal delay-2">
                     <i class="fa-solid fa-shield-halved certif-icon"></i>
                     <div class="certif-info">
                         <h3>SensCyber</h3>
@@ -880,7 +877,7 @@
                     </div>
                     <i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
-                <a href="Mirat_Alan_signer_éléctroniquement.pdf" target="_blank" class="certif-card reveal delay-3">
+                <a href="pdf/Mirat_Alan_signer_éléctroniquement.pdf" target="_blank" class="certif-card reveal delay-3">
                     <i class="fa-solid fa-file-shield certif-icon"></i>
                     <div class="certif-info">
                         <h3>Atelier RGPD (CNIL)</h3>
@@ -888,7 +885,7 @@
                     </div>
                     <i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
-                <a href="Alan_Mirat mooc_AFP_module1.pdf" target="_blank" class="certif-card reveal delay-3">
+                <a href="pdf/Alan_Mirat mooc_AFP_module1.pdf" target="_blank" class="certif-card reveal delay-3">
                     <i class="fa-brands fa-google certif-icon"></i>
                     <div class="certif-info">
                         <h3>Certificat AFP</h3>
@@ -980,7 +977,7 @@
         <div class="pdf-modal-container">
             <button class="btn-close-modal" onclick="closeModalById('veilleModal')"><i class="fa-solid fa-xmark"></i></button>
             <div class="pdf-container">
-                <iframe src="Veille_Cyber_IA.pdf#toolbar=0&view=FitH" title="Présentation Veille"></iframe>
+                <iframe src="pdf/Veille_Cyber_IA.pdf#toolbar=0&view=FitH" title="Présentation Veille"></iframe>
             </div>
         </div>
     </div>
@@ -989,7 +986,7 @@
         <div class="pdf-modal-container">
             <button class="btn-close-modal" onclick="closeModalById('cvModal')"><i class="fa-solid fa-xmark"></i></button>
             <div class="pdf-container">
-                <iframe src="Alan_Mirat_CV.pdf#toolbar=0&view=FitH" title="CV Alan Mirat"></iframe>
+                <iframe src="pdf/Alan_Mirat_CV.pdf#toolbar=0&view=FitH" title="CV Alan Mirat"></iframe>
             </div>
         </div>
     </div>
@@ -1052,7 +1049,7 @@
         // --- DONNEES DES PROJETS (AVEC GALERIE MULTIMEDIA) ---
         const projectData = {
             "dassault1": {
-                img: "DassaultSystemes.jpg",
+                img: "image/DassaultSystemes.jpg",
                 title: "Projet IA Local LLM",
                 desc: "Création d'une plateforme innovante intégrant une IA locale propulsée par un moteur LLM. L'objectif principal de ce projet est de garantir une confidentialité totale des données traitées tout en offrant une interface de chat fluide et réactive aux utilisateurs internes.",
                 features: ["Moteur LLM hébergé en local", "Confidentialité totale des données", "Interface de chat fluide et réactive", "Déploiement Full-Stack sécurisé"],
@@ -1060,7 +1057,7 @@
                 gallery: [] 
             },
             "dassault2": {
-                img: "DassaultSystemes.jpg",
+                img: "image/DassaultSystemes.jpg",
                 title: "Automatisation XLSX CSV",
                 desc: "Développement d'un outil d'automatisation exploitant la puissance de la librairie Pandas en Python. Ce projet permet de traiter, extraire et compiler des données massives depuis plusieurs fichiers XLSX et CSV, générant ainsi des rapports précis en quelques secondes.",
                 features: ["Traitement de données massives (Pandas)", "Fusion et nettoyage de fichiers XLSX/CSV", "Génération de rapports automatiques", "Optimisation des temps de calcul"],
@@ -1068,7 +1065,7 @@
                 gallery: []
             },
             "cashverse": {
-                img: "Cashverse.jpg",
+                img: "image/Cashverse.jpg",
                 title: "🌌 Cashverse Simulator",
                 desc: "Plongez dans les mécaniques backend d'un jeu Simulator complet sur Roblox. Ce projet n'est pas qu'une simple interface : il démontre la capacité à gérer des bases de données de joueurs persistantes, à créer un système économique complet avec des achats in-game, et surtout, à mettre en place un algorithme de probabilité pondérée (RNG) dynamique pour l'éclosion d'œufs. Le tout sécurisé par un Anti-Cheat maison côté serveur (Watchdog).",
                 features: ["Système d'économie et d'inventaire persistant", "Sauvegarde asynchrone (DataStoreService)", "Anti-Cheat serveur sur la physique (WalkSpeed)", "Algorithme Gacha RNG pondéré dynamiquement", "Boucles temporelles avec os.time()"],
@@ -1076,15 +1073,20 @@
                 gallery: []
             },
             "bot1": {
-                img: "DiscordBot.jpg",
+                img: "image/DiscordBot.jpg",
                 title: "🛠️ Bot Discord Multifonctions",
                 desc: "Le couteau suisse ultime pour un serveur Discord. Plutôt que de simples commandes texte, ce bot génère des interfaces interactives. Son point fort est le créateur de salons vocaux temporaires avec un panneau de contrôle privé (boutons et formulaires Modals). Il intègre également une base de données locale gérant un mini-jeu d'armée, un système d'économie et le stockage des avertissements de modération.",
                 features: ["Créateur de vocaux avec panneau de contrôle UI", "Modération avancée (Auto-mod & Nuke de salon)", "Mini-jeu 'World at Arms' (Logique RPG)", "Système bancaire et d'inventaire complet"],
                 tech: ["Python 3", "discord.py", "SQLite3", "Discord UI Components"],
-                gallery: []
+                gallery: [
+                    "video/demo-bot-vocal.mp4",
+                    "capture/bot-panel-vocal.png",
+                    "capture/bot-menu-admin.png",
+                    "capture/bot-menu-old.png"
+                ]
             },
             "bot2": {
-                img: "DiscordBot.jpg",
+                img: "image/DiscordBot.jpg",
                 title: "👑 Bot Discord Premium IA",
                 desc: "Une démonstration d'architecture logicielle propre et asynchrone. Ce bot est découpé en plusieurs modules (Cogs) pour une maintenabilité parfaite. En utilisant 'aiosqlite', il garantit des performances sans latence même lors d'écritures massives en base de données. Il intègre un assistant IA contextuel, un système de leveling, et embarque son propre serveur Flask pour rester en ligne 24/7 sur un hébergeur Cloud.",
                 features: ["Architecture modulaire et scalable (Cogs)", "Base de données SQLite 100% Asynchrone", "Assistant Concierge Intelligence Artificielle", "Hébergement autonome via thread Flask (Keep-Alive)"],
@@ -1092,7 +1094,7 @@
                 gallery: []
             },
             "toon": {
-                img: "mainscreen.jpg",
+                img: "image/mainscreen.jpg",
                 title: "⭐ Toon Tactics",
                 desc: "Un véritable jeu de Tower Defense en 2D développé sur Godot Engine 4. Ce projet met en avant des algorithmes de jeu vidéo classiques : validation mathématique de placement d'objets sur une grille, pathfinding, et un système de 'Smart Targeting' où les tours calculent en temps réel quel ennemi est le plus menaçant pour la base. Il inclut également un système de lootbox fluide avec des animations UI complexes (Tweens).",
                 features: ["Smart Targeting (Ciblage de la plus grande menace)", "Validation géométrique du placement de tours", "Gestionnaire de vagues avec timers asynchrones", "Animations UI complexes (Lootbox/Gacha)", "Système de codes promo intégré"],
@@ -1100,7 +1102,7 @@
                 gallery: []
             },
             "gsb-winform": {
-                img: "CsharpBanner.jpg",
+                img: "image/CsharpBanner.jpg",
                 title: "Projet GSB - WinForm (C#)",
                 desc: "Développement d'une application client lourd de bureau (Desktop) pour la gestion GSB. Créée avec C# et le framework .NET WinForm, l'application est directement connectée à la base de données de l'entreprise.",
                 features: ["Interface client lourd (Desktop)", "Connexion base de données distantes", "Gestionnaire d'événements C#", "Déploiement exécutable"],
@@ -1108,7 +1110,7 @@
                 gallery: []
             },
             "gsb-laravel": {
-                img: "PhpBanner.jpg",
+                img: "image/PhpBanner.jpg",
                 title: "Projet GSB - Laravel",
                 desc: "Refonte de l'application GSB en utilisant le framework Laravel. Démonstration de l'utilisation de l'ORM Eloquent, du moteur de template Blade, et du système de routage robuste offert par Laravel.",
                 features: ["Système de Routage avancé", "ORM Eloquent", "Moteur de template (Blade)", "Authentification intégrée"],
@@ -1116,7 +1118,7 @@
                 gallery: []
             },
             "pokedex-php": {
-                img: "Pokedex-Php.jpg",
+                img: "image/Pokedex-Php.jpg",
                 title: "Pokédex - PHP Natif",
                 desc: "Développement d'un Pokédex interactif en PHP natif. Ce projet met en avant la manipulation de données, l'intégration d'une base de données MySQL via PDO et une interface utilisateur ludique.",
                 features: ["Architecture PHP from scratch", "Connexion sécurisée BDD (PDO)", "Gestion dynamique des données", "UI/UX thématique"],
@@ -1152,7 +1154,7 @@
                 data.gallery.forEach(file => {
                     // Vérifie si c'est une vidéo (mp4, webm) ou une image
                     if(file.endsWith(".mp4") || file.endsWith(".webm")) {
-                        galleryContainer.innerHTML += `<video src="${file}" autoplay loop muted playsinline></video>`;
+                        galleryContainer.innerHTML += `<video src="${file}" autoplay loop muted playsinline controls></video>`;
                     } else {
                         galleryContainer.innerHTML += `<img src="${file}" alt="Preuve Projet">`;
                     }
