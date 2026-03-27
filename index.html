@@ -292,7 +292,7 @@
         .btn-details { background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.5); color: #38bdf8; }
         .btn-details:hover { background: #0ea5e9; color: #fff; border-color: transparent; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4); }
 
-        /* --- CERTIFICATIONS --- */
+        /* --- CERTIFICATIONS (AURA FORCÉE) --- */
         .certif-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .certif-card { 
             display: flex; align-items: center; gap: 20px; background: var(--bg-card); 
@@ -305,8 +305,7 @@
         .certif-icon { 
             display: inline-block; font-size: 2.5rem; background: var(--grad-emerald); 
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            transition: all 0.4s var(--bounce); 
-            animation: aura-pulse-emerald 3s ease-in-out infinite !important; 
+            transition: all 0.4s var(--bounce); animation: aura-pulse-emerald 3s ease-in-out infinite !important; 
         }
         .certif-card:hover .certif-icon { transform: scale(1.2) rotate(10deg); }
         
@@ -404,7 +403,8 @@
 
         .modal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
         .modal-gallery img, .modal-gallery video { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border-glass); transition: 0.3s; cursor: zoom-in; }
-        .modal-gallery img:hover { transform: scale(1.02); border-color: #4facfe; }
+        .modal-gallery video { object-fit: contain; background: #000; }
+        .modal-gallery img:hover, .modal-gallery video:hover { transform: scale(1.02); border-color: #4facfe; }
 
         /* --- LIGHTBOX (PLEIN ECRAN IMAGE) --- */
         .lightbox-overlay {
@@ -698,9 +698,7 @@
                         <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
-                            </ul>
+                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">C#</span><span class="tech-tag">WinForm</span><span class="tech-tag">.NET</span></div>
                         <div class="project-links">
@@ -716,9 +714,7 @@
                         <h3 class="project-title">Projet GSB - Laravel</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list">
-                                <li class="feature-item">Détails et informations à venir...</li>
-                            </ul>
+                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">PHP</span><span class="tech-tag">MVC</span></div>
                         <div class="project-links">
@@ -921,17 +917,15 @@
         
         window.addEventListener("scroll", () => {
             reveal();
-            // Gestion bouton retour en haut
             const btnTop = document.getElementById('scrollTopBtn');
             if(window.scrollY > 500) btnTop.classList.add('show');
             else btnTop.classList.remove('show');
             
-            // Gestion menu actif
             let current = "";
             document.querySelectorAll("section").forEach(section => { if (pageYOffset >= section.offsetTop - 200) current = section.getAttribute("id"); });
             document.querySelectorAll(".nav-link").forEach(link => { link.classList.remove("active"); if (link.getAttribute("href").includes(current)) link.classList.add("active"); });
         });
-        reveal(); // Appel initial
+        reveal();
 
         function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
 
@@ -1008,7 +1002,16 @@
                 img: "image/Cashverse.jpg", title: "🌌 Cashverse Simulator",
                 desc: "Plongez dans les mécaniques backend d'un jeu Simulator complet sur Roblox. Ce projet n'est pas qu'une simple interface : il démontre la capacité à gérer des bases de données de joueurs persistantes, à créer un système économique complet avec des achats in-game, et surtout, à mettre en place un algorithme de probabilité pondérée (RNG) dynamique pour l'éclosion d'œufs.",
                 features: ["Système d'économie et d'inventaire persistant", "Sauvegarde asynchrone (DataStoreService)", "Anti-Cheat serveur sur la physique", "Algorithme Gacha RNG pondéré dynamiquement", "Boucles temporelles"],
-                tech: ["Luau", "Roblox Studio", "DataStore", "Math.random"], gallery: []
+                tech: ["Luau", "Roblox Studio", "DataStore", "Math.random"],
+                gallery: [
+                    "capture/FastHatch.gif",
+                    "capture/TripleEgg.gif",
+                    "capture/Void.gif",
+                    "capture/HeavenWorld.gif",
+                    "capture/SnowWorld.gif",
+                    "capture/EggPreview.png",
+                    "capture/InterfaceUI.jpg"
+                ]
             },
             "bot1": {
                 img: "image/DiscordBot.jpg", title: "🛠️ Bot Discord Multifonctions",
@@ -1021,13 +1024,26 @@
                 img: "image/DiscordBot.jpg", title: "👑 Bot Discord Premium IA",
                 desc: "Une démonstration d'architecture logicielle propre et asynchrone. Ce bot est découpé en plusieurs modules (Cogs) pour une maintenabilité parfaite. En utilisant 'aiosqlite', il garantit des performances sans latence même lors d'écritures massives en base de données. Il intègre un assistant IA contextuel, un système de leveling, et embarque son propre serveur Flask pour rester en ligne 24/7.",
                 features: ["Architecture modulaire et scalable (Cogs)", "Base de données SQLite 100% Asynchrone", "Assistant Concierge Intelligence Artificielle", "Hébergement autonome via thread Flask"],
-                tech: ["Python Asyncio", "Flask", "aiosqlite", "LLM API"], gallery: []
+                tech: ["Python Asyncio", "Flask", "aiosqlite", "LLM API"], 
+                gallery: [
+                    "capture/bot-ai-help.png",
+                    "capture/bot-ai-sondage.png",
+                    "capture/bot-ai-resume.png",
+                    "capture/bot-ai-imagine.png",
+                    "capture/bot-ai-console.png"
+                ]
             },
             "toon": {
                 img: "image/mainscreen.jpg", title: "⭐ Toon Tactics",
                 desc: "Un véritable jeu de Tower Defense en 2D développé sur Godot Engine 4. Ce projet met en avant des algorithmes de jeu vidéo classiques : validation mathématique de placement d'objets sur une grille, pathfinding, et un système de 'Smart Targeting'.",
                 features: ["Smart Targeting (Ciblage de la plus grande menace)", "Validation géométrique du placement de tours", "Gestionnaire de vagues avec timers asynchrones", "Animations UI complexes (Lootbox/Gacha)", "Système de codes promo intégré"],
-                tech: ["GDScript", "Godot Engine 4", "Path2D", "Animations Tween"], gallery: []
+                tech: ["GDScript", "Godot Engine 4", "Path2D", "Animations Tween"], 
+                gallery: [
+                    "video/toon-gameplay1.mp4",
+                    "video/toon-gameplay2.mp4",
+                    "video/toon-gacha.mp4",
+                    "capture/toon-menu.jpg"
+                ]
             },
             "gsb-winform": {
                 img: "image/CsharpBanner.jpg", title: "Projet GSB - WinForm (C#)",
