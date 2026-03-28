@@ -79,6 +79,12 @@
             0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(16, 185, 129, 0.2)); } 
             50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 25px rgba(16, 185, 129, 0.8)); } 
         }
+        
+        /* RESTAURATION DE L'ANIMATION ÉTOILE DORÉE */
+        @keyframes aura-pulse-gold { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.2)); } 
+            50% { transform: scale(1.1) translateZ(0); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.6)); } 
+        }
 
         html { scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
@@ -572,8 +578,8 @@
                 <button class="filter-btn active" onclick="filterProjects('all')">Tous</button>
                 <button class="filter-btn" onclick="filterProjects('ia')">IA & Python</button>
                 <button class="filter-btn" onclick="filterProjects('web')">Web & PHP</button>
-                <button class="filter-btn" onclick="filterProjects('game')">Luau & GDScript</button>
-                <button class="filter-btn" onclick="filterProjects('logiciel')">Logiciels</button>
+                <button class="filter-btn" onclick="filterProjects('game')">Luau & GDScripts</button>
+                <button class="filter-btn" onclick="filterProjects('logiciel')">WinForm</button>
             </div>
 
             <div class="project-grid">
@@ -695,14 +701,17 @@
                 <div class="project-card reveal delay-3" data-category="logiciel">
                     <div class="project-img-wrapper"><img src="image/CsharpBanner.jpg" alt="WinForm GSB" class="project-img" loading="lazy"></div>
                     <div class="project-content">
-                        <h3 class="project-title">Projet GSB - WinForm (C#)</h3>
+                        <h3 class="project-title">Projet GSB - Mission 3 (C#)</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
+                            <ul class="feature-list">
+                                <li class="feature-item t" data-fr="Développement du CRUD Visiteurs" data-en="Visitor CRUD Development">Développement du CRUD Visiteurs</li>
+                                <li class="feature-item t" data-fr="Base de données Entity Framework" data-en="Entity Framework Database">Base de données Entity Framework</li>
+                            </ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">C#</span><span class="tech-tag">WinForm</span><span class="tech-tag">.NET</span></div>
                         <div class="project-links">
-                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <a href="https://github.com/DevSioAlan/Mission-3" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code GitHub</span></a>
                             <button onclick="openProjectModal('gsb-winform')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -711,14 +720,17 @@
                 <div class="project-card reveal delay-3" data-category="web">
                     <div class="project-img-wrapper"><img src="image/PhpBanner.jpg" alt="Laravel GSB" class="project-img" loading="lazy"></div>
                     <div class="project-content">
-                        <h3 class="project-title">Projet GSB - Laravel</h3>
+                        <h3 class="project-title">Projet GSB - Mission 2 (Laravel)</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
-                            <ul class="feature-list"><li class="feature-item">Détails et informations à venir...</li></ul>
+                            <ul class="feature-list">
+                                <li class="feature-item t" data-fr="Interface de gestion des frais" data-en="Expense management interface">Interface de gestion des frais</li>
+                                <li class="feature-item t" data-fr="Sécurité MVC & Génération de PDF" data-en="MVC Security & PDF Generation">Sécurité MVC & Génération de PDF</li>
+                            </ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">PHP</span><span class="tech-tag">MVC</span></div>
                         <div class="project-links">
-                            <a href="#" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code (À venir)" data-en="Code (Soon)">Code (À venir)</span></a>
+                            <a href="https://github.com/DevSioAlan/Mission-2" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code GitHub</span></a>
                             <button onclick="openProjectModal('gsb-laravel')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -1010,7 +1022,7 @@
                     "capture/HeavenWorld.gif",
                     "capture/SnowWorld.gif",
                     "capture/EggPreview.png",
-                    "capture/InterfaceUI.png"
+                    "capture/InterfaceUI.jpg"
                 ]
             },
             "bot1": {
@@ -1042,20 +1054,22 @@
                     "video/toon-gameplay1.mp4",
                     "video/toon-gameplay2.mp4",
                     "video/toon-gacha.mp4",
-                    "capture/toon-menu.png",
+                    "capture/toon-menu.jpg"
                 ]
             },
             "gsb-winform": {
-                img: "image/CsharpBanner.jpg", title: "Projet GSB - WinForm (C#)",
-                desc: "Développement d'une application client lourd de bureau (Desktop) pour la gestion GSB. Créée avec C# et le framework .NET WinForm, l'application est directement connectée à la base de données de l'entreprise.",
-                features: ["Interface client lourd (Desktop)", "Connexion base de données distantes", "Gestionnaire d'événements C#", "Déploiement exécutable"],
-                tech: ["C#", "WinForm", ".NET"], gallery: []
+                img: "image/CsharpBanner.jpg", title: "Projet GSB - Mission 3 (C#)",
+                desc: "Développement d'une application client lourd de bureau (Desktop) pour le laboratoire GSB. Cette mission se concentre sur la gestion des visiteurs médicaux via une interface C# WinForms connectée à une base SQL Server.",
+                features: ["Développement d'un CRUD complet (Visiteurs)", "Mapping de la BDD avec Entity Framework", "Navigation et ergonomie WinForms", "Travail collaboratif (Méthode Agile/Trello)"],
+                tech: ["C#", "WinForm", ".NET", "Entity Framework"], 
+                gallery: ["capture/Mission3.png"]
             },
             "gsb-laravel": {
-                img: "image/PhpBanner.jpg", title: "Projet GSB - Laravel",
-                desc: "Refonte de l'application GSB en utilisant le framework Laravel. Démonstration de l'utilisation de l'ORM Eloquent, du moteur de template Blade, et du système de routage robuste offert par Laravel.",
-                features: ["Système de Routage avancé", "ORM Eloquent", "Moteur de template (Blade)", "Authentification intégrée"],
-                tech: ["Laravel", "PHP", "MVC"], gallery: []
+                img: "image/PhpBanner.jpg", title: "Projet GSB - Mission 2 (Laravel)",
+                desc: "Refonte de l'application web GSB dédiée à la gestion des frais de déplacements. Le projet intègre la sécurisation des accès selon les rôles (Comptable/Visiteur) et le développement de modules de suivi et de validation des paiements.",
+                features: ["Architecture MVC avec ORM Eloquent", "Sécurisation des routes et authentification", "Génération de fiches récapitulatives en PDF", "Suivi des paiements et validation"],
+                tech: ["Laravel", "PHP", "MVC", "MySQL"], 
+                gallery: ["capture/Mission2.png"]
             },
             "pokedex-php": {
                 img: "image/Pokedex-Php.jpg", title: "Pokédex - PHP Natif",
