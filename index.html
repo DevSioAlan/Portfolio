@@ -208,7 +208,6 @@
             transition: all 0.4s var(--bounce); position: relative; backdrop-filter: blur(10px);
             box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); animation: aura-float 5s ease-in-out infinite; 
         }
-        /* AJOUT DE L'ANIMATION PULSE SUR LES ICONES RESEAUX SOCIAUX */
         .social-icon i { transition: transform 0.4s var(--bounce); animation: icon-pulse 2s infinite ease-in-out; }
         
         .social-icon.github:hover { color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4); transform: translateY(-8px); animation: none; }
@@ -238,24 +237,26 @@
         .cat-icon.cyan { background: var(--grad-cyan); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .cat-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: #fff; }
         
-        /* ANIMATION COMPÉTENCES : GLOW VERT FLUIDE */
-        @keyframes skill-glow-green { 
-            0%, 100% { color: #9ca3af; text-shadow: 0 0 0px rgba(16, 185, 129, 0); transform: translateY(0px); } 
-            50% { color: #10b981; text-shadow: 0 0 15px rgba(16, 185, 129, 0.6); transform: translateY(-4px); } 
+        /* ANIMATION COMPÉTENCES : GLOW FLUIDE (Cyan/Blue très propre) */
+        @keyframes skill-pulse-smooth { 
+            0%, 100% { filter: drop-shadow(0 0 2px rgba(79, 172, 254, 0.2)); transform: translateY(0) scale(1); color: #9ca3af; } 
+            50% { filter: drop-shadow(0 0 15px rgba(79, 172, 254, 0.8)); transform: translateY(-4px) scale(1.08); color: #4facfe; } 
         }
         
         .tech-chips { display: flex; flex-wrap: wrap; gap: 12px; position: relative; z-index: 1; }
         .tech-chip { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; font-size: 0.95rem; font-weight: 500; color: #e2e8f0; transition: all 0.3s var(--bounce); cursor: default; }
         
-        /* Ajout de l'animation sur les icônes de compétences */
-        .tech-chip i { font-size: 1.2rem; transition: 0.3s; animation: skill-glow-green 3s infinite ease-in-out; }
-        .tech-chip:nth-child(even) i { animation-delay: 1.5s; } /* Désynchronise l'effet pour créer une vague */
+        /* Ajout de la nouvelle animation fluide sur les icônes de compétences */
+        .tech-chip i { font-size: 1.2rem; transition: 0.3s; animation: skill-pulse-smooth 3.5s infinite ease-in-out; }
+        .tech-chip:nth-child(even) i { animation-delay: 1.75s; } /* Vague décalée */
         
         .tech-chip:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
-        .tech-chip:hover .fa-python { color: #3b82f6; } .tech-chip:hover .fa-php { color: #8b5cf6; } .tech-chip:hover .fa-database { color: #10b981; } .tech-chip:hover .fa-microsoft { color: #0ea5e9; } .tech-chip:hover .fa-gamepad { color: #f59e0b; } .tech-chip:hover .fa-robot { color: #d946ef; } .tech-chip:hover .fa-network-wired { color: #8b5cf6; } .tech-chip:hover .fa-table { color: #10b981; } .tech-chip:hover .fa-chart-pie { color: #f59e0b; } .tech-chip:hover .fa-git-alt { color: #f97316; } .tech-chip:hover .fa-lock { color: #10b981; } .tech-chip:hover .fa-server { color: #0ea5e9; }
         
-        /* Enlève le glow au survol pour laisser la couleur de la techno s'afficher proprement */
-        .tech-chip:hover i { transform: scale(1.2); animation: none; text-shadow: none; }
+        /* Couleurs au hover (écrase l'animation) */
+        .tech-chip:hover .fa-python { color: #3b82f6 !important; } .tech-chip:hover .fa-php { color: #8b5cf6 !important; } .tech-chip:hover .fa-database { color: #10b981 !important; } .tech-chip:hover .fa-microsoft { color: #0ea5e9 !important; } .tech-chip:hover .fa-gamepad { color: #f59e0b !important; } .tech-chip:hover .fa-robot { color: #d946ef !important; } .tech-chip:hover .fa-network-wired { color: #8b5cf6 !important; } .tech-chip:hover .fa-table { color: #10b981 !important; } .tech-chip:hover .fa-chart-pie { color: #f59e0b !important; } .tech-chip:hover .fa-git-alt { color: #f97316 !important; } .tech-chip:hover .fa-lock { color: #10b981 !important; } .tech-chip:hover .fa-server { color: #0ea5e9 !important; }
+        
+        /* Enlève le glow au survol pour laisser le scale s'appliquer */
+        .tech-chip:hover i { transform: scale(1.2); animation: none; filter: none; }
 
         /* --- TIMELINE --- */
         .timeline { position: relative; max-width: 900px; margin: 0 auto; padding-left: 40px; }
@@ -780,20 +781,6 @@
             <h2 class="section-title title-emerald reveal">Certifications</h2>
             <div class="certif-grid">
                 
-                <a href="pdf/Mirat_Alan_Projet_E-learning.pdf" target="_blank" class="certif-card reveal delay-2">
-                    <i class="fa-solid fa-user-shield certif-icon"></i>
-                    <div class="certif-info">
-                        <h3>SecNumacadémie (ANSSI)</h3><p class="t" data-fr="Module Sécurité - Score 84%" data-en="Security Module - Score 84%">Module Sécurité - Score 84%</p>
-                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
-                </a>
-
-                <a href="pdf/Mirat-Alan-scores-senscyber.pdf" target="_blank" class="certif-card reveal delay-3">
-                    <i class="fa-solid fa-bullseye certif-icon"></i>
-                    <div class="certif-info">
-                        <h3>SensCyber - Scores</h3><p class="t" data-fr="Score parfait de 100% (Modules 1 à 3)" data-en="Perfect score of 100% (Modules 1 to 3)">Score parfait de 100% (Modules 1 à 3)</p>
-                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
-                </a>
-
                 <a href="pdf/certification-pix-20260220.pdf" target="_blank" class="certif-card reveal delay-1">
                     <i class="fa-solid fa-award certif-icon"></i>
                     <div class="certif-info">
@@ -807,8 +794,22 @@
                         <h3>Certification PIX (2024)</h3><p class="t" data-fr="Score de 122 PIX - Niveau 5" data-en="Score of 122 PIX - Level 5">Score de 122 PIX - Niveau 5</p>
                     </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
+
+                <a href="pdf/Alan_Mirat mooc_AFP_module1.pdf" target="_blank" class="certif-card reveal delay-2">
+                    <i class="fa-brands fa-google certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>Certificat AFP</h3><p class="t" data-fr="Avec le soutien de Google News Initiative" data-en="Supported by Google News Initiative">Avec le soutien de Google News Initiative</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
+
+                <a href="pdf/Mirat_Alan_Projet_E-learning.pdf" target="_blank" class="certif-card reveal delay-2">
+                    <i class="fa-solid fa-user-shield certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>SecNumacadémie (ANSSI)</h3><p class="t" data-fr="Module Sécurité - Score 84%" data-en="Security Module - Score 84%">Module Sécurité - Score 84%</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
                 
-                <a href="pdf/Attestation Sens Cyber_Mirat_Alan.pdf" target="_blank" class="certif-card reveal delay-2">
+                <a href="pdf/Attestation Sens Cyber_Mirat_Alan.pdf" target="_blank" class="certif-card reveal delay-3">
                     <i class="fa-solid fa-shield-halved certif-icon"></i>
                     <div class="certif-info">
                         <h3>Attestation SensCyber</h3><p class="t" data-fr="Agir pour contribuer à ma sécurité numérique" data-en="Act to contribute to digital security">Agir pour contribuer à ma sécurité numérique</p>
@@ -821,13 +822,14 @@
                         <h3>Atelier RGPD (CNIL)</h3><p class="t" data-fr="Le RGPD et ses notions clés" data-en="GDPR and key concepts">Le RGPD et ses notions clés</p>
                     </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
-                
-                <a href="pdf/Alan_Mirat mooc_AFP_module1.pdf" target="_blank" class="certif-card reveal delay-3">
-                    <i class="fa-brands fa-google certif-icon"></i>
+
+                <a href="pdf/Mirat-Alan-scores-senscyber.pdf" target="_blank" class="certif-card reveal delay-3">
+                    <i class="fa-solid fa-bullseye certif-icon"></i>
                     <div class="certif-info">
-                        <h3>Certificat AFP</h3><p class="t" data-fr="Avec le soutien de Google News Initiative" data-en="Supported by Google News Initiative">Avec le soutien de Google News Initiative</p>
+                        <h3>SensCyber - Scores</h3><p class="t" data-fr="Score parfait de 100% (Modules 1 à 3)" data-en="Perfect score of 100% (Modules 1 to 3)">Score parfait de 100% (Modules 1 à 3)</p>
                     </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
+                
             </div>
         </section>
 
