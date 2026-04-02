@@ -207,11 +207,13 @@
             transition: all 0.4s var(--bounce); position: relative; backdrop-filter: blur(10px);
             box-shadow: 0 0 12px rgba(255, 255, 255, 0.05); animation: aura-float 5s ease-in-out infinite; 
         }
-        .social-icon i { transition: transform 0.4s var(--bounce); }
+        /* AJOUT DE L'ANIMATION PULSE SUR LES ICONES RESEAUX SOCIAUX */
+        .social-icon i { transition: transform 0.4s var(--bounce); animation: icon-pulse 2s infinite ease-in-out; }
+        
         .social-icon.github:hover { color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4); transform: translateY(-8px); animation: none; }
         .social-icon.linkedin:hover { color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6); box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6); transform: translateY(-8px); animation: none; }
         .social-icon.email:hover { color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6); box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6); transform: translateY(-8px); animation: none; }
-        .social-icon:hover i { transform: scale(1.2); }
+        .social-icon:hover i { transform: scale(1.2); animation: none; } /* Enlève le pulse au survol pour laisser le scale agir */
 
         /* --- COMPÉTENCES --- */
         .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
@@ -235,12 +237,17 @@
         .cat-icon.cyan { background: var(--grad-cyan); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .cat-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: #fff; }
         
+        /* AJOUT DE L'ANIMATION PULSE COLORÉE SUR LES COMPÉTENCES */
+        @keyframes pulse-skill { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.15); opacity: 1; text-shadow: 0 0 10px currentColor; } }
+        
         .tech-chips { display: flex; flex-wrap: wrap; gap: 12px; position: relative; z-index: 1; }
         .tech-chip { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; font-size: 0.95rem; font-weight: 500; color: #e2e8f0; transition: all 0.3s var(--bounce); cursor: default; }
-        .tech-chip i { font-size: 1.2rem; color: #9ca3af; transition: 0.3s; }
+        .tech-chip i { font-size: 1.2rem; color: #9ca3af; transition: 0.3s; animation: pulse-skill 3s infinite ease-in-out; }
+        .tech-chip:nth-child(even) i { animation-delay: 1.5s; } /* Désynchronise un peu les animations */
+        
         .tech-chip:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
         .tech-chip:hover .fa-python { color: #3b82f6; } .tech-chip:hover .fa-php { color: #8b5cf6; } .tech-chip:hover .fa-database { color: #10b981; } .tech-chip:hover .fa-microsoft { color: #0ea5e9; } .tech-chip:hover .fa-gamepad { color: #f59e0b; } .tech-chip:hover .fa-robot { color: #d946ef; } .tech-chip:hover .fa-network-wired { color: #8b5cf6; } .tech-chip:hover .fa-table { color: #10b981; } .tech-chip:hover .fa-chart-pie { color: #f59e0b; } .tech-chip:hover .fa-git-alt { color: #f97316; } .tech-chip:hover .fa-lock { color: #10b981; } .tech-chip:hover .fa-server { color: #0ea5e9; }
-        .tech-chip:hover i { transform: scale(1.2); }
+        .tech-chip:hover i { transform: scale(1.2); animation: none; }
 
         /* --- TIMELINE --- */
         .timeline { position: relative; max-width: 900px; margin: 0 auto; padding-left: 40px; }
@@ -578,8 +585,8 @@
                 <button class="filter-btn active" onclick="filterProjects('all')">Tous</button>
                 <button class="filter-btn" onclick="filterProjects('ia')">IA & Python</button>
                 <button class="filter-btn" onclick="filterProjects('web')">Web & PHP</button>
-                <button class="filter-btn" onclick="filterProjects('game')">Luau & GDScripts</button>
-                <button class="filter-btn" onclick="filterProjects('logiciel')">WinForm</button>
+                <button class="filter-btn" onclick="filterProjects('game')">Luau & GDScript</button>
+                <button class="filter-btn" onclick="filterProjects('logiciel')">WinForm(C#)</button>
             </div>
 
             <div class="project-grid">
@@ -701,7 +708,7 @@
                 <div class="project-card reveal delay-3" data-category="logiciel">
                     <div class="project-img-wrapper"><img src="image/CsharpBanner.jpg" alt="WinForm GSB" class="project-img" loading="lazy"></div>
                     <div class="project-content">
-                        <h3 class="project-title">Projet GSB - Mission 3 (C#)</h3>
+                        <h3 class="project-title">Projet GSB - Mission 3 WinForm (C#)</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
                             <ul class="feature-list">
@@ -1062,14 +1069,28 @@
                 desc: "Développement d'une application client lourd de bureau (Desktop) pour le laboratoire GSB. Cette mission se concentre sur la gestion des visiteurs médicaux via une interface C# WinForms connectée à une base SQL Server.",
                 features: ["Développement d'un CRUD complet (Visiteurs)", "Mapping de la BDD avec Entity Framework", "Navigation et ergonomie WinForms", "Travail collaboratif (Méthode Agile/Trello)"],
                 tech: ["C#", "WinForm", ".NET", "Entity Framework"], 
-                gallery: ["capture/Mission3.png"]
+                gallery: [
+                    "capture/Mission3.png",
+                    "capture/Capture_decran_2026-03-28_192601.png",
+                    "capture/Capture_decran_2026-03-28_193806.png",
+                    "capture/Capture_decran_2026-03-28_193937.png",
+                    "capture/Capture_decran_2026-03-28_194015.png",
+                    "capture/Capture_decran_2026-03-28_194041.png"
+                ]
             },
             "gsb-laravel": {
                 img: "image/PhpBanner.jpg", title: "Projet GSB - Mission 2 (Laravel)",
                 desc: "Refonte de l'application web GSB dédiée à la gestion des frais de déplacements. Le projet intègre la sécurisation des accès selon les rôles (Comptable/Visiteur) et le développement de modules de suivi et de validation des paiements.",
                 features: ["Architecture MVC avec ORM Eloquent", "Sécurisation des routes et authentification", "Génération de fiches récapitulatives en PDF", "Suivi des paiements et validation"],
                 tech: ["Laravel", "PHP", "MVC", "MySQL"], 
-                gallery: ["capture/Mission2.png"]
+                gallery: [
+                    "capture/Mission2.png",
+                    "capture/mission2dvisuel.png",
+                    "capture/mission2dvisuel4.png",
+                    "capture/gsb_visuel_comptable.png",
+                    "capture/terminal-composer.png",
+                    "capture/terminal-serve.png"
+                ]
             },
             "pokedex-php": {
                 img: "image/Pokedex-Php.jpg", title: "Pokédex - PHP Natif",
