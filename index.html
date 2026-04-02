@@ -56,7 +56,7 @@
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
         /* --- ANIMATIONS AURA PRO (OPTIMISÉES GPU) --- */
-        .nav-link i, .feature-box h4 i, .veille-icon, .btn-primary i, .btn-submit i {
+        .nav-link i, .veille-icon, .btn-primary i, .btn-submit i {
             will-change: transform, filter;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -80,11 +80,12 @@
             50% { transform: scale(1.08) translateZ(0); filter: drop-shadow(0 0 25px rgba(16, 185, 129, 0.8)); } 
         }
         
-        /* RESTAURATION DE L'ANIMATION ÉTOILE DORÉE */
-        @keyframes aura-pulse-gold { 
-            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.2)); } 
-            50% { transform: scale(1.1) translateZ(0); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.6)); } 
+        /* ANIMATION ÉTOILE DORÉE FLUIDE */
+        @keyframes star-glow-gold { 
+            0%, 100% { transform: scale(1) translateZ(0); filter: drop-shadow(0 0 0px rgba(251, 191, 36, 0)); color: #fbbf24; } 
+            50% { transform: scale(1.15) translateZ(0); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.8)); color: #fde047; } 
         }
+        .feature-box h4 i { animation: star-glow-gold 3s ease-in-out infinite; } 
 
         html { scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
@@ -213,7 +214,7 @@
         .social-icon.github:hover { color: #ffffff; background: #24292e; border-color: rgba(255, 255, 255, 0.4); box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.4); transform: translateY(-8px); animation: none; }
         .social-icon.linkedin:hover { color: #ffffff; background: #0a66c2; border-color: rgba(10, 102, 194, 0.6); box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4), 0 0 15px rgba(10, 102, 194, 0.6); transform: translateY(-8px); animation: none; }
         .social-icon.email:hover { color: #ffffff; background: #ea4335; border-color: rgba(234, 67, 53, 0.6); box-shadow: 0 10px 25px rgba(234, 67, 53, 0.4), 0 0 15px rgba(234, 67, 53, 0.6); transform: translateY(-8px); animation: none; }
-        .social-icon:hover i { transform: scale(1.2); animation: none; } /* Enlève le pulse au survol pour laisser le scale agir */
+        .social-icon:hover i { transform: scale(1.2); animation: none; } 
 
         /* --- COMPÉTENCES --- */
         .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
@@ -237,17 +238,24 @@
         .cat-icon.cyan { background: var(--grad-cyan); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .cat-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: #fff; }
         
-        /* AJOUT DE L'ANIMATION PULSE COLORÉE SUR LES COMPÉTENCES */
-        @keyframes pulse-skill { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.15); opacity: 1; text-shadow: 0 0 10px currentColor; } }
+        /* ANIMATION COMPÉTENCES : GLOW VERT FLUIDE */
+        @keyframes skill-glow-green { 
+            0%, 100% { color: #9ca3af; text-shadow: 0 0 0px rgba(16, 185, 129, 0); transform: translateY(0px); } 
+            50% { color: #10b981; text-shadow: 0 0 15px rgba(16, 185, 129, 0.6); transform: translateY(-4px); } 
+        }
         
         .tech-chips { display: flex; flex-wrap: wrap; gap: 12px; position: relative; z-index: 1; }
         .tech-chip { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; font-size: 0.95rem; font-weight: 500; color: #e2e8f0; transition: all 0.3s var(--bounce); cursor: default; }
-        .tech-chip i { font-size: 1.2rem; color: #9ca3af; transition: 0.3s; animation: pulse-skill 3s infinite ease-in-out; }
-        .tech-chip:nth-child(even) i { animation-delay: 1.5s; } /* Désynchronise un peu les animations */
+        
+        /* Ajout de l'animation sur les icônes de compétences */
+        .tech-chip i { font-size: 1.2rem; transition: 0.3s; animation: skill-glow-green 3s infinite ease-in-out; }
+        .tech-chip:nth-child(even) i { animation-delay: 1.5s; } /* Désynchronise l'effet pour créer une vague */
         
         .tech-chip:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
         .tech-chip:hover .fa-python { color: #3b82f6; } .tech-chip:hover .fa-php { color: #8b5cf6; } .tech-chip:hover .fa-database { color: #10b981; } .tech-chip:hover .fa-microsoft { color: #0ea5e9; } .tech-chip:hover .fa-gamepad { color: #f59e0b; } .tech-chip:hover .fa-robot { color: #d946ef; } .tech-chip:hover .fa-network-wired { color: #8b5cf6; } .tech-chip:hover .fa-table { color: #10b981; } .tech-chip:hover .fa-chart-pie { color: #f59e0b; } .tech-chip:hover .fa-git-alt { color: #f97316; } .tech-chip:hover .fa-lock { color: #10b981; } .tech-chip:hover .fa-server { color: #0ea5e9; }
-        .tech-chip:hover i { transform: scale(1.2); animation: none; }
+        
+        /* Enlève le glow au survol pour laisser la couleur de la techno s'afficher proprement */
+        .tech-chip:hover i { transform: scale(1.2); animation: none; text-shadow: none; }
 
         /* --- TIMELINE --- */
         .timeline { position: relative; max-width: 900px; margin: 0 auto; padding-left: 40px; }
@@ -290,7 +298,6 @@
         
         .feature-box { background: rgba(15, 15, 25, 0.8); border: 1px solid var(--border-glass); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
         .feature-box h4 { color: #fff; font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; font-family: var(--font-head); font-weight: 600; }
-        .feature-box h4 i { color: #fbbf24; animation: aura-pulse-gold 4s ease-in-out infinite; } 
         .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
         .feature-item { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; color: #e2e8f0; text-align: left; }
         .feature-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #0ea5e9; box-shadow: 0 0 8px #0ea5e9; flex-shrink: 0; }
@@ -600,11 +607,12 @@
                             <ul class="feature-list">
                                 <li class="feature-item t" data-fr="Moteur LLM hébergé en local" data-en="Locally hosted LLM engine">Moteur LLM hébergé en local</li>
                                 <li class="feature-item t" data-fr="Confidentialité totale des données" data-en="Total data privacy">Confidentialité totale des données</li>
+                                <li class="feature-item t" data-fr="Génération de réponses en streaming" data-en="Real-time streaming responses">Génération de réponses en streaming</li>
                             </ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Python</span><span class="tech-tag">LLM Local</span><span class="tech-tag">API</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Aura-Local-AI-Assistant" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <a href="https://github.com/DevSioAlan/Aura-Local-AI-Assistant" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('dassault1')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -623,7 +631,7 @@
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Data</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Data-Automation-Engine" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <a href="https://github.com/DevSioAlan/Data-Automation-Engine" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('dassault2')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -642,7 +650,7 @@
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Luau</span><span class="tech-tag">Roblox Studio</span><span class="tech-tag">DataStore</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Cashverse-Simulator-Backend" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <a href="https://github.com/DevSioAlan/Cashverse-Simulator-Backend" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('cashverse')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -661,7 +669,7 @@
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Python 3</span><span class="tech-tag">SQLite3</span><span class="tech-tag">Discord UI</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Bot-Discord-Multifonctions" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <a href="https://github.com/DevSioAlan/Bot-Discord-Multifonctions" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('bot1')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -680,7 +688,7 @@
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Python Async</span><span class="tech-tag">Flask</span><span class="tech-tag">aiosqlite</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Bot-Discord-Premium-IA" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <a href="https://github.com/DevSioAlan/Bot-Discord-Premium-IA" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('bot2')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -695,11 +703,12 @@
                             <ul class="feature-list">
                                 <li class="feature-item t" data-fr="Smart Targeting (Ciblage IA)" data-en="Smart Targeting (AI)">Smart Targeting (Ciblage IA)</li>
                                 <li class="feature-item t" data-fr="Validation géométrique" data-en="Geometric validation">Validation géométrique de placement</li>
+                                <li class="feature-item t" data-fr="Gestion des vagues et de l'économie" data-en="Waves and economy management">Gestion des vagues et de l'économie</li>
                             </ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">GDScript</span><span class="tech-tag">Godot 4</span><span class="tech-tag">Path2D</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Toon-Tactics-Tower-Defense" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <a href="https://github.com/DevSioAlan/Toon-Tactics-Tower-Defense" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('toon')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -708,7 +717,7 @@
                 <div class="project-card reveal delay-3" data-category="logiciel">
                     <div class="project-img-wrapper"><img src="image/CsharpBanner.jpg" alt="WinForm GSB" class="project-img" loading="lazy"></div>
                     <div class="project-content">
-                        <h3 class="project-title">Projet GSB - Mission 3 WinForm (C#)</h3>
+                        <h3 class="project-title">Projet GSB - Mission 3 (C#)</h3>
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
                             <ul class="feature-list">
@@ -718,7 +727,7 @@
                         </div>
                         <div class="tech-tags"><span class="tech-tag">C#</span><span class="tech-tag">WinForm</span><span class="tech-tag">.NET</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Mission-3" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code GitHub</span></a>
+                            <a href="https://github.com/DevSioAlan/Mission-3" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('gsb-winform')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -737,7 +746,7 @@
                         </div>
                         <div class="tech-tags"><span class="tech-tag">Laravel</span><span class="tech-tag">PHP</span><span class="tech-tag">MVC</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Mission-2" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code GitHub</span></a>
+                            <a href="https://github.com/DevSioAlan/Mission-2" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('gsb-laravel')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -750,13 +759,15 @@
                         <div class="feature-box">
                             <h4 class="t" data-fr="<i class='fa-solid fa-star'></i> Key Features" data-en="<i class='fa-solid fa-star'></i> Key Features"><i class="fa-solid fa-star"></i> Key Features</h4>
                             <ul class="feature-list">
-                                <li class="feature-item">Base de données relationnelle Pokémon</li>
-                                <li class="feature-item">Génération dynamique des cartes via PHP</li>
+                                <li class="feature-item t" data-fr="Base de données relationnelle" data-en="Relational database">Base de données relationnelle Pokémon</li>
+                                <li class="feature-item t" data-fr="Génération dynamique (PHP)" data-en="Dynamic generation (PHP)">Génération dynamique des cartes (PHP)</li>
+                                <li class="feature-item t" data-fr="Recherche et filtrage interactif" data-en="Interactive search and filtering">Recherche et filtrage interactif</li>
+                                <li class="feature-item t" data-fr="Interface back-office (Ajout)" data-en="Back-office interface (Add)">Interface back-office (Ajout)</li>
                             </ul>
                         </div>
                         <div class="tech-tags"><span class="tech-tag">PHP</span><span class="tech-tag">MySQL</span><span class="tech-tag">HTML/CSS</span></div>
                         <div class="project-links">
-                            <a href="https://github.com/DevSioAlan/Pokedex" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code GitHub" data-en="GitHub Code">Code</span></a>
+                            <a href="https://github.com/DevSioAlan/Pokedex" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> <span class="t" data-fr="Code" data-en="Code">Code</span></a>
                             <button onclick="openProjectModal('pokedex-php')" class="btn-link btn-details"><span class="t" data-fr="Détails" data-en="Details">Détails</span> <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -768,30 +779,49 @@
         <section id="certifications">
             <h2 class="section-title title-emerald reveal">Certifications</h2>
             <div class="certif-grid">
+                
+                <a href="pdf/Mirat_Alan_Projet_E-learning.pdf" target="_blank" class="certif-card reveal delay-2">
+                    <i class="fa-solid fa-user-shield certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>SecNumacadémie (ANSSI)</h3><p class="t" data-fr="Module Sécurité - Score 84%" data-en="Security Module - Score 84%">Module Sécurité - Score 84%</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
+
+                <a href="pdf/Mirat-Alan-scores-senscyber.pdf" target="_blank" class="certif-card reveal delay-3">
+                    <i class="fa-solid fa-bullseye certif-icon"></i>
+                    <div class="certif-info">
+                        <h3>SensCyber - Scores</h3><p class="t" data-fr="Score parfait de 100% (Modules 1 à 3)" data-en="Perfect score of 100% (Modules 1 to 3)">Score parfait de 100% (Modules 1 à 3)</p>
+                    </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
+                </a>
+
                 <a href="pdf/certification-pix-20260220.pdf" target="_blank" class="certif-card reveal delay-1">
                     <i class="fa-solid fa-award certif-icon"></i>
                     <div class="certif-info">
                         <h3>Certification PIX (2026)</h3><p class="t" data-fr="Score de 448 PIX - Niveau 6" data-en="Score of 448 PIX - Level 6">Score de 448 PIX - Niveau 6</p>
                     </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
+                
                 <a href="pdf/certification-pix-20240415.pdf" target="_blank" class="certif-card reveal delay-1">
                     <i class="fa-solid fa-medal certif-icon"></i>
                     <div class="certif-info">
                         <h3>Certification PIX (2024)</h3><p class="t" data-fr="Score de 122 PIX - Niveau 5" data-en="Score of 122 PIX - Level 5">Score de 122 PIX - Niveau 5</p>
                     </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
+                
                 <a href="pdf/Attestation Sens Cyber_Mirat_Alan.pdf" target="_blank" class="certif-card reveal delay-2">
                     <i class="fa-solid fa-shield-halved certif-icon"></i>
                     <div class="certif-info">
-                        <h3>SensCyber</h3><p class="t" data-fr="Agir pour contribuer à ma sécurité numérique" data-en="Act to contribute to digital security">Agir pour contribuer à ma sécurité numérique</p>
+                        <h3>Attestation SensCyber</h3><p class="t" data-fr="Agir pour contribuer à ma sécurité numérique" data-en="Act to contribute to digital security">Agir pour contribuer à ma sécurité numérique</p>
                     </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
+                
                 <a href="pdf/Mirat_Alan_signer_éléctroniquement.pdf" target="_blank" class="certif-card reveal delay-3">
                     <i class="fa-solid fa-file-shield certif-icon"></i>
                     <div class="certif-info">
                         <h3>Atelier RGPD (CNIL)</h3><p class="t" data-fr="Le RGPD et ses notions clés" data-en="GDPR and key concepts">Le RGPD et ses notions clés</p>
                     </div><i class="fa-solid fa-arrow-right certif-arrow"></i>
                 </a>
+                
                 <a href="pdf/Alan_Mirat mooc_AFP_module1.pdf" target="_blank" class="certif-card reveal delay-3">
                     <i class="fa-brands fa-google certif-icon"></i>
                     <div class="certif-info">
@@ -996,7 +1026,7 @@
             "dassault1": {
                 img: "image/DassaultSystemes.jpg", title: "Projet IA Local LLM",
                 desc: "Création d'une plateforme innovante intégrant une IA locale propulsée par un moteur LLM. L'objectif principal de ce projet est de garantir une confidentialité totale des données traitées tout en offrant une interface de chat fluide et réactive aux utilisateurs internes.",
-                features: ["Moteur LLM hébergé en local", "Confidentialité totale des données", "Interface de chat fluide et réactive", "Déploiement Full-Stack sécurisé"],
+                features: ["Moteur LLM hébergé en local", "Confidentialité totale des données", "Interface de chat fluide et réactive", "Déploiement Full-Stack sécurisé", "Génération de réponses en streaming (temps réel)"],
                 tech: ["Python", "LLM Local", "API", "Frontend Web"],
                 gallery: [
                     "video/demo-aura-ia.mp4",
@@ -1055,7 +1085,7 @@
             "toon": {
                 img: "image/mainscreen.jpg", title: "⭐ Toon Tactics",
                 desc: "Un véritable jeu de Tower Defense en 2D développé sur Godot Engine 4. Ce projet met en avant des algorithmes de jeu vidéo classiques : validation mathématique de placement d'objets sur une grille, pathfinding, et un système de 'Smart Targeting'.",
-                features: ["Smart Targeting (Ciblage de la plus grande menace)", "Validation géométrique du placement de tours", "Gestionnaire de vagues avec timers asynchrones", "Animations UI complexes (Lootbox/Gacha)", "Système de codes promo intégré"],
+                features: ["Smart Targeting (Ciblage de la plus grande menace)", "Validation géométrique du placement de tours", "Gestionnaire de vagues avec timers asynchrones", "Système d'économie et d'achat in-game"],
                 tech: ["GDScript", "Godot Engine 4", "Path2D", "Animations Tween"], 
                 gallery: [
                     "video/toon-gameplay1.mp4",
@@ -1095,8 +1125,13 @@
             "pokedex-php": {
                 img: "image/Pokedex-Php.jpg", title: "Pokédex - PHP Natif",
                 desc: "Développement d'un Pokédex interactif en PHP natif. Ce projet met en avant la manipulation de données, l'intégration d'une base de données MySQL via PDO et une interface utilisateur ludique.",
-                features: ["Architecture PHP from scratch", "Connexion sécurisée BDD (PDO)", "Gestion dynamique des données", "UI/UX thématique"],
-                tech: ["PHP", "MySQL", "HTML/CSS"], gallery: []
+                features: ["Base de données relationnelle", "Génération dynamique des cartes (PHP)", "Recherche et filtrage interactif", "Interface back-office (Ajout / Modif)"],
+                tech: ["PHP", "MySQL", "HTML/CSS"], 
+                gallery: [
+                    "video/pokedex-demo.mp4",
+                    "capture/pokedex-1.png",
+                    "capture/pokedex-2.png"
+                ]
             }
         };
 
